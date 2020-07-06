@@ -1,2 +1,2 @@
 # vcall_biodata
-A variant calling docker image 
+A variant calling pipeline - docker image 
