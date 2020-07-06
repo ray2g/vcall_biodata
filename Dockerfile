@@ -1,7 +1,7 @@
 #Set OS
 FROM continuumio/miniconda3:4.8.3
 
-WORKDIR /mnt/share/repo/vcall_biodata/
+#WORKDIR /mnt/share/repo/vcall_biodata/
 
 RUN apt-get update && apt-get upgrade -y
 
