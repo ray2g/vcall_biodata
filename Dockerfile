@@ -1,8 +1,6 @@
 #Set OS
 FROM continuumio/miniconda3:4.8.3
 
-WORKDIR ~/
-
 RUN apt-get update && apt-get upgrade -y
 
 #Bioconda settup:
@@ -26,6 +24,9 @@ RUN mv ~/vcall_biodata/gatk-4.1.7.0 ~/vcall_biodata/gatk
 
 #Copy files
 COPY /home/ray/Documents/vcall/vcall_biodata_docker/* ~/vcall_biodata/
+
+#Set workdir
+WORKDIR ~/vcall_biodata/
 
 #Start entry point
 ENTRYPOINT snakemake --snakefile ~/vcall_biodata/vcall-pipe.snake 
