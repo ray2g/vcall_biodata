@@ -1,5 +1,5 @@
 #Set OS
-FROM continuumio/miniconda3:4.8.3
+FROM continuumio/miniconda3:4.8.2
 
 RUN apt-get update && apt-get upgrade -y
 
