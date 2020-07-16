@@ -4,7 +4,7 @@
 #print('Configfile: ',config_f)
 #configfile: config_f
 
-configfile:"/home/vcall_biodata/config_docker.yaml" 
+configfile:"/mnt/share/vcall_biodata/config_docker.yaml" 
 
 
 #|_________Threading_sets:___________|
