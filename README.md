@@ -1,4 +1,4 @@
-# vcall_biodata
+# Vcall-pipeline - docker image
 A variant calling pipeline based on GATK v4.1.7.0- docker image 
 
 
@@ -17,7 +17,7 @@ docker pull ray2g/vcall_biodata:latest
 ```
 docker run -v ~/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:latest -p /mnt/share/output/<analisis_to_make> --cores <n_of_avaliable_cores>
 ```
-# Possible Analysis:
+### Possible Analysis:
 
 > For Analisis of Copy-number variantes:
 ```
