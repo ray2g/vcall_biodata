@@ -25,7 +25,7 @@ RUN unzip ~/vcall_biodata/https://github.com/broadinstitute/gatk/releases/downlo
 RUN mv ~/vcall_biodata/gatk-4.1.7.0 ~/vcall_biodata/gatk
 
 #Copy files
-COPY /home/ray/Documents/vcall/vcall_biodata_docker/*
+COPY /home/ray/Documents/vcall/vcall_biodata_docker/* ~/vcall_biodata/
 
 #Start entry point
 ENTRYPOINT snakemake --snakefile ~/vcall_biodata/vcall-pipe.snake 
