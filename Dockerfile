@@ -1,6 +1,8 @@
 #Set OS
 FROM continuumio/miniconda3:4.8.3
 
+WORKDIR ~/
+
 RUN apt-get update && apt-get upgrade -y
 
 #Bioconda settup:
