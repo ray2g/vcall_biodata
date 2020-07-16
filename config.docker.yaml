@@ -1,6 +1,6 @@
 #----------------Dir_settings----------------------------------------------
-base_dir: /home # where it start in docker env
-main_dir: /home/vcall_biodata/ # repository in docker env  
+base_dir: /mnt/share/ # where it start in docker env
+main_dir: /mnt/share/ # repository in docker env  
 genome_dir: genome/ # genome data
 sample_dir: samples/ #sample directory
 output_dir: output/ #output folder
