@@ -20,7 +20,7 @@ RUN mkdir ~/vcall_biodata/samples ~/vcall_biodata/genome ~/vcall_biodata/outputs
 #Download and install GATK v4.1.7.0
 RUN wget ~/vcall_biodata/https://github.com/broadinstitute/gatk/releases/download/4.1.7.0/gatk-4.1.7.0.zip
 RUN unzip ~/vcall_biodata/https://github.com/broadinstitute/gatk/releases/download/4.1.7.0/gatk-4.1.7.0.zip
-RUN mv ~/vcall_biodata/gatk-4.1.7.0 /home/vcall_biodata/gatk
+RUN mv ~/vcall_biodata/gatk-4.1.7.0 ~/vcall_biodata/gatk
 
 
 
