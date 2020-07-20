@@ -13,13 +13,13 @@ docker pull ray2g/vcall_biodata:latest
 4. Set the directory to be attached to the pipeline and download GATK v.4.1.7.0
 
 ```
-mkdir /<path>/vcall_biodata
-mkdir /<path>/vcall_biodata/samples /<path>/vcall_biodata/genome /<path>/vcall_biodata/outputs
+mkdir /<path>/vcall_biodata /
+mkdir /<path>/vcall_biodata/samples /<path>/vcall_biodata/genome /<path>/vcall_biodata/outputs 
 wget https://github.com/ray2g/vcall_biodata/blob/master/config_docker.yaml -O /<path>/config_docker.yaml
 ```
 ```
-wget https://github.com/broadinstitute/gatk/releases/download/4.1.7.0/gatk-4.1.7.0.zip -O /<path>/vcall_biodata/gatk-4.1.7.0
-unzip /<path>/vcall_biodata/gatk-4.1.7.0
+wget https://github.com/broadinstitute/gatk/releases/download/4.1.7.0/gatk-4.1.7.0.zip -O /<path>/vcall_biodata/gatk-4.1.7.0 
+unzip /<path>/vcall_biodata/gatk-4.1.7.0 
 mv /<path>/vcall_biodata/gatk-4.1.7.0 /<path>/vcall_biodata/gatk
 ```
 
