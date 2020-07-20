@@ -13,16 +13,15 @@ docker pull ray2g/vcall_biodata:latest
 4. Set the directory to be attached to the pipeline and download GATK v.4.1.7.0
 
 ```
-cd ~ 
-mkdir ~/vcall_biodata 
-sudo mkdir ~/vcall_biodata/samples ~/vcall_biodata/genome ~/vcall_biodata/outputs 
-sudo wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/config_docker.yaml -O ~/vcall_biodata/config_docker.yaml
+mkdir /<path>/vcall_biodata 
+sudo mkdir /<path>/vcall_biodata/samples /<path>/vcall_biodata/genome /<path>/vcall_biodata/outputs 
+sudo wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/config_docker.yaml -O /<path>/vcall_biodata/config_docker.yaml
 ```
 ```
-sudo wget https://github.com/broadinstitute/gatk/releases/download/4.1.7.0/gatk-4.1.7.0.zip -O ~/vcall_biodata/gatk
-sudo unzip ~/vcall_biodata/gatk 
-sudo rm ~/vcall_biodata/gatk 
-sudo mv ~/vcall_biodata/gatk-4.1.7.0 ~/vcall_biodata/gatk
+sudo wget https://github.com/broadinstitute/gatk/releases/download/4.1.7.0/gatk-4.1.7.0.zip -O /<path>/vcall_biodata/gatk
+sudo unzip /<path>/vcall_biodata/gatk 
+sudo rm /<path>/vcall_biodata/gatk 
+sudo mv /<path>/vcall_biodata/gatk-4.1.7.0 ~/vcall_biodata/gatk
 ```
 
 5. Config the config_docker.yaml by changing the paths
@@ -30,7 +29,7 @@ sudo mv ~/vcall_biodata/gatk-4.1.7.0 ~/vcall_biodata/gatk
 7. In Command Prompt type:
 
 ```
-docker run -v ~/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:latest -p /mnt/share/output/<analisis_to_make> --cores <n_of_avaliable_cores>
+docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:latest -p /mnt/share/output/<analisis_to_make> --cores <n_of_avaliable_cores>
 ```
 ### Possible Analysis:
 
