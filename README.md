@@ -29,7 +29,8 @@ sudo mv /<path>/vcall_biodata/gatk-4.1.7.0 ~/vcall_biodata/gatk
 7. In Command Prompt type:
 
 ```
-docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:latest snakemake --snakefile /mnt/share/vcall-pipe.snake -p /mnt/share/output/<analisis_to_make> --cores <n_of_avaliable_cores>
+docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:latest snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analisis_to_make> --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
+
 ```
 ### Possible Analysis:
 
