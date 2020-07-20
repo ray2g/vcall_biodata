@@ -16,7 +16,7 @@ docker pull ray2g/vcall_biodata:latest
 cd ~ 
 mkdir ~/vcall_biodata 
 sudo mkdir ~/vcall_biodata/samples ~/vcall_biodata/genome ~/vcall_biodata/outputs 
-sudo wget https://github.com/ray2g/vcall_biodata/blob/master/config_docker.yaml -O ~/vcall_biodata/config_docker.yaml
+sudo wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/config_docker.yaml -O ~/vcall_biodata/config_docker.yaml
 ```
 ```
 sudo wget https://github.com/broadinstitute/gatk/releases/download/4.1.7.0/gatk-4.1.7.0.zip -O ~/vcall_biodata/gatk
