@@ -21,7 +21,6 @@ wget https://github.com/ray2g/vcall_biodata/blob/master/config_docker.yaml -O /<
 wget https://github.com/broadinstitute/gatk/releases/download/4.1.7.0/gatk-4.1.7.0.zip -O /<path>/vcall_biodata/gatk-4.1.7.0
 unzip /<path>/vcall_biodata/gatk-4.1.7.0
 mv /<path>/vcall_biodata/gatk-4.1.7.0 /<path>/vcall_biodata/gatk
-
 ```
 
 5. Config the config_docker.yaml by changing the paths
