@@ -10,6 +10,19 @@ A variant calling pipeline based on GATK v4.1.7.0- docker image
 ```
 docker pull ray2g/vcall_biodata:latest
 ```
+4. Set the directory to be attached to the pipeline and download GATK v.4.1.7.0
+
+```
+#Create directories
+mkdir /<path>/vcall_biodata
+mkdir /<path>/vcall_biodata/samples /<path>/vcall_biodata/genome /<path>/vcall_biodata/outputs
+
+#Download and install GATK v4.1.7.0
+wget https://github.com/broadinstitute/gatk/releases/download/4.1.7.0/gatk-4.1.7.0.zip -O /<path>/vcall_biodata/gatk-4.1.7.0
+unzip /<path>/vcall_biodata/gatk-4.1.7.0
+mv /<path>/vcall_biodata/gatk-4.1.7.0 /<path>/vcall_biodata/gatk
+```
+
 4. Config the config_docker.yaml by changing the paths
 5. Fill samples and genome directories with the data 
 6. In Command Prompt type:
