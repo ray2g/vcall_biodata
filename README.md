@@ -23,7 +23,7 @@ docker run -v ~/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:latest -p /mnt/sh
 ```
 '{your_read}.vcf.gz'
 ```
-> For calculate genotype posteriors:
+> For Analisis of Copy-number recalibrated variantes:
 ```
 '{your_read}.recalibrated_variants_postCGP.vcf.gz'
 ```
