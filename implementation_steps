@@ -1,0 +1,40 @@
+#steps
+#docker:
+
+docker build vcall_biodata
+docker images
+docker tag <nametag> ray2g/vcall_biodata
+docker login
+docker push ray2g/vcall_biodata
+
+#prepare the directories with the genome and samples files in the HPC
+# in this case: vcall_docker_gatk4_bottle/
+
+# install docker in the HPC
+
+$ sudo apt-get update
+
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+    
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo apt-key fingerprint 0EBFCD88
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+   
+$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+sudo systemctl start docker
+
+## download the vcall docker image
+$ docker login
+$ sudo docker pull ray2g/vcall_biodata
