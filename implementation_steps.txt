@@ -38,3 +38,6 @@ sudo systemctl start docker
 ## download the vcall docker image
 $ docker login
 $ sudo docker pull ray2g/vcall_biodata
+
+## save docker image and load the image with shifter
+$ sudo docker save --output vcall_biodata.tar ray2g/vcall_biodata:1.3 
