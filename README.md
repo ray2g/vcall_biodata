@@ -13,7 +13,7 @@ docker pull ray2g/vcall_biodata:1.3
 
 ```
 mkdir vcall_biodata vcall_biodata/samples vcall_biodata/genome vcall_biodata/outputs vcall_biodata/outputs/logs
-cd vcall_biodata | wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/config_pipeline.yaml
+wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/config_pipeline.yaml -O vcall_biodata/config_pipeline.yaml
 ```
 
 3. Config the **config_docker.yaml** by changing the **paths**
