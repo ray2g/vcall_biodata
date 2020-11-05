@@ -23,7 +23,7 @@ $ wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/vcall-pipe.s
 #### 5. Run the pipeline:
 ```
 docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.4 \
-snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_to_make> \
+snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_type> \
 --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
 ```
 
@@ -84,7 +84,7 @@ srun shifterimg pull ray2g/vcall_biodata:1.4
 
 srun shifter --volume=/home/<PATH>/vcall_biodata/:/mnt/  \
 --image=docker:ray2g/vcall_biodata:1.4 snakemake --snakefile /mnt/vcall-pipeline.snake \
--p /mnt/outputs/NIST7035.recalibrated_variants_postCGP.vcf.gz --cores 4
+-p /mnt/outputs/<analysis_type> --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
 ```
 
 <br>
