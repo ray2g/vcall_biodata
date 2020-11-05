@@ -21,4 +21,4 @@ RUN mv gatk-4.1.7.0 gatk
 RUN rm gatk-4.1.7.0.zip
 
 # Download vcall pipeline 
-RUN wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/vcall-pipe.snake
+#RUN wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/vcall-pipe.snake
