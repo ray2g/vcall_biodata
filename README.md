@@ -6,7 +6,7 @@ A variant calling pipeline based on GATK v4.1.7.0- docker image
 
 1. Pull the Docker Image
 ```
-docker pull ray2g/vcall_biodata:1.3
+docker pull ray2g/vcall_biodata:1.4
 ```
 
 2. Set the directory to be attached to the pipeline
@@ -21,7 +21,7 @@ wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/config_pipelin
 5. Run the pipeline:
 
 ```
-docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.3 snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_to_make> --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
+docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.4 snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_to_make> --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
 
 ```
 
