@@ -25,7 +25,7 @@ docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.4 snakema
 
 ```
 
-> ### Possible Analysis:
+> #### Possible Analysis:
 
 > For Analisis of Copy-number Variants:
 ```
@@ -37,7 +37,7 @@ docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.4 snakema
 '{your_read}.recalibrated_variants_postCGP.vcf.gz'
 ```
 
-##### 5.1 HPC Deployment
+##### 5.1. HPC Deployment
 
 > 1. Pull the docker image with Shifter using Slurm:
 ```
@@ -57,6 +57,7 @@ docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.4 snakema
 srun shifterimg pull ray2g/vcall_biodata:1.4
 
 ```
+<br>
 
 > 2. Running the pipeline with Shifter using Slurm:
 ```
@@ -79,11 +80,9 @@ srun shifter --volume=/home/ubuntu/vcall_docker_gatk4_bottle/:/mnt/  \
 --image=docker:ray2g/vcall_biodata:1.4 snakemake --snakefile /mnt/vcall-pipeline.snake \
 -p /mnt/outputs/NIST7035.recalibrated_variants_postCGP.vcf.gz --cores 4
 ```
+<br>
 
-
-```
-
-> ### Possible Analysis:
+> #### Possible Analysis:
 
 > For Analisis of Copy-number Variants:
 ```
