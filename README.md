@@ -15,6 +15,7 @@ $ docker pull ray2g/vcall_biodata:1.4
 ```
 $ mkdir vcall_biodata vcall_biodata/samples vcall_biodata/genome vcall_biodata/outputs vcall_biodata/outputs/logs
 $ wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/config_pipeline.yaml -O vcall_biodata/config_pipeline.yaml
+$ wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/vcall-pipe.snake -O vcall_biodata/vcall-pipe.snake
 ```
 #### 3. Config the **config_docker.yaml** by changing the **paths**.
 #### 4. Fill samples and genome directories with the data.
@@ -77,10 +78,10 @@ srun shifterimg pull ray2g/vcall_biodata:1.4
 #SBATCH --nodes=1 # number of compute nodes
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4 
-#SBATCH --volume="/home/<PATH>/:/mnt/"
+#SBATCH --volume="/home/<PATH>/vcall_biodata/:/mnt/"
 #SBATCH --image=docker:ray2g/vcall_biodata:1.4
 
-srun shifter --volume=/home/ubuntu/vcall_docker_gatk4_bottle/:/mnt/  \
+srun shifter --volume=/home/<PATH>/vcall_biodata/:/mnt/  \
 --image=docker:ray2g/vcall_biodata:1.4 snakemake --snakefile /mnt/vcall-pipeline.snake \
 -p /mnt/outputs/NIST7035.recalibrated_variants_postCGP.vcf.gz --cores 4
 ```
