@@ -1,5 +1,6 @@
 # Vcall-pipeline - Docker Image
-A variant calling pipeline based on GATK v4.1.7.0- docker image 
+A variant calling pipeline based on GATK v4.1.7.0 - docker image.
+Prepared to be deployed in an HPC using Slurm and Shifter.
 
 
 ### How to run 
@@ -8,6 +9,7 @@ A variant calling pipeline based on GATK v4.1.7.0- docker image
 ```
 $ docker pull ray2g/vcall_biodata:1.4
 ```
+<br>
 
 #### 2. Set the directory to be attached to the pipeline
 
@@ -15,14 +17,17 @@ $ docker pull ray2g/vcall_biodata:1.4
 $ mkdir vcall_biodata vcall_biodata/samples vcall_biodata/genome vcall_biodata/outputs vcall_biodata/outputs/logs
 $ wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/config_pipeline.yaml -O vcall_biodata/config_pipeline.yaml
 ```
-
-#### 3. Config the **config_docker.yaml** by changing the **paths**
-#### 4. Fill samples and genome directories with the data 
+<br>
+#### 3. Config the **config_docker.yaml** by changing the **paths**.
+<br>
+#### 4. Fill samples and genome directories with the data.
+<br>
 #### 5. Run the pipeline:
-
+<br>
 ```
-docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.4 snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_to_make> --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
-
+docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.4 \
+snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_to_make> \
+--cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
 ```
 
 > #### Possible Analysis:
