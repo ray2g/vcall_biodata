@@ -10,7 +10,8 @@ Prepared to be deployed in an HPC using Slurm and Shifter.
 $ docker pull ray2g/vcall_biodata:1.4
 ```
 
-#### 2. Set the directory to be attached to the pipeline
+#### 2. Set the directory to be attached to the pipeline 
+You can use the ```pipeline_directory_setup.sh``` script to do it.
 
 ```
 $ mkdir vcall_biodata vcall_biodata/samples vcall_biodata/genome vcall_biodata/outputs vcall_biodata/outputs/logs
