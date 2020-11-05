@@ -18,8 +18,8 @@ $ mkdir vcall_biodata vcall_biodata/samples vcall_biodata/genome vcall_biodata/o
 $ wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/config_pipeline.yaml -O vcall_biodata/config_pipeline.yaml
 $ wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/vcall-pipe.snake -O vcall_biodata/vcall-pipe.snake
 ```
-#### 3. Config the **config_docker.yaml** by changing the **paths**.
-#### 4. Fill samples and genome directories with the data.
+#### 3. Config the **config_pipeline.yaml** file with the correct **paths**
+#### 4. Fill ```samples/``` and ```genome/``` directories with the data.
 #### 5. Run the pipeline:
 ```
 docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.4 \
