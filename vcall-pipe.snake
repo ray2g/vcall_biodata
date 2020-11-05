@@ -4,8 +4,8 @@
 #print('Configfile: ',config_f)
 #configfile: config_f
 
-configfile:"/mnt/share/config_pipeline.yaml"
-
+#configfile:"/mnt/share/config_pipeline.yaml" # Docker
+configfile:"/mnt/config_pipeline.yaml" # Shifter
 
 #|_________Threading_sets:___________|
 
