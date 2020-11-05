@@ -41,7 +41,6 @@ snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_type> \
 '{your_read}.recalibrated_variants_postCGP.vcf.gz'
 ```
 
-<br>
 
 ##### 5.1. HPC Deployment
 
