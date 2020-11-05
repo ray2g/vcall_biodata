@@ -3,9 +3,9 @@
 
 docker build vcall_biodata
 docker images
-docker tag <nametag> ray2g/vcall_biodata
+docker tag <nametag> ray2g/vcall_biodata:1.4
 docker login
-docker push ray2g/vcall_biodata
+docker push ray2g/vcall_biodata:1.4
 
 #prepare the directories with the genome and samples files in the HPC
 # in this case: vcall_docker_gatk4_bottle/
@@ -37,7 +37,8 @@ sudo systemctl start docker
 
 ## download the vcall docker image
 $ docker login
-$ sudo docker pull ray2g/vcall_biodata
+$ sudo docker pull ray2g/vcall_biodata:1.4
 
-## save docker image and load the image with shifter
-$ sudo docker save --output vcall_biodata.tar ray2g/vcall_biodata:1.3 
+## load the docker image with Shifter
+$ srun shifterimg pull ray2g/vcall_biodata:1.4
+
