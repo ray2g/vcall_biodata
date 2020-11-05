@@ -9,7 +9,6 @@ Prepared to be deployed in an HPC using Slurm and Shifter.
 ```
 $ docker pull ray2g/vcall_biodata:1.4
 ```
-<br>
 
 #### 2. Set the directory to be attached to the pipeline
 
@@ -17,18 +16,16 @@ $ docker pull ray2g/vcall_biodata:1.4
 $ mkdir vcall_biodata vcall_biodata/samples vcall_biodata/genome vcall_biodata/outputs vcall_biodata/outputs/logs
 $ wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/config_pipeline.yaml -O vcall_biodata/config_pipeline.yaml
 ```
-<br>
 #### 3. Config the **config_docker.yaml** by changing the **paths**.
-<br>
 #### 4. Fill samples and genome directories with the data.
-<br>
 #### 5. Run the pipeline:
-<br>
 ```
 docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.4 \
 snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_to_make> \
 --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
 ```
+
+<br>
 
 > #### Possible Analysis:
 
@@ -41,6 +38,8 @@ snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_to_make> 
 ```
 '{your_read}.recalibrated_variants_postCGP.vcf.gz'
 ```
+
+<br>
 
 ##### 5.1. HPC Deployment
 
@@ -60,8 +59,8 @@ snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_to_make> 
 #SBATCH --cpus-per-task=4 
 
 srun shifterimg pull ray2g/vcall_biodata:1.4
-
 ```
+
 <br>
 
 > 2. Running the pipeline with Shifter using Slurm:
@@ -85,6 +84,7 @@ srun shifter --volume=/home/ubuntu/vcall_docker_gatk4_bottle/:/mnt/  \
 --image=docker:ray2g/vcall_biodata:1.4 snakemake --snakefile /mnt/vcall-pipeline.snake \
 -p /mnt/outputs/NIST7035.recalibrated_variants_postCGP.vcf.gz --cores 4
 ```
+
 <br>
 
 > #### Possible Analysis:
