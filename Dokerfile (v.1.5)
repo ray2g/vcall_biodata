@@ -1,7 +1,7 @@
 ## DOCKER IMAGE -- VERSION 1.5
 
 #Set OS
-FROM continuumio/miniconda3:4.5-12
+FROM continuumio/miniconda3:4.5.12
 
 RUN apt-get update && apt-get upgrade -y
 
