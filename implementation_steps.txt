@@ -42,3 +42,4 @@ $ sudo docker pull ray2g/vcall_biodata:1.4
 ## load the docker image with Shifter
 $ srun shifterimg pull ray2g/vcall_biodata:1.4
 
+https://www.biostars.org/p/364708/
