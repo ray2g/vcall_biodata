@@ -42,10 +42,12 @@ $ sudo docker pull ray2g/vcall_biodata:1.4
 ## load the docker image with Shifter
 $ srun shifterimg pull ray2g/vcall_biodata:1.4
 
-###################################################################
+#########DOCUMENTATION##############################################################################################
 https://www.biostars.org/p/364708/
 https://hpc-carpentry.github.io/hpc-python/17-cluster/
 https://www.sichong.site/2020/02/25/snakemake-and-slurm-how-to-manage-workflow-with-resource-constraint-on-hpc/
+https://docs.nersc.gov/jobs/workflow/snakemake/
+####################################################################################################################
 
 -j number of jobs
 --gui (user interface port 8000)
