@@ -1,13 +1,13 @@
 # Vcall-pipeline - Docker Image
 A variant calling pipeline based on GATK v4.1.7.0 - docker image.
-Prepared to be deployed in an HPC using Slurm and Shifter.
+Prepared to be deployed in an HPC cluster using Slurm and Shifter.
 
 
-### How to run 
+### How to run the pipeline:
 
 #### 1. Pull the Docker Image
 ```
-$ docker pull ray2g/vcall_biodata:1.4
+$ docker pull ray2g/vcall_biodata:1.5
 ```
 
 #### 2. Set the directory to be attached to the pipeline 
@@ -22,7 +22,7 @@ $ wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/vcall-pipe.s
 #### 4. Fill ```samples/``` and ```genome/``` directories with the analysis data.
 #### 5. Run the pipeline:
 ```
-docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.4 \
+docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.5 \
 snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_type> \
 --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
 ```
@@ -31,12 +31,12 @@ snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_type> \
 
 > #### Possible Analysis:
 
-> For Analisis of Copy-number Variants:
+> For Analisis of Copy-Number Variants:
 ```
 '{your_read}.vcf.gz'
 ```
 
-> For Analisis of Copy-number Recalibrated Variants:
+> For Analisis of Copy-Number Recalibrated Variants:
 ```
 '{your_read}.recalibrated_variants_postCGP.vcf.gz'
 ```
@@ -54,10 +54,10 @@ snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_type> \
 #SBATCH --mail-user=user@mail.com
 #SBATCH --mail-type=ALL
 #SBATCH --time=72:00:00 
-#SBATCH --mem=7596mb # memory limit per compute node
+#SBATCH --mem=64421mb # memory limit per compute node
 #SBATCH --nodes=1 # number of compute nodes
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4 
+#SBATCH --cpus-per-task=16 
 
 srun shifterimg pull ray2g/vcall_biodata:1.4
 ```
@@ -74,15 +74,15 @@ srun shifterimg pull ray2g/vcall_biodata:1.4
 #SBATCH --mail-user=user@mail.com
 #SBATCH --mail-type=ALL
 #SBATCH --time=72:00:00 
-#SBATCH --mem=7596mb # memory limit per compute node
+#SBATCH --mem=64421mb # memory limit per compute node
 #SBATCH --nodes=1 # number of compute nodes
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4 
+#SBATCH --cpus-per-task=16 
 #SBATCH --volume="/home/<PATH>/vcall_biodata/:/mnt/"
 #SBATCH --image=docker:ray2g/vcall_biodata:1.4
 
 srun shifter --volume=/home/<PATH>/vcall_biodata/:/mnt/  \
---image=docker:ray2g/vcall_biodata:1.4 snakemake --snakefile /mnt/vcall-pipeline.snake \
+--image=docker:ray2g/vcall_biodata:1.5 snakemake --snakefile /mnt/vcall-pipeline.snake \
 -p /mnt/outputs/<analysis_type> --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
 ```
 
@@ -90,12 +90,12 @@ srun shifter --volume=/home/<PATH>/vcall_biodata/:/mnt/  \
 
 > #### Possible Analysis:
 
-> For Analisis of Copy-number Variants:
+> For Analisis of Copy-Number Variants:
 ```
 '{your_read}.vcf.gz'
 ```
 
-> For Analisis of Copy-number Recalibrated Variants:
+> For Analisis of Copy-Number Recalibrated Variants:
 ```
 '{your_read}.recalibrated_variants_postCGP.vcf.gz'
 ```
