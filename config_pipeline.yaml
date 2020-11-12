@@ -20,6 +20,6 @@ TARGET: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lift
 GATK: /mnt/gatk/gatk-package-4.1.7.0-local.jar 
 
 #___________________________Threading_______________________
-BWA_samblaster_sambamba_threads: 4
-Call_Variants_threads: 4
+BWA_samblaster_sambamba_threads: 16
+Call_Variants_threads: 16
 
