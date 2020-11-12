@@ -48,7 +48,7 @@ snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_type> \
 ```
 <br>
 
-##### 5.1. HPC Deployment
+##### 5.1. HPC Deployment:
 
 > 1. Pull the docker image with Shifter using Slurm:
 ```
