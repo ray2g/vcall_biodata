@@ -3,7 +3,9 @@ A variant calling pipeline based on GATK v4.1.7.0 - docker image.
 Prepared to be deployed in an HPC cluster using Slurm and Shifter.
 
 
-### How to run the pipeline:
+### How to Run the Pipeline:
+
+<br>
 
 #### 1. Pull the Docker Image
 ```
