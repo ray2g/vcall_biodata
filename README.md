@@ -85,7 +85,7 @@ srun shifterimg pull ray2g/vcall_biodata:1.4
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16 
 #SBATCH --volume="/home/<PATH>/vcall_biodata/:/mnt/"
-#SBATCH --image=docker:ray2g/vcall_biodata:1.4
+#SBATCH --image=docker:ray2g/vcall_biodata:1.5
 
 srun shifter --volume=/home/<PATH>/vcall_biodata/:/mnt/  \
 --image=docker:ray2g/vcall_biodata:1.5 snakemake --snakefile /mnt/vcall-pipeline.snake \
