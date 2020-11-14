@@ -23,3 +23,8 @@ GATK: /mnt/gatk/gatk-package-4.1.7.0-local.jar
 BWA_samblaster_sambamba_threads: 16
 Call_Variants_threads: 16
 
+#___________________________Memory__________________________
+BWA_samblaster_sambamba_memory: 48G
+Java_memory: -Xmx48g
+
+
