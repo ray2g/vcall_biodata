@@ -13,4 +13,4 @@
 
 srun shifter --volume=/home/<PATH>/vcall_biodata/:/mnt/  \
 --image=docker:ray2g/vcall_biodata:1.5.1 snakemake --snakefile /mnt/vcall-pipeline.snake \
--p /mnt/outputs/<analysis_type> --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
+-p /mnt/outputs/<analysis_type> --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus> #--unlock
