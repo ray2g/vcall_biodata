@@ -125,10 +125,12 @@ rule gatk_BaseRecalibrator1:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal.qsub'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'BaseRecalibrator 1 -> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -152,10 +154,12 @@ rule gatk_BaseRecalibrator2:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2.qsub'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'BaseRecalibrator 2 -> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -173,10 +177,12 @@ rule Analyze_Covariates:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots.pdf'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'Analyzing Covariates -> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -193,10 +199,12 @@ rule Apply_recalibration:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal.qsub'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'Applying Recalibration -> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} PrintReads \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} PrintReads \
 		-R {input.fa} \
 		-I {input.bam} \
 		-bqsr {input.bqsr} \
@@ -213,10 +221,12 @@ rule Apply_BQSR:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal.qsub'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'Applying BQSR -> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -234,11 +244,13 @@ rule Call_Variants:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars.qsub'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'Processing Call Variants -> {output}'
 	threads: call_variants_threads
 	shell:
-		'java -Xmx16g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -256,10 +268,12 @@ rule Joint_Genotyping:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf.gz'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'Processing Joint Genotyping -> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -278,10 +292,12 @@ rule Variant_Recalibrator_SNPs:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP.tranches'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'Processing Variant Recalibration for SNPs-> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -289,7 +305,7 @@ rule Variant_Recalibrator_SNPs:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -304,10 +320,12 @@ rule Applying_Recalibration_SNPs:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels.vcf'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'Applying Recalibration for SNPs -> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -328,10 +346,12 @@ rule Variant_Recalibrator_Indels:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots.R'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'Processing Variant Recalibration for Indels -> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -350,12 +370,14 @@ rule Applying_Recalibration_Indels:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL.tranches'
+	resources:
+        	mem_mb= java_memory
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf.gz'
 	message:
 		'Applying Recalibration for Indels -> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -372,10 +394,12 @@ rule Calculate_Genotype_Posteriors:
 		ksites7 = main_dir + genome_dir + KS7
 	output:
 		recal_vcf_CGP = main_dir + output_dir + '{sample}.recalibrated_variants_postCGP.vcf.gz'
+	resources:
+        	mem_mb= java_memory
 	message:
 		'Calculating Genotype Posteriors -> {output}'
 	shell:
-		'java -Xmx16g -jar {input.jar} CalculateGenotypePosteriors \
+		'java -Xmx{resources.mem_mb}g -jar {input.jar} CalculateGenotypePosteriors \
 		-V {input.recal_vcf} \
 		-O {output.recal_vcf_CGP} \
 		-supporting {input.ksites7}'
