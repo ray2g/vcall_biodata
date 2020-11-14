@@ -67,7 +67,7 @@ rule BWA_samblaster_sambamba: #Align reads to reference (using BWA);
 		'bwa mem -t {threads} -R "@RG\\tID:{wildcards.sample}\\tPL:ILLUMINA\\tSM:{wildcards.sample}" -M {input.ref} {input.r_fow} {input.r_rev} | '
 		'samblaster -M |'
 		'sambamba view -S -f bam -l 0 /dev/stdin |'#/dev/stdin 
-		'sambamba sort -m 2G -t {threads} -o {output.align} /dev/stdin 2>&1'
+		'sambamba sort -m 48G -t {threads} -o {output.align} /dev/stdin 2>&1'
 		##+ ' > {output.bwa_ss}'#/dev/stdin 
 		
 		
