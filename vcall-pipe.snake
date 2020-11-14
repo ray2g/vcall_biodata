@@ -12,6 +12,10 @@ configfile:"/mnt/config_pipeline.yaml" # Shifter
 bwa_samblaster_sambamba_threads = config["BWA_samblaster_sambamba_threads"]
 call_variants_threads = config["Call_Variants_threads"]
 
+#|_________Memory_sets:___________|
+bwa_samblaster_sambamba_memory = config["BWA_samblaster_sambamba_memory"]
+java_memory = config["Java_memory"]
+
 
 #|__________Dir_settings:____________|
 
@@ -63,11 +67,13 @@ rule BWA_samblaster_sambamba: #Align reads to reference (using BWA);
 	message:
 		'Creating Alignment -> {output}'
 	threads: bwa_samblaster_sambamba_threads
+	resources:
+        	mem_mb= bwa_samblaster_sambamba_memory
 	shell: 
 		'bwa mem -t {threads} -R "@RG\\tID:{wildcards.sample}\\tPL:ILLUMINA\\tSM:{wildcards.sample}" -M {input.ref} {input.r_fow} {input.r_rev} | '
 		'samblaster -M |'
 		'sambamba view -S -f bam -l 0 /dev/stdin |'#/dev/stdin 
-		'sambamba sort -m 48G -t {threads} -o {output.align} /dev/stdin 2>&1'
+		'sambamba sort -m {resources.mem_mb} -t {threads} -o {output.align} /dev/stdin 2>&1'
 		##+ ' > {output.bwa_ss}'#/dev/stdin 
 		
 		
