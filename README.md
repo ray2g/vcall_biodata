@@ -13,7 +13,7 @@ Prepared to be deployed in an HPC cluster using Slurm and Shifter.
 
 #### 1. Pull the Docker Image
 ```
-$ docker pull ray2g/vcall_biodata:1.5
+$ docker pull ray2g/vcall_biodata:1.5.1
 ```
 
 #### 2. Set the directory to be attached to the pipeline 
@@ -28,7 +28,7 @@ $ wget https://raw.githubusercontent.com/ray2g/vcall_biodata/master/vcall-pipe.s
 #### 4. Fill ```samples/``` and ```genome/``` directories with the analysis data.
 #### 5. Run the pipeline:
 ```
-docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.5 \
+docker run -v /<path>/vcall_biodata/:/mnt/share/ ray2g/vcall_biodata:1.5.1 \
 snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_type> \
 --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
 ```
@@ -57,15 +57,13 @@ snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_type> \
 #SBATCH --job-name="vcall_test_analysis_bottle"
 #SBATCH --output=/home/<PATH>/slurm_test/vcall_test_analysis_bottle-%j.out
 #SBATCH --error=/home/<PATH>/slurm_test/vcall_test_analysis_bottle-%j.err
-#SBATCH --mail-user=user@mail.com
-#SBATCH --mail-type=ALL
 #SBATCH --time=72:00:00 
 #SBATCH --mem=64421mb # memory limit per compute node
 #SBATCH --nodes=1 # number of compute nodes
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16 
 
-srun shifterimg pull ray2g/vcall_biodata:1.4
+srun shifterimg pull ray2g/vcall_biodata:1.5.1
 ```
 
 <br>
@@ -77,18 +75,16 @@ srun shifterimg pull ray2g/vcall_biodata:1.4
 #SBATCH --job-name="vcall_test_analysis_bottle"
 #SBATCH --output=/home/<PATH>/slurm_test/vcall_test_analysis_bottle-%j.out
 #SBATCH --error=/home/<PATH>/slurm_test/vcall_test_analysis_bottle-%j.err
-#SBATCH --mail-user=user@mail.com
-#SBATCH --mail-type=ALL
 #SBATCH --time=72:00:00 
 #SBATCH --mem=64421mb # memory limit per compute node
 #SBATCH --nodes=1 # number of compute nodes
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16 
 #SBATCH --volume="/home/<PATH>/vcall_biodata/:/mnt/"
-#SBATCH --image=docker:ray2g/vcall_biodata:1.5
+#SBATCH --image=docker:ray2g/vcall_biodata:1.5.1
 
 srun shifter --volume=/home/<PATH>/vcall_biodata/:/mnt/  \
---image=docker:ray2g/vcall_biodata:1.5 snakemake --snakefile /mnt/vcall-pipeline.snake \
+--image=docker:ray2g/vcall_biodata:1.5.1 snakemake --snakefile /mnt/vcall-pipeline.snake \
 -p /mnt/outputs/<analysis_type> --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
 ```
 
