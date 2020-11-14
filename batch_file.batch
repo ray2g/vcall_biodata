@@ -1,15 +1,16 @@
+## EXAMPLE BATCH FILE
 #!/bin/bash
 #SBATCH --job-name="vcall_test_analysis_bottle"
-#SBATCH --output=/home/ubuntu/slurm_test/vcall_test_analysis_bottle-%j.out
-#SBATCH --error=/home/ubuntu/slurm_test/vcall_test_analysis_bottle-%j.err
-#SBATCH --mail-user=mailmail.com
-#SBATCH --mail-type=ALL
+#SBATCH --output=/home/<PATH>/slurm_test/vcall_test_analysis_bottle-%j.out
+#SBATCH --error=/home/<PATH>/slurm_test/vcall_test_analysis_bottle-%j.err
 #SBATCH --time=72:00:00 
 #SBATCH --mem=64421mb # memory limit per compute node
 #SBATCH --nodes=1 # number of compute nodes
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16 
+#SBATCH --volume="/home/<PATH>/vcall_biodata/:/mnt/"
+#SBATCH --image=docker:ray2g/vcall_biodata:1.5.1
 
-srun shifter --volume=/home/ubuntu/vcall_docker_gatk4_bottle/:/mnt/  \
---image=docker:ray2g/vcall_biodata:1.5 snakemake --snakefile /mnt/vcall-pipeline.snake \
--p /mnt/outputs/NIST7035.recalibrated_variants_postCGP.vcf.gz --cores 16 #--unlock 
+srun shifter --volume=/home/<PATH>/vcall_biodata/:/mnt/  \
+--image=docker:ray2g/vcall_biodata:1.5.1 snakemake --snakefile /mnt/vcall-pipeline.snake \
+-p /mnt/outputs/<analysis_type> --cores <n_of_avaliable_cores> --resources gpu= <n_of_avaliable_gpus>
