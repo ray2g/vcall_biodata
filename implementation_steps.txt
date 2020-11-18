@@ -49,7 +49,62 @@ https://www.sichong.site/2020/02/25/snakemake-and-slurm-how-to-manage-workflow-w
 https://docs.nersc.gov/jobs/workflow/snakemake/
 ####################################################################################################################
 
--j number of jobs
---gui (user interface port 8000)
---cluster
+## Parallelization
+
+# slipt target file by chromossomes
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr1 " >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr1.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr2 " >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr2.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr3 " >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr3.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr4 " >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr4.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr5 " >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr5.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr6 " >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr6.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr7 " >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr7.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr8 " >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr8.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr9 " >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr9.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr10" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr10.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr11" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr11.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr12" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr12.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr13" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr13.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr14" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr14.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr15" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr15.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr16" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr16.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr17" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr17.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr18" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr18.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr19" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr19.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr20" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr20.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr21" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr21.bed
+
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr22" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr22.bed
+
+ $ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chrX" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrX.bed
+ 
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chrY" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrY.bed
+
+
+
+
+
+
+
 
