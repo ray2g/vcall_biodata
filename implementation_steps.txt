@@ -3,9 +3,9 @@
 #docker:
 docker build vcall_biodata
 docker images
-docker tag <nametag> ray2g/vcall_biodata:1.5
+docker tag <nametag> ray2g/vcall_biodata:1.5.1
 docker login
-docker push ray2g/vcall_biodata:1.5
+docker push ray2g/vcall_biodata:1.5.1
 
 #prepare the directories with the genome and samples files in the HPC
 # in this case: vcall_docker_gatk4_bottle/
@@ -37,10 +37,10 @@ sudo systemctl start docker
 
 ## download the vcall docker image
 $ docker login
-$ sudo docker pull ray2g/vcall_biodata:1.5
+$ sudo docker pull ray2g/vcall_biodata:1.5.1
 
 ## load the docker image with Shifter
-$ srun shifterimg pull ray2g/vcall_biodata:1.5
+$ srun shifterimg pull ray2g/vcall_biodata:1.5.1
 
 #########DOCUMENTATION##############################################################################################
 https://www.biostars.org/p/364708/
@@ -97,7 +97,7 @@ $ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed
 
 $ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chr22" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr22.bed
 
- $ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chrX" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrX.bed
+$ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chrX" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrX.bed
  
 $ cat nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed | grep "^chrY" >> nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrY.bed
 
