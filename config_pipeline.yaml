@@ -1,13 +1,19 @@
+#__________Directories_Paths_________________________________________________________________________________
+
 base_dir: /mnt/ # where it start in docker env
 main_dir: /mnt/ # repository in docker env  
 genome_dir: genome/ # genome data
 sample_dir: samples/ #sample directory
 output_dir: outputs/ #output folder
-logs_dir: logs/ # for logs...
-#---------------Settings----------------------------------------------
+logs_dir: logs/ # for logs
+
+
+#______________Settings_______________________________________________________________________________________
+
 #fasta eg: {sample}.read1.fastq.gz
 GENOME: resources_broad_hg38_v0_Homo_sapiens_assembly38
 
+# Known Sites
 KS1: resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf.gz 
 KS2: resources_broad_hg38_v0_Mills_and_1000G_gold_standard.indels.hg38.vcf.gz 
 KS3: resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz
@@ -16,15 +22,101 @@ KS5: resources_broad_hg38_v0_hapmap_3.3.hg38.vcf.gz
 KS6: resources_broad_hg38_v0_1000G_omni2.5.hg38.vcf.gz 
 KS7: 1000G.phase3.integrated.sites_only.no_MATCHED_REV.hg38.vcf  
 
-TARGET: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed
+# Genome target files
+TARGET_all_chr: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed
+TARGET_chr1: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr1.bed
+TARGET_chr2: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr2.bed
+TARGET_chr3: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr3.bed
+TARGET_chr4: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr4.bed
+TARGET_chr5: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr5.bed
+TARGET_chr6: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr6.bed
+TARGET_chr7: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr7.bed
+TARGET_chr8: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr8.bed
+TARGET_chr9: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr9.bed
+TARGET_chr10: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr10.bed
+TARGET_chr11: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr11.bed
+TARGET_chr12: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr12.bed
+TARGET_chr13: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr13.bed
+TARGET_chr14: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr14.bed
+TARGET_chr15: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr15.bed
+TARGET_chr16: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr16.bed
+TARGET_chr17: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr17.bed
+TARGET_chr18: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr18.bed
+TARGET_chr19: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr19.bed
+TARGET_chr20: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr20.bed
+TARGET_chr21: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr21.bed
+TARGET_chr22: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr22.bed
+TARGET_chrX: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrX.bed
+TARGET_chrY: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrY.bed
+
+# GATK Tools
 GATK: /mnt/gatk/gatk-package-4.1.7.0-local.jar 
 
-#___________________________Threading_______________________
-BWA_samblaster_sambamba_threads: 16
-Call_Variants_threads: 16
 
-#___________________________Memory__________________________
-BWA_samblaster_sambamba_memory: 48
+#___________________________Threading________________________________________________________________________
+
+# Align reads to reference
+BWA_samblaster_sambamba_threads: 16
+
+# Parallelization
+Call_Variants_threads_all_chr: 16
+Call_Variants_threads_chr1:
+Call_Variants_threads_chr2:
+Call_Variants_threads_chr3:
+Call_Variants_threads_chr4:
+Call_Variants_threads_chr5:
+Call_Variants_threads_chr6:
+Call_Variants_threads_chr7:
+Call_Variants_threads_chr8:
+Call_Variants_threads_chr9:
+Call_Variants_threads_chr10:
+Call_Variants_threads_chr11:
+Call_Variants_threads_chr11:
+Call_Variants_threads_chr12:
+Call_Variants_threads_chr13:
+Call_Variants_threads_chr14:
+Call_Variants_threads_chr15:
+Call_Variants_threads_chr16:
+Call_Variants_threads_chr17:
+Call_Variants_threads_chr18:
+Call_Variants_threads_chr19:
+Call_Variants_threads_chr20:
+Call_Variants_threads_chr21:
+Call_Variants_threads_chr22:
+Call_Variants_threads_chrX:
+Call_Variants_threads_chrY:
+
+#__________Memory______________________________
+
+# Align reads to reference
+BWA_samblaster_sambamba_memory: 48 
+
+# Java memory for general tasks
 Java_memory: 48
 
-
+# Java memory - Parallelization
+Java_memory_Call_Variants_all_chr:
+Java_memory_Call_Variants_chr1:
+Java_memory_Call_Variants_chr2:
+Java_memory_Call_Variants_chr3:
+Java_memory_Call_Variants_chr4:
+Java_memory_Call_Variants_chr5:
+Java_memory_Call_Variants_chr6:
+Java_memory_Call_Variants_chr7:
+Java_memory_Call_Variants_chr8:
+Java_memory_Call_Variants_chr9:
+Java_memory_Call_Variants_chr10:
+Java_memory_Call_Variants_chr11:
+Java_memory_Call_Variants_chr12:
+Java_memory_Call_Variants_chr13:
+Java_memory_Call_Variants_chr14:
+Java_memory_Call_Variants_chr15:
+Java_memory_Call_Variants_chr16:
+Java_memory_Call_Variants_chr17:
+Java_memory_Call_Variants_chr18:
+Java_memory_Call_Variants_chr19:
+Java_memory_Call_Variants_chr20:
+Java_memory_Call_Variants_chr21:
+Java_memory_Call_Variants_chr22:
+Java_memory_Call_Variants_chrX:
+Java_memory_Call_Variants_chrY:
