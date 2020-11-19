@@ -3939,33 +3939,33 @@ rule Joint_Genotyping_chrY:
 		
 rule Merge_VCFs:
 	input:
-		vcf_chr1 = main_dir + output_dir + '{sample}.vcf_chr1.gz,
-		vcf_chr2 = main_dir + output_dir + '{sample}.vcf_chr2.gz,
-		vcf_chr3 = main_dir + output_dir + '{sample}.vcf_chr3.gz,
-		vcf_chr4 = main_dir + output_dir + '{sample}.vcf_chr4.gz,
-		vcf_chr5 = main_dir + output_dir + '{sample}.vcf_chr5.gz,
-		vcf_chr6 = main_dir + output_dir + '{sample}.vcf_chr6.gz,
-		vcf_chr7 = main_dir + output_dir + '{sample}.vcf_chr7.gz,
-		vcf_chr8 = main_dir + output_dir + '{sample}.vcf_chr8.gz,
-		vcf_chr9 = main_dir + output_dir + '{sample}.vcf_chr9.gz,
-		vcf_chr10 = main_dir + output_dir + '{sample}.vcf_chr10.gz,
-		vcf_chr11 = main_dir + output_dir + '{sample}.vcf_chr11.gz,
-		vcf_chr12 = main_dir + output_dir + '{sample}.vcf_chr12.gz,
-		vcf_chr13 = main_dir + output_dir + '{sample}.vcf_chr13.gz,
-		vcf_chr14 = main_dir + output_dir + '{sample}.vcf_chr14.gz,
-		vcf_chr15 = main_dir + output_dir + '{sample}.vcf_chr15.gz,
-		vcf_chr16 = main_dir + output_dir + '{sample}.vcf_chr16.gz,
-		vcf_chr17 = main_dir + output_dir + '{sample}.vcf_chr17.gz,
-		vcf_chr18 = main_dir + output_dir + '{sample}.vcf_chr18.gz,
-		vcf_chr19 = main_dir + output_dir + '{sample}.vcf_chr19.gz,
-		vcf_chr20 = main_dir + output_dir + '{sample}.vcf_chr20.gz,
-		vcf_chr21 = main_dir + output_dir + '{sample}.vcf_chr21.gz,
-		vcf_chr22 = main_dir + output_dir + '{sample}.vcf_chr22.gz,
-		vcf_chrX = main_dir + output_dir + '{sample}.vcf_chrX.gz,
-		vcf_chrY = main_dir + output_dir + '{sample}.vcf_chrY.gz
+		vcf_chr1 = main_dir + output_dir + '{sample}.vcf_chr1.gz',
+		vcf_chr2 = main_dir + output_dir + '{sample}.vcf_chr2.gz',
+		vcf_chr3 = main_dir + output_dir + '{sample}.vcf_chr3.gz',
+		vcf_chr4 = main_dir + output_dir + '{sample}.vcf_chr4.gz',
+		vcf_chr5 = main_dir + output_dir + '{sample}.vcf_chr5.gz',
+		vcf_chr6 = main_dir + output_dir + '{sample}.vcf_chr6.gz',
+		vcf_chr7 = main_dir + output_dir + '{sample}.vcf_chr7.gz',
+		vcf_chr8 = main_dir + output_dir + '{sample}.vcf_chr8.gz',
+		vcf_chr9 = main_dir + output_dir + '{sample}.vcf_chr9.gz',
+		vcf_chr10 = main_dir + output_dir + '{sample}.vcf_chr10.gz',
+		vcf_chr11 = main_dir + output_dir + '{sample}.vcf_chr11.gz',
+		vcf_chr12 = main_dir + output_dir + '{sample}.vcf_chr12.gz',
+		vcf_chr13 = main_dir + output_dir + '{sample}.vcf_chr13.gz',
+		vcf_chr14 = main_dir + output_dir + '{sample}.vcf_chr14.gz',
+		vcf_chr15 = main_dir + output_dir + '{sample}.vcf_chr15.gz',
+		vcf_chr16 = main_dir + output_dir + '{sample}.vcf_chr16.gz',
+		vcf_chr17 = main_dir + output_dir + '{sample}.vcf_chr17.gz',
+		vcf_chr18 = main_dir + output_dir + '{sample}.vcf_chr18.gz',
+		vcf_chr19 = main_dir + output_dir + '{sample}.vcf_chr19.gz',
+		vcf_chr20 = main_dir + output_dir + '{sample}.vcf_chr20.gz',
+		vcf_chr21 = main_dir + output_dir + '{sample}.vcf_chr21.gz',
+		vcf_chr22 = main_dir + output_dir + '{sample}.vcf_chr22.gz',
+		vcf_chrX = main_dir + output_dir + '{sample}.vcf_chrX.gz',
+		vcf_chrY = main_dir + output_dir + '{sample}.vcf_chrY.gz'
 	output:
-		merged_vcfs = main_dir + output_dir + '{sample}.vcf.gz'
-    message:
+		merged_vcfs = main_dir + output_dir + '{sample}_vcf.gz'
+	message:
 		'Merging all Vcfs -> {output}'
 	shell:
 		'picard MergeVcfs \
@@ -6611,7 +6611,7 @@ rule Merge_Recalibrated_VCFs:
 		vcf_chrY = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chrY.gz'
 	output:
 		merged_recalibrated_vcfs = main_dir + output_dir + '{sample}.recalibrated_variants.vcf.gz'
-    message:
+	message:
 		'Merging all Recalibrated Vcfs -> {output}'
 	shell:
 		'picard MergeVcfs \
