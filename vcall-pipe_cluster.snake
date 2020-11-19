@@ -6,7 +6,7 @@
 #configfile: config_f
 
 #configfile:"/mnt/share/config_pipeline.yaml" # Docker
-configfile:"/mnt/config_pipeline.yaml" # Shifter
+configfile:"/mnt/config_pipeline_cluster.yaml" # Shifter
 
 #|_________Threading_sets:_________________________________________________________|
 
