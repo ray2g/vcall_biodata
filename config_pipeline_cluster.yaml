@@ -60,31 +60,31 @@ BWA_samblaster_sambamba_threads: 16
 
 # Parallelization
 Call_Variants_threads_all_chr: 16
-Call_Variants_threads_chr1:
-Call_Variants_threads_chr2:
-Call_Variants_threads_chr3:
-Call_Variants_threads_chr4:
-Call_Variants_threads_chr5:
-Call_Variants_threads_chr6:
-Call_Variants_threads_chr7:
-Call_Variants_threads_chr8:
-Call_Variants_threads_chr9:
-Call_Variants_threads_chr10:
-Call_Variants_threads_chr11:
-Call_Variants_threads_chr11:
-Call_Variants_threads_chr12:
-Call_Variants_threads_chr13:
-Call_Variants_threads_chr14:
-Call_Variants_threads_chr15:
-Call_Variants_threads_chr16:
-Call_Variants_threads_chr17:
-Call_Variants_threads_chr18:
-Call_Variants_threads_chr19:
-Call_Variants_threads_chr20:
-Call_Variants_threads_chr21:
-Call_Variants_threads_chr22:
-Call_Variants_threads_chrX:
-Call_Variants_threads_chrY:
+Call_Variants_threads_chr1: 3
+Call_Variants_threads_chr2: 2
+Call_Variants_threads_chr3: 2
+Call_Variants_threads_chr4: 2
+Call_Variants_threads_chr5: 2
+Call_Variants_threads_chr6: 2
+Call_Variants_threads_chr7: 2
+Call_Variants_threads_chr8: 1
+Call_Variants_threads_chr9: 2
+Call_Variants_threads_chr10: 2
+Call_Variants_threads_chr11: 2
+Call_Variants_threads_chr11: 1
+Call_Variants_threads_chr12: 2
+Call_Variants_threads_chr13: 1
+Call_Variants_threads_chr14: 1
+Call_Variants_threads_chr15: 1
+Call_Variants_threads_chr16: 2
+Call_Variants_threads_chr17: 2
+Call_Variants_threads_chr18: 1
+Call_Variants_threads_chr19: 2
+Call_Variants_threads_chr20: 1
+Call_Variants_threads_chr21: 1
+Call_Variants_threads_chr22: 1
+Call_Variants_threads_chrX: 1
+Call_Variants_threads_chrY: 1
 
 #__________Memory______________________________
 
@@ -95,28 +95,28 @@ BWA_samblaster_sambamba_memory: 48
 Java_memory: 48
 
 # Java memory - Parallelization
-Java_memory_all_chr:
-Java_memory_chr1:
-Java_memory_chr2:
-Java_memory_chr3:
-Java_memory_chr4:
-Java_memory_chr5:
-Java_memory_chr6:
-Java_memory_chr7:
-Java_memory_chr8:
-Java_memory_chr9:
-Java_memory_chr10:
-Java_memory_chr11:
-Java_memory_chr12:
-Java_memory_chr13:
-Java_memory_chr14:
-Java_memory_chr15:
-Java_memory_chr16:
-Java_memory_chr17:
-Java_memory_chr18:
-Java_memory_chr19:
-Java_memory_chr20:
-Java_memory_chr21:
-Java_memory_chr22:
-Java_memory_chrX:
-Java_memory_chrY:
+Java_memory_all_chr: 4
+Java_memory_chr1: 4
+Java_memory_chr2: 4
+Java_memory_chr3: 4
+Java_memory_chr4: 4
+Java_memory_chr5: 4
+Java_memory_chr6: 4
+Java_memory_chr7: 4
+Java_memory_chr8: 4
+Java_memory_chr9: 4
+Java_memory_chr10: 4
+Java_memory_chr11: 4
+Java_memory_chr12: 4
+Java_memory_chr13: 4
+Java_memory_chr14: 4
+Java_memory_chr15: 4
+Java_memory_chr16: 4
+Java_memory_chr17: 4 
+Java_memory_chr18: 4
+Java_memory_chr19: 4
+Java_memory_chr20: 4
+Java_memory_chr21: 4
+Java_memory_chr22: 4
+Java_memory_chrX: 4
+Java_memory_chrY: 4
