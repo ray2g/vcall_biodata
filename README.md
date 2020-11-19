@@ -39,12 +39,12 @@ snakemake --snakefile vcall-pipe.snake -p /mnt/share/outputs/<analysis_type> \
 
 > For Analisis of Copy-Number Variants:
 ```
-'{your_read}.vcf.gz'
+'{sample}_vcf.gz'
 ```
 
 > For Analisis of Copy-Number Recalibrated Variants:
 ```
-'{your_read}.recalibrated_variants_postCGP.vcf.gz'
+'{sample}.recalibrated_variants_postCGP.vcf.gz'
 ```
 <br>
 
@@ -94,10 +94,10 @@ srun shifter --volume=/home/<PATH>/vcall_biodata/:/mnt/  \
 
 > For Analisis of Copy-Number Variants:
 ```
-'{your_read}.vcf.gz'
+'{sample}_vcf.gz'
 ```
 
 > For Analisis of Copy-Number Recalibrated Variants:
 ```
-'{your_read}.recalibrated_variants_postCGP.vcf.gz'
+'{sample}.recalibrated_variants_postCGP.vcf.gz'
 ```
