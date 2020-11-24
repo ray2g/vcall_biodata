@@ -1,0 +1,150 @@
+#__________Directories_Paths_________________________________________________________________________________
+
+base_dir: /mnt/ # where it start in docker env
+main_dir: /mnt/ # repository in docker env  
+genome_dir: genome/ # genome data
+sample_dir: samples/ #sample directory
+output_dir: outputs/ #output folder
+logs_dir: logs/ # for logs
+
+
+#______________Settings_______________________________________________________________________________________
+
+#fasta eg: {sample}.read1.fastq.gz
+GENOME: resources_broad_hg38_v0_Homo_sapiens_assembly38
+
+# Known Sites
+KS1: resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf.gz 
+KS2: resources_broad_hg38_v0_Mills_and_1000G_gold_standard.indels.hg38.vcf.gz 
+KS3: resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz
+KS4: resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf.gz 
+KS5: resources_broad_hg38_v0_hapmap_3.3.hg38.vcf.gz 
+KS6: resources_broad_hg38_v0_1000G_omni2.5.hg38.vcf.gz 
+KS7: 1000G.phase3.integrated.sites_only.no_MATCHED_REV.hg38.vcf  
+
+# Genome target files
+TARGET_all_chr: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed
+TARGET_chr1: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr1.bed
+TARGET_chr2: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr2.bed
+TARGET_chr3: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr3.bed
+TARGET_chr4: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr4.bed
+TARGET_chr5: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr5.bed
+TARGET_chr6: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr6.bed
+TARGET_chr7: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr7.bed
+TARGET_chr8: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr8.bed
+TARGET_chr9: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr9.bed
+TARGET_chr10: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr10.bed
+TARGET_chr11: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr11.bed
+TARGET_chr12: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr12.bed
+TARGET_chr13: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr13.bed
+TARGET_chr14: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr14.bed
+TARGET_chr15: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr15.bed
+TARGET_chr16: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr16.bed
+TARGET_chr17: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr17.bed
+TARGET_chr18: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr18.bed
+TARGET_chr19: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr19.bed
+TARGET_chr20: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr20.bed
+TARGET_chr21: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr21.bed
+TARGET_chr22: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr22.bed
+TARGET_chrX: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrX.bed
+TARGET_chrY: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrY.bed
+
+# GATK Tools
+GATK: /mnt/gatk/gatk-package-4.1.7.0-local.jar 
+
+
+#__________________________Rule_Settings_____________________________________________________________________|
+
+# rule bwa_index (Create index, fasta.sa) ------------\\
+
+bwa_index_partition: 'large' # HPC partition
+bwa_index_cpus: 16 # cpus
+bwa_index_mem: 64421 # RAM
+
+# rule BWA_samblaster_sambamba  (Align reads to reference) --------\\
+
+BWA_samblaster_sambamba_partition: 'large' # HPC partition
+BWA_samblaster_sambamba_threads: 16 # cpus
+BWA_samblaster_sambamba_memory: 64421 # RAM
+
+# rule picard_dict (Create sequence dictionary) ------------\\
+
+picard_dict_partition: 'small' # HPC partition
+picard_dict_cpus: 4 # cpus
+picard_dict_mem: 16040
+
+# rule samtools_index (fasta.fai) ------------\\
+
+samtools_index_partition: 'medium' # HPC partition
+samtools_index_cpus: 8 # cpus
+samtools_index_mem: 32167 # RAM
+
+
+
+#___________________________Threading________________________________________________________________________
+
+# Align reads to reference
+BWA_samblaster_sambamba_threads: 16
+
+# Parallelization
+Call_Variants_threads_all_chr: 16
+Call_Variants_threads_chr1: 3
+Call_Variants_threads_chr2: 2
+Call_Variants_threads_chr3: 2
+Call_Variants_threads_chr4: 2
+Call_Variants_threads_chr5: 2
+Call_Variants_threads_chr6: 2
+Call_Variants_threads_chr7: 2
+Call_Variants_threads_chr8: 1
+Call_Variants_threads_chr9: 2
+Call_Variants_threads_chr10: 2
+Call_Variants_threads_chr11: 2
+Call_Variants_threads_chr11: 1
+Call_Variants_threads_chr12: 2
+Call_Variants_threads_chr13: 1
+Call_Variants_threads_chr14: 1
+Call_Variants_threads_chr15: 1
+Call_Variants_threads_chr16: 2
+Call_Variants_threads_chr17: 2
+Call_Variants_threads_chr18: 1
+Call_Variants_threads_chr19: 2
+Call_Variants_threads_chr20: 1
+Call_Variants_threads_chr21: 1
+Call_Variants_threads_chr22: 1
+Call_Variants_threads_chrX: 1
+Call_Variants_threads_chrY: 1
+
+#__________Memory______________________________
+
+# Align reads to reference
+BWA_samblaster_sambamba_memory: 48 
+
+# Java memory for general tasks
+Java_memory: 48
+
+# Java memory - Parallelization
+Java_memory_all_chr: 4
+Java_memory_chr1: 4
+Java_memory_chr2: 4
+Java_memory_chr3: 4
+Java_memory_chr4: 4
+Java_memory_chr5: 4
+Java_memory_chr6: 4
+Java_memory_chr7: 4
+Java_memory_chr8: 4
+Java_memory_chr9: 4
+Java_memory_chr10: 4
+Java_memory_chr11: 4
+Java_memory_chr12: 4
+Java_memory_chr13: 4
+Java_memory_chr14: 4
+Java_memory_chr15: 4
+Java_memory_chr16: 4
+Java_memory_chr17: 4 
+Java_memory_chr18: 4
+Java_memory_chr19: 4
+Java_memory_chr20: 4
+Java_memory_chr21: 4
+Java_memory_chr22: 4
+Java_memory_chrX: 4
+Java_memory_chrY: 4
