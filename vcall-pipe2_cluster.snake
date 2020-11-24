@@ -1,3 +1,5 @@
+## Variant Calling Pipeline - João Raimundo @BioData.pt
+
 #|_________________Partitions_sets___________________________________________|
 
 ##__rule_bwa_index___________________________________\\
