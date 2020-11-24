@@ -80,11 +80,91 @@ samtools_index_cpus: 8 # cpus
 samtools_index_mem: 32167 # RAM
 
 
+# Chromossome Parallelization ------------\\
+
+## partitions:
+chr1_partitions: 'small' # 4 cpus 16 gb
+chr2_partitions: 'small' # 2 cpus 8gb
+chr3_partitions: 'small' # 2 cpus 8gb
+chr4_partitions: 'medium' # 2 cpus 8gb
+chr5_partitions: 'medium' # 2 cpus 8gb
+chr6_partitions: 'medium' # 2 cpus 8gb
+chr7_partitions: 'medium' # 2 cpus 8gb
+chr8_partitions: 'large' # 1 cpus 4gb
+chr9_partitions: 'medium' # 2 cpus 8gb
+chr10_partitions: 'medium' # 2 cpus 8gb
+chr11_partitions: 'large' # 2 cpus 4gb
+chr12_partitions: 'medium' # 2 cpus 8gb
+chr13_partitions: 'large' # 1 cpus 4gb
+chr14_partitions: 'large' # 1 cpus 4gb
+chr15_partitions: 'large' # 1 cpus 4gb
+chr16_partitions: 'large' # 2 cpus 8gb
+chr17_partitions: 'medium' # 2 cpus 8gb
+chr18_partitions: 'large' # 1 cpus 4gb
+chr19_partitions: 'large' # 2 cpus 8gb
+chr20_partitions: 'large' # 1 cpu 4gb
+chr21_partitions: 'large' # 1 cpus 4gb
+chr22_partitions: 'large' # 1 cpus 4gb
+chrX_partitions: 'large' # 1 cpus 4gb
+chrY_partitions: 'large' # 1 cpus 4gb
+
+# cpus:
+chr1_cpus: 4
+chr2_cpus: 2
+chr3_cpus: 2
+chr4_cpus: 2 
+chr5_cpus: 2
+chr6_cpus: 2
+chr7_cpus: 2
+chr8_cpus: 1
+chr9_cpus: 2
+chr10_cpus: 2
+chr11_cpus: 2
+chr12_cpus: 2
+chr13_cpus: 1
+chr14_cpus: 1
+chr15_cpus: 1
+chr16_cpus: 2
+chr17_cpus: 2
+chr18_cpus: 1
+chr19_cpus: 2
+chr20_cpus: 1
+chr21_cpus: 1
+chr22_cpus: 1
+chrX_cpus: 1
+chrY_cpus: 1
+
+# RAM:
+chr1_mem: 16040
+chr2_mem: 8020
+chr3_mem: 8020
+chr4_mem: 8020
+chr5_mem: 8020
+chr6_mem: 8020
+chr7_mem: 8020
+chr8_mem: 4010
+chr9_mem: 8020
+chr10_mem: 8020
+chr11_mem: 4010
+chr12_mem: 8020
+chr13_mem: 4010
+chr14_mem: 4010
+chr15_mem: 4010
+chr16_mem: 8020
+chr17_mem: 8020
+chr18_mem: 4010
+chr19_mem: 8020
+chr20_mem: 4010
+chr21_mem: 4010
+chr22_mem: 4010
+chrX_mem: 4010
+chrY_mem: 4010
+
+
 
 #___________________________Threading________________________________________________________________________
 
-# Align reads to reference
-BWA_samblaster_sambamba_threads: 16
+
 
 # Parallelization
 Call_Variants_threads_all_chr: 16
