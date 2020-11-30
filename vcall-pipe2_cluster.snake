@@ -110,6 +110,12 @@ chrX_mem = config["chrX_mem"]
 chrY_mem = config["chrY_mem"]
 
 
+##_______rule_Merge_VCFs______________________________\\
+
+merge_vcf_partition = config["merge_vcf_partition"]
+merge_vcf_cpus = config["merge_vcf_cpus"]
+merge_vcf_mem = config["merge_vcf_mem"]
+
 #|__________Dir_settings:____________|
 
 base_dir = config["base_dir"]
@@ -3729,6 +3735,8 @@ rule Merge_VCFs:
 		merged_vcfs = main_dir + output_dir + '{sample}_vcf.gz'
 	message:
 		'Merging all Vcfs -> {output}'
+  	params: partition = merge_vcf_partition
+  	resources: cpus= merge_vcf_cpus, mem_mb= merge_vcf_mem
 	shell:
 		'picard MergeVcfs \
 		I={input.vcf_chr1} I={input.vcf_chr2} I={input.vcf_chr3} I={input.vcf_chr4} I={input.vcf_chr5} \
@@ -3754,10 +3762,10 @@ rule Variant_Recalibrator_SNPs_chr1:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr1.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr1.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr1.tranches'
-	resources:
-        	mem_mb= java_memory_chr1
 	message:
 		'Processing Variant Recalibration with SNPs for chr1 -> {output}'
+  	params: partition = chr1_partitions
+  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -3767,7 +3775,7 @@ rule Variant_Recalibrator_SNPs_chr1:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -3786,10 +3794,10 @@ rule Variant_Recalibrator_SNPs_chr2:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr2.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr2.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr2.tranches'
-	resources:
-        	mem_mb= java_memory_chr2
 	message:
 		'Processing Variant Recalibration with SNPs for chr2 -> {output}'
+  	params: partition = chr2_partitions
+  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -3799,7 +3807,7 @@ rule Variant_Recalibrator_SNPs_chr2:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -3818,10 +3826,10 @@ rule Variant_Recalibrator_SNPs_chr3:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr3.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr3.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr3.tranches'
-	resources:
-        	mem_mb= java_memory_chr3
 	message:
 		'Processing Variant Recalibration with SNPs for chr3 -> {output}'
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -3831,7 +3839,7 @@ rule Variant_Recalibrator_SNPs_chr3:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -3850,10 +3858,10 @@ rule Variant_Recalibrator_SNPs_chr4:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr4.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr4.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr4.tranches'
-	resources:
-        	mem_mb= java_memory_chr4
 	message:
 		'Processing Variant Recalibration with SNPs for chr4 -> {output}'
+  	params: partition = chr4_partitions
+  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -3863,7 +3871,7 @@ rule Variant_Recalibrator_SNPs_chr4:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -3882,10 +3890,10 @@ rule Variant_Recalibrator_SNPs_chr5:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr5.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr5.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr5.tranches'
-	resources:
-        	mem_mb= java_memory_chr5
 	message:
 		'Processing Variant Recalibration with SNPs for chr5 -> {output}'
+  	params: partition = chr5_partitions
+  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -3895,7 +3903,7 @@ rule Variant_Recalibrator_SNPs_chr5:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -3914,10 +3922,10 @@ rule Variant_Recalibrator_SNPs_chr6:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr6.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr6.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr6.tranches'
-	resources:
-        	mem_mb= java_memory_chr6
 	message:
 		'Processing Variant Recalibration with SNPs for chr6 -> {output}'
+  	params: partition = chr6_partitions
+  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -3927,7 +3935,7 @@ rule Variant_Recalibrator_SNPs_chr6:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -3946,10 +3954,10 @@ rule Variant_Recalibrator_SNPs_chr7:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr7.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr7.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr7.tranches'
-	resources:
-        	mem_mb= java_memory_chr7
 	message:
 		'Processing Variant Recalibration with SNPs for chr7 -> {output}'
+  	params: partition = chr7_partitions
+  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -3959,7 +3967,7 @@ rule Variant_Recalibrator_SNPs_chr7:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -3978,10 +3986,10 @@ rule Variant_Recalibrator_SNPs_chr8:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr8.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr8.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr8.tranches'
-	resources:
-        	mem_mb= java_memory_chr8
 	message:
 		'Processing Variant Recalibration with SNPs for chr8 -> {output}'
+  	params: partition = chr8_partitions
+  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -3991,7 +3999,7 @@ rule Variant_Recalibrator_SNPs_chr8:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4010,10 +4018,10 @@ rule Variant_Recalibrator_SNPs_chr9:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr9.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr9.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr9.tranches'
-	resources:
-        	mem_mb= java_memory_chr9
 	message:
 		'Processing Variant Recalibration with SNPs for chr9 -> {output}'
+  	params: partition = chr9_partitions
+  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4023,7 +4031,7 @@ rule Variant_Recalibrator_SNPs_chr9:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4042,10 +4050,10 @@ rule Variant_Recalibrator_SNPs_chr10:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr10.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr10.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr10.tranches'
-	resources:
-        	mem_mb= java_memory_chr10
 	message:
 		'Processing Variant Recalibration with SNPs for chr10 -> {output}'
+  	params: partition = chr10_partitions
+  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4055,7 +4063,7 @@ rule Variant_Recalibrator_SNPs_chr10:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4074,10 +4082,10 @@ rule Variant_Recalibrator_SNPs_chr11:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr11.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr11.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr11.tranches'
-	resources:
-        	mem_mb= java_memory_chr11
 	message:
 		'Processing Variant Recalibration with SNPs for chr11 -> {output}'
+  	params: partition = chr11_partitions
+  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4087,7 +4095,7 @@ rule Variant_Recalibrator_SNPs_chr11:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4106,10 +4114,10 @@ rule Variant_Recalibrator_SNPs_chr12:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr12.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr12.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr12.tranches'
-	resources:
-        	mem_mb= java_memory_chr12
 	message:
 		'Processing Variant Recalibration with SNPs for chr12 -> {output}'
+  	params: partition = chr12_partitions
+  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4119,7 +4127,7 @@ rule Variant_Recalibrator_SNPs_chr12:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4138,10 +4146,10 @@ rule Variant_Recalibrator_SNPs_chr13:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr13.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr13.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr13.tranches'
-	resources:
-        	mem_mb= java_memory_chr13
 	message:
 		'Processing Variant Recalibration with SNPs for chr13 -> {output}'
+  	params: partition = chr13_partitions
+  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4151,7 +4159,7 @@ rule Variant_Recalibrator_SNPs_chr13:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4170,10 +4178,10 @@ rule Variant_Recalibrator_SNPs_chr14:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr14.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr14.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr14.tranches'
-	resources:
-        	mem_mb= java_memory_chr14
 	message:
 		'Processing Variant Recalibration with SNPs for chr14 -> {output}'
+  	params: partition = chr14_partitions
+  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4183,7 +4191,7 @@ rule Variant_Recalibrator_SNPs_chr14:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4202,10 +4210,10 @@ rule Variant_Recalibrator_SNPs_chr15:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr15.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr15.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr15.tranches'
-	resources:
-        	mem_mb= java_memory_chr15
 	message:
 		'Processing Variant Recalibration with SNPs for chr15 -> {output}'
+  	params: partition = chr15_partitions
+  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4215,7 +4223,7 @@ rule Variant_Recalibrator_SNPs_chr15:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4234,10 +4242,10 @@ rule Variant_Recalibrator_SNPs_chr16:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr16.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr16.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr16.tranches'
-	resources:
-        	mem_mb= java_memory_chr16
 	message:
 		'Processing Variant Recalibration with SNPs for chr16 -> {output}'
+  	params: partition = chr16_partitions
+  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4247,7 +4255,7 @@ rule Variant_Recalibrator_SNPs_chr16:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4266,10 +4274,10 @@ rule Variant_Recalibrator_SNPs_chr17:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr17.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr17.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr17.tranches'
-	resources:
-        	mem_mb= java_memory_chr17
 	message:
 		'Processing Variant Recalibration with SNPs for chr17 -> {output}'
+  	params: partition = chr17_partitions
+  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4279,7 +4287,7 @@ rule Variant_Recalibrator_SNPs_chr17:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4298,10 +4306,10 @@ rule Variant_Recalibrator_SNPs_chr18:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr18.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr18.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr18.tranches'
-	resources:
-        	mem_mb= java_memory_chr18
 	message:
 		'Processing Variant Recalibration with SNPs for chr18 -> {output}'
+  	params: partition = chr18_partitions
+  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4311,7 +4319,7 @@ rule Variant_Recalibrator_SNPs_chr18:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4330,10 +4338,10 @@ rule Variant_Recalibrator_SNPs_chr19:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr19.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr19.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr19.tranches'
-	resources:
-        	mem_mb= java_memory_chr19
 	message:
 		'Processing Variant Recalibration with SNPs for chr19 -> {output}'
+  	params: partition = chr19_partitions
+  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4343,7 +4351,7 @@ rule Variant_Recalibrator_SNPs_chr19:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4362,10 +4370,10 @@ rule Variant_Recalibrator_SNPs_chr20:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr20.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr20.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr20.tranches'
-	resources:
-        	mem_mb= java_memory_chr20
 	message:
 		'Processing Variant Recalibration with SNPs for chr20 -> {output}'
+  	params: partition = chr20_partitions
+  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4375,7 +4383,7 @@ rule Variant_Recalibrator_SNPs_chr20:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4394,10 +4402,10 @@ rule Variant_Recalibrator_SNPs_chr21:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr21.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr21.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr21.tranches'
-	resources:
-        	mem_mb= java_memory_chr21
 	message:
 		'Processing Variant Recalibration with SNPs for chr21 -> {output}'
+  	params: partition = chr21_partitions
+  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4407,7 +4415,7 @@ rule Variant_Recalibrator_SNPs_chr21:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4426,10 +4434,10 @@ rule Variant_Recalibrator_SNPs_chr22:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr22.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chr22.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr22.tranches'
-	resources:
-        	mem_mb= java_memory_chr22
 	message:
 		'Processing Variant Recalibration with SNPs for chr22 -> {output}'
+  	params: partition = chr22_partitions
+  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4439,7 +4447,7 @@ rule Variant_Recalibrator_SNPs_chr22:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4458,10 +4466,10 @@ rule Variant_Recalibrator_SNPs_chrX:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chrX.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chrX.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chrX.tranches'
-	resources:
-        	mem_mb= java_memory_chrX
 	message:
 		'Processing Variant Recalibration with SNPs for chrX -> {output}'
+  	params: partition = chrX_partitions
+  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4471,7 +4479,7 @@ rule Variant_Recalibrator_SNPs_chrX:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4490,10 +4498,10 @@ rule Variant_Recalibrator_SNPs_chrY:
 		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chrY.recal',
 		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots_chrY.R',
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chrY.tranches'
-	resources:
-        	mem_mb= java_memory_chrY
 	message:
 		'Processing Variant Recalibration with SNPs for chrY -> {output}'
+  	params: partition = chrY_partitions
+  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -4503,7 +4511,7 @@ rule Variant_Recalibrator_SNPs_chrY:
 		-O {output.recal_snp} \
 		--tranches-file {output.tranches_snp} \
 		--rscript-file {output.rscript_snp} \
-        --resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
+        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
 		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
@@ -4521,10 +4529,10 @@ rule Applying_Recalibration_SNPs_chr1:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr1.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr1.vcf'
-	resources:
-        	mem_mb= java_memory_chr1
 	message:
 		'Applying Recalibration with SNPs for chr1 -> {output}'
+  	params: partition = chr1_partitions
+  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4545,10 +4553,10 @@ rule Applying_Recalibration_SNPs_chr2:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr2.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr2.vcf'
-	resources:
-        	mem_mb= java_memory_chr2
 	message:
 		'Applying Recalibration with SNPs for chr2 -> {output}'
+  	params: partition = chr2_partitions
+  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4569,10 +4577,10 @@ rule Applying_Recalibration_SNPs_chr3:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr3.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr3.vcf'
-	resources:
-        	mem_mb= java_memory_chr3
 	message:
 		'Applying Recalibration with SNPs for chr3 -> {output}'
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4593,10 +4601,10 @@ rule Applying_Recalibration_SNPs_chr4:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr4.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr4.vcf'
-	resources:
-        	mem_mb= java_memory_chr4
 	message:
 		'Applying Recalibration with SNPs for chr4 -> {output}'
+  	params: partition = chr4_partitions
+  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4617,10 +4625,10 @@ rule Applying_Recalibration_SNPs_chr5:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr5.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr5.vcf'
-	resources:
-        	mem_mb= java_memory_chr5
 	message:
 		'Applying Recalibration with SNPs for chr5 -> {output}'
+  	params: partition = chr5_partitions
+  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4641,10 +4649,10 @@ rule Applying_Recalibration_SNPs_chr6:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr6.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr6.vcf'
-	resources:
-        	mem_mb= java_memory_chr6
 	message:
 		'Applying Recalibration with SNPs for chr6 -> {output}'
+  	params: partition = chr6_partitions
+  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4665,10 +4673,10 @@ rule Applying_Recalibration_SNPs_chr7:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr7.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr7.vcf'
-	resources:
-        	mem_mb= java_memory_chr7
 	message:
 		'Applying Recalibration with SNPs for chr7 -> {output}'
+  	params: partition = chr7_partitions
+  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4689,10 +4697,10 @@ rule Applying_Recalibration_SNPs_chr8:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr8.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr8.vcf'
-	resources:
-        	mem_mb= java_memory_chr8
 	message:
 		'Applying Recalibration with SNPs for chr8 -> {output}'
+  	params: partition = chr8_partitions
+  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4713,10 +4721,10 @@ rule Applying_Recalibration_SNPs_chr9:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr9.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr9.vcf'
-	resources:
-        	mem_mb= java_memory_chr9
 	message:
 		'Applying Recalibration with SNPs for chr9 -> {output}'
+  	params: partition = chr9_partitions
+  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4737,10 +4745,10 @@ rule Applying_Recalibration_SNPs_chr10:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr10.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr10.vcf'
-	resources:
-        	mem_mb= java_memory_chr10
 	message:
 		'Applying Recalibration with SNPs for chr10 -> {output}'
+  	params: partition = chr10_partitions
+  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4761,10 +4769,10 @@ rule Applying_Recalibration_SNPs_chr11:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr11.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr11.vcf'
-	resources:
-        	mem_mb= java_memory_chr11
 	message:
 		'Applying Recalibration with SNPs for chr11 -> {output}'
+  	params: partition = chr11_partitions
+  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4785,10 +4793,10 @@ rule Applying_Recalibration_SNPs_chr12:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr12.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr12.vcf'
-	resources:
-        	mem_mb= java_memory_chr12
 	message:
 		'Applying Recalibration with SNPs for chr12 -> {output}'
+  	params: partition = chr12_partitions
+  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4809,10 +4817,10 @@ rule Applying_Recalibration_SNPs_chr13:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr13.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr13.vcf'
-	resources:
-        	mem_mb= java_memory_chr13
 	message:
 		'Applying Recalibration with SNPs for chr13 -> {output}'
+  	params: partition = chr13_partitions
+  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4833,10 +4841,10 @@ rule Applying_Recalibration_SNPs_chr14:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr14.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr14.vcf'
-	resources:
-        	mem_mb= java_memory_chr14
 	message:
 		'Applying Recalibration with SNPs for chr14 -> {output}'
+  	params: partition = chr14_partitions
+  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4857,10 +4865,10 @@ rule Applying_Recalibration_SNPs_chr15:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr15.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr15.vcf'
-	resources:
-        	mem_mb= java_memory_chr15
 	message:
 		'Applying Recalibration with SNPs for chr15 -> {output}'
+  	params: partition = chr15_partitions
+  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4881,10 +4889,10 @@ rule Applying_Recalibration_SNPs_chr16:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr16.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr16.vcf'
-	resources:
-        	mem_mb= java_memory_chr16
 	message:
 		'Applying Recalibration with SNPs for chr16 -> {output}'
+  	params: partition = chr16_partitions
+  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4905,10 +4913,10 @@ rule Applying_Recalibration_SNPs_chr17:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr17.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr17.vcf'
-	resources:
-        	mem_mb= java_memory_chr17
 	message:
 		'Applying Recalibration with SNPs for chr17 -> {output}'
+  	params: partition = chr17_partitions
+  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4929,10 +4937,10 @@ rule Applying_Recalibration_SNPs_chr18:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr18.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr18.vcf'
-	resources:
-        	mem_mb= java_memory_chr18
 	message:
 		'Applying Recalibration with SNPs for chr18 -> {output}'
+  	params: partition = chr18_partitions
+  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4953,10 +4961,10 @@ rule Applying_Recalibration_SNPs_chr19:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr19.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr19.vcf'
-	resources:
-        	mem_mb= java_memory_chr19
 	message:
 		'Applying Recalibration with SNPs for chr19 -> {output}'
+  	params: partition = chr19_partitions
+  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -4977,10 +4985,10 @@ rule Applying_Recalibration_SNPs_chr20:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr20.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr20.vcf'
-	resources:
-        	mem_mb= java_memory_chr20
 	message:
 		'Applying Recalibration with SNPs for chr20 -> {output}'
+  	params: partition = chr20_partitions
+  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -5001,10 +5009,10 @@ rule Applying_Recalibration_SNPs_chr21:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr21.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr21.vcf'
-	resources:
-        	mem_mb= java_memory_chr21
 	message:
 		'Applying Recalibration with SNPs for chr21 -> {output}'
+  	params: partition = chr21_partitions
+  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -5025,10 +5033,10 @@ rule Applying_Recalibration_SNPs_chr22:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr22.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr22.vcf'
-	resources:
-        	mem_mb= java_memory_chr22
 	message:
 		'Applying Recalibration with SNPs for chr22 -> {output}'
+  	params: partition = chr22_partitions
+  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -5049,10 +5057,10 @@ rule Applying_Recalibration_SNPs_chrX:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chrX.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chrX.vcf'
-	resources:
-        	mem_mb= java_memory_chrX
 	message:
 		'Applying Recalibration with SNPs for chrX -> {output}'
+  	params: partition = chrX_partitions
+  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -5073,10 +5081,10 @@ rule Applying_Recalibration_SNPs_chrY:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chrY.tranches'
 	output:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chrY.vcf'
-	resources:
-        	mem_mb= java_memory_chrY
 	message:
 		'Applying Recalibration with SNPs for chrY -> {output}'
+  	params: partition = chrY_partitions
+  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
@@ -5102,10 +5110,10 @@ rule Variant_Recalibrator_Indels_chr1:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr1.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr1.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr1.R'
-	resources:
-        	mem_mb= java_memory_chr1
 	message:
 		'Processing Variant Recalibration with Indels for chr1 -> {output}'
+  	params: partition = chr1_partitions
+  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5130,10 +5138,10 @@ rule Variant_Recalibrator_Indels_chr2:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr2.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr2.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr2.R'
-	resources:
-        	mem_mb= java_memory_chr2
 	message:
 		'Processing Variant Recalibration with Indels for chr2 -> {output}'
+  	params: partition = chr2_partitions
+  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5158,10 +5166,10 @@ rule Variant_Recalibrator_Indels_chr3:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr3.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr3.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr3.R'
-	resources:
-        	mem_mb= java_memory_chr3
 	message:
 		'Processing Variant Recalibration with Indels for chr3 -> {output}'
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5186,10 +5194,10 @@ rule Variant_Recalibrator_Indels_chr4:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr4.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr4.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr4.R'
-	resources:
-        	mem_mb= java_memory_chr4
 	message:
 		'Processing Variant Recalibration with Indels for chr4 -> {output}'
+  	params: partition = chr4_partitions
+  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5214,10 +5222,10 @@ rule Variant_Recalibrator_Indels_chr5:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr5.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr5.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr5.R'
-	resources:
-        	mem_mb= java_memory_chr5
 	message:
 		'Processing Variant Recalibration with Indels for chr5 -> {output}'
+  	params: partition = chr5_partitions
+  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5242,10 +5250,10 @@ rule Variant_Recalibrator_Indels_chr6:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr6.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr6.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr6.R'
-	resources:
-        	mem_mb= java_memory_chr6
 	message:
 		'Processing Variant Recalibration with Indels for chr6 -> {output}'
+  	params: partition = chr6_partitions
+  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5270,10 +5278,10 @@ rule Variant_Recalibrator_Indels_chr7:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr7.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr7.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr7.R'
-	resources:
-        	mem_mb= java_memory_chr7
 	message:
 		'Processing Variant Recalibration with Indels for chr7 -> {output}'
+  	params: partition = chr7_partitions
+  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5298,10 +5306,10 @@ rule Variant_Recalibrator_Indels_chr8:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr8.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr8.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr8.R'
-	resources:
-        	mem_mb= java_memory_chr8
 	message:
 		'Processing Variant Recalibration with Indels for chr8 -> {output}'
+  	params: partition = chr8_partitions
+  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5326,10 +5334,10 @@ rule Variant_Recalibrator_Indels_chr9:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr9.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr9.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr9.R'
-	resources:
-        	mem_mb= java_memory_chr9
 	message:
 		'Processing Variant Recalibration with Indels for chr9 -> {output}'
+  	params: partition = chr9_partitions
+  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5354,10 +5362,10 @@ rule Variant_Recalibrator_Indels_chr10:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr10.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr10.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr10.R'
-	resources:
-        	mem_mb= java_memory_chr10
 	message:
 		'Processing Variant Recalibration with Indels for chr10 -> {output}'
+  	params: partition = chr10_partitions
+  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5382,10 +5390,10 @@ rule Variant_Recalibrator_Indels_chr11:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr11.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr11.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr11.R'
-	resources:
-        	mem_mb= java_memory_chr11
 	message:
 		'Processing Variant Recalibration with Indels for chr11 -> {output}'
+  	params: partition = chr11_partitions
+  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5410,10 +5418,10 @@ rule Variant_Recalibrator_Indels_chr12:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr12.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr12.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr12.R'
-	resources:
-        	mem_mb= java_memory_chr12
 	message:
 		'Processing Variant Recalibration with Indels for chr12 -> {output}'
+  	params: partition = chr12_partitions
+  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5438,10 +5446,10 @@ rule Variant_Recalibrator_Indels_chr13:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr13.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr13.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr13.R'
-	resources:
-        	mem_mb= java_memory_chr13
 	message:
 		'Processing Variant Recalibration with Indels for chr13 -> {output}'
+  	params: partition = chr13_partitions
+  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5466,10 +5474,10 @@ rule Variant_Recalibrator_Indels_chr14:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr14.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr14.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr14.R'
-	resources:
-        	mem_mb= java_memory_chr14
 	message:
 		'Processing Variant Recalibration with Indels for chr14 -> {output}'
+  	params: partition = chr14_partitions
+  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5494,10 +5502,10 @@ rule Variant_Recalibrator_Indels_chr15:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr15.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr15.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr15.R'
-	resources:
-        	mem_mb= java_memory_chr15
 	message:
 		'Processing Variant Recalibration with Indels for chr15 -> {output}'
+  	params: partition = chr15_partitions
+  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5522,10 +5530,10 @@ rule Variant_Recalibrator_Indels_chr16:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr16.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr16.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr16.R'
-	resources:
-        	mem_mb= java_memory_chr16
 	message:
 		'Processing Variant Recalibration with Indels for chr16 -> {output}'
+  	params: partition = chr16_partitions
+  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5550,10 +5558,10 @@ rule Variant_Recalibrator_Indels_chr17:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr17.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr17.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr17.R'
-	resources:
-        	mem_mb= java_memory_chr17
 	message:
 		'Processing Variant Recalibration with Indels for chr17 -> {output}'
+  	params: partition = chr17_partitions
+  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5578,10 +5586,10 @@ rule Variant_Recalibrator_Indels_chr18:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr18.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr18.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr1.R'
-	resources:
-        	mem_mb= java_memory_chr18
 	message:
 		'Processing Variant Recalibration with Indels for chr18 -> {output}'
+  	params: partition = chr18_partitions
+  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5606,10 +5614,10 @@ rule Variant_Recalibrator_Indels_chr19:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr19.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr19.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr19.R'
-	resources:
-        	mem_mb= java_memory_chr19
 	message:
 		'Processing Variant Recalibration with Indels for chr19 -> {output}'
+  	params: partition = chr19_partitions
+  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5634,10 +5642,10 @@ rule Variant_Recalibrator_Indels_chr20:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr20.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr20.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr20.R'
-	resources:
-        	mem_mb= java_memory_chr20
 	message:
 		'Processing Variant Recalibration with Indels for chr20 -> {output}'
+  	params: partition = chr20_partitions
+  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5662,10 +5670,10 @@ rule Variant_Recalibrator_Indels_chr21:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr21.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr21.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr21.R'
-	resources:
-        	mem_mb= java_memory_chr21
 	message:
 		'Processing Variant Recalibration with Indels for chr21 -> {output}'
+  	params: partition = chr21_partitions
+  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5690,10 +5698,10 @@ rule Variant_Recalibrator_Indels_chr22:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr22.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr22.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr22.R'
-	resources:
-        	mem_mb= java_memory_chr22
 	message:
 		'Processing Variant Recalibration with Indels for chr22 -> {output}'
+  	params: partition = chr22_partitions
+  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5718,10 +5726,10 @@ rule Variant_Recalibrator_Indels_chrX:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chrX.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chrX.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chrX.R'
-	resources:
-        	mem_mb= java_memory_chrX
 	message:
 		'Processing Variant Recalibration with Indels for chrX -> {output}'
+  	params: partition = chrX_partitions
+  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5746,10 +5754,10 @@ rule Variant_Recalibrator_Indels_chrY:
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chrY.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chrY.tranches',
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chrY.R'
-	resources:
-        	mem_mb= java_memory_chrY
 	message:
 		'Processing Variant Recalibration with Indels for chrY -> {output}'
+  	params: partition = chrY_partitions
+  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
@@ -5773,10 +5781,10 @@ rule Applying_Recalibration_Indels_chr1:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr1.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr1.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr1.tranches'
-	resources:
-        	mem_mb= java_memory_chr1
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr1.gz'
+  	params: partition = chr1_partitions
+  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	message:
 		'Applying Recalibration with Indels for chr1 -> {output}'
 	shell:
@@ -5797,10 +5805,10 @@ rule Applying_Recalibration_Indels_chr2:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr2.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr2.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr2.tranches'
-	resources:
-        	mem_mb= java_memory_chr2
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr2.gz'
+  	params: partition = chr2_partitions
+  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	message:
 		'Applying Recalibration with Indels for chr2 -> {output}'
 	shell:
@@ -5821,10 +5829,10 @@ rule Applying_Recalibration_Indels_chr3:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr3.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr3.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr3.tranches'
-	resources:
-        	mem_mb= java_memory_chr3
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr3.gz'
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	message:
 		'Applying Recalibration with Indels for chr3 -> {output}'
 	shell:
@@ -5845,10 +5853,10 @@ rule Applying_Recalibration_Indels_chr4:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr4.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr4.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr4.tranches'
-	resources:
-        	mem_mb= java_memory_chr4
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr4.gz'
+  	params: partition = chr4_partitions
+  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	message:
 		'Applying Recalibration with Indels for chr4 -> {output}'
 	shell:
@@ -5869,10 +5877,10 @@ rule Applying_Recalibration_Indels_chr5:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr5.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr5.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr5.tranches'
-	resources:
-        	mem_mb= java_memory_chr5
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr5.gz'
+  	params: partition = chr5_partitions
+  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	message:
 		'Applying Recalibration with Indels for chr5 -> {output}'
 	shell:
@@ -5893,10 +5901,10 @@ rule Applying_Recalibration_Indels_chr6:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr6.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr6.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr6.tranches'
-	resources:
-        	mem_mb= java_memory_chr6
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr6.gz'
+  	params: partition = chr6_partitions
+  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	message:
 		'Applying Recalibration with Indels for chr6 -> {output}'
 	shell:
@@ -5917,10 +5925,10 @@ rule Applying_Recalibration_Indels_chr7:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr7.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr7.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr7.tranches'
-	resources:
-        	mem_mb= java_memory_chr7
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr7.gz'
+  	params: partition = chr7_partitions
+  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	message:
 		'Applying Recalibration with Indels for chr7 -> {output}'
 	shell:
@@ -5941,10 +5949,10 @@ rule Applying_Recalibration_Indels_chr8:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr8.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr8.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr8.tranches'
-	resources:
-        	mem_mb= java_memory_chr8
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr8.gz'
+  	params: partition = chr8_partitions
+  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	message:
 		'Applying Recalibration with Indels for chr8 -> {output}'
 	shell:
@@ -5965,10 +5973,10 @@ rule Applying_Recalibration_Indels_chr9:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr9.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr9.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr9.tranches'
-	resources:
-        	mem_mb= java_memory_chr9
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr9.gz'
+  	params: partition = chr9_partitions
+  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	message:
 		'Applying Recalibration with Indels for chr9 -> {output}'
 	shell:
@@ -5989,10 +5997,10 @@ rule Applying_Recalibration_Indels_chr10:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr10.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr10.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr10.tranches'
-	resources:
-        	mem_mb= java_memory_chr10
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr10.gz'
+  	params: partition = chr10_partitions
+  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	message:
 		'Applying Recalibration with Indels for chr10 -> {output}'
 	shell:
@@ -6013,10 +6021,10 @@ rule Applying_Recalibration_Indels_chr11:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr11.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr11.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr11.tranches'
-	resources:
-        	mem_mb= java_memory_chr11
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr11.gz'
+  	params: partition = chr11_partitions
+  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	message:
 		'Applying Recalibration with Indels for chr11 -> {output}'
 	shell:
@@ -6037,10 +6045,10 @@ rule Applying_Recalibration_Indels_chr12:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr12.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr12.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr12.tranches'
-	resources:
-        	mem_mb= java_memory_chr12
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr12.gz'
+  	params: partition = chr12_partitions
+  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	message:
 		'Applying Recalibration with Indels for chr1 -> {output}'
 	shell:
@@ -6061,10 +6069,10 @@ rule Applying_Recalibration_Indels_chr13:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr13.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr13.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr13.tranches'
-	resources:
-        	mem_mb= java_memory_chr13
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr13.gz'
+  	params: partition = chr13_partitions
+  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	message:
 		'Applying Recalibration with Indels for chr13 -> {output}'
 	shell:
@@ -6085,10 +6093,10 @@ rule Applying_Recalibration_Indels_chr14:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr14.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr14.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr14.tranches'
-	resources:
-        	mem_mb= java_memory_chr14
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr14.gz'
+  	params: partition = chr14_partitions
+  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	message:
 		'Applying Recalibration with Indels for chr14 -> {output}'
 	shell:
@@ -6109,10 +6117,10 @@ rule Applying_Recalibration_Indels_chr15:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr15.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr15.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr15.tranches'
-	resources:
-        	mem_mb= java_memory_chr15
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr15.gz'
+  	params: partition = chr15_partitions
+  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	message:
 		'Applying Recalibration with Indels for chr15 -> {output}'
 	shell:
@@ -6133,10 +6141,10 @@ rule Applying_Recalibration_Indels_chr16:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr16.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr16.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr16.tranches'
-	resources:
-        	mem_mb= java_memory_chr16
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr16.gz'
+  	params: partition = chr16_partitions
+  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	message:
 		'Applying Recalibration with Indels for chr16 -> {output}'
 	shell:
@@ -6157,10 +6165,10 @@ rule Applying_Recalibration_Indels_chr17:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr17.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr17.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr17.tranches'
-	resources:
-        	mem_mb= java_memory_chr17
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr17.gz'
+  	params: partition = chr17_partitions
+  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	message:
 		'Applying Recalibration with Indels for chr17 -> {output}'
 	shell:
@@ -6181,10 +6189,10 @@ rule Applying_Recalibration_Indels_chr18:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr18.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr18.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr18.tranches'
-	resources:
-        	mem_mb= java_memory_chr18
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr18.gz'
+  	params: partition = chr18_partitions
+  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	message:
 		'Applying Recalibration with Indels for chr18 -> {output}'
 	shell:
@@ -6205,10 +6213,10 @@ rule Applying_Recalibration_Indels_chr19:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr19.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr19.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr19.tranches'
-	resources:
-        	mem_mb= java_memory_chr19
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr19.gz'
+  	params: partition = chr19_partitions
+  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	message:
 		'Applying Recalibration with Indels for chr19 -> {output}'
 	shell:
@@ -6229,10 +6237,10 @@ rule Applying_Recalibration_Indels_chr20:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr20.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr20.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr20.tranches'
-	resources:
-        	mem_mb= java_memory_chr20
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr20.gz'
+  	params: partition = chr20_partitions
+  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	message:
 		'Applying Recalibration with Indels for chr20 -> {output}'
 	shell:
@@ -6253,10 +6261,10 @@ rule Applying_Recalibration_Indels_chr21:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr21.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr21.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr21.tranches'
-	resources:
-        	mem_mb= java_memory_chr21
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr21.gz'
+  	params: partition = chr21_partitions
+  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	message:
 		'Applying Recalibration with Indels for chr21 -> {output}'
 	shell:
@@ -6277,10 +6285,10 @@ rule Applying_Recalibration_Indels_chr22:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr22.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr22.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr22.tranches'
-	resources:
-        	mem_mb= java_memory_chr22
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr22.gz'
+  	params: partition = chr22_partitions
+  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	message:
 		'Applying Recalibration with Indels for chr22 -> {output}'
 	shell:
@@ -6301,10 +6309,10 @@ rule Applying_Recalibration_Indels_chrX:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chrX.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chrX.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chrX.tranches'
-	resources:
-        	mem_mb= java_memory_chrX
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chrX.gz'
+  	params: partition = chrX_partitions
+  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	message:
 		'Applying Recalibration with Indels for chrX -> {output}'
 	shell:
@@ -6325,10 +6333,10 @@ rule Applying_Recalibration_Indels_chrY:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chrY.vcf',
 		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chrY.recal',
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chrY.tranches'
-	resources:
-        	mem_mb= java_memory_chrY
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chrY.gz'
+  	params: partition = chrY_partitions
+  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	message:
 		'Applying Recalibration with Indels for chrY -> {output}'
 	shell:
