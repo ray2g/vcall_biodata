@@ -1,6 +1,6 @@
 ## Variant Calling Pipeline - João Raimundo @BioData.pt
 
-#__________Directories_Paths_________________________________________________________________________________
+#__________Directories_Paths_________________________________________________________________________________|
 
 base_dir: /mnt/ # where it start in docker env
 main_dir: /mnt/ # repository in docker env  
@@ -10,7 +10,7 @@ output_dir: outputs/ #output folder
 logs_dir: logs/ # for logs
 
 
-#______________Settings_______________________________________________________________________________________
+#______________Settings_______________________________________________________________________________________|
 
 #fasta eg: {sample}.read1.fastq.gz
 GENOME: resources_broad_hg38_v0_Homo_sapiens_assembly38
@@ -55,7 +55,7 @@ TARGET_chrY: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19
 GATK: /mnt/gatk/gatk-package-4.1.7.0-local.jar 
 
 
-#__________________________Rule_Settings_____________________________________________________________________|
+#__________________________Rule_Settings___________________________________________________________________|
 
 # rule bwa_index (Create index, fasta.sa) ------------\\
 
