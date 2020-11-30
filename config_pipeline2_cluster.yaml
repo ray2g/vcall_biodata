@@ -165,3 +165,16 @@ chrY_mem: 4010
 merge_vcf_partition: 'large' # HPC partition
 merge_vcf_cpus: 16 # cpus
 merge_vcf_mem: 64421
+
+# rule Merge_Recalibrated_VCFs (merge all recalibrated vcfs processed independently by chromossome)
+
+merge_recalibrated_vcf_partition: 'large' # HPC partition
+merge_recalibrated_vcf_cpus: 16 # cpus
+merge_recalibrated_vcf_mem: 64421
+
+# rule Calculate_Genotype_Posteriors 
+
+genotype_posteriors_partition: 'large' # HPC partition
+genotype_posteriors_cpus: 16 # cpus
+genotype_posteriors_mem: 64421
+
