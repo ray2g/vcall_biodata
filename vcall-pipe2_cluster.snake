@@ -2115,10 +2115,10 @@ rule Apply_BQSR_chr1:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr1.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr1.qsub'
-	resources:
-        	mem_mb= java_memory_chr1
 	message:
 		'Applying Base Quality Score Recalibration for chr1  -> {output}'
+  	params: partition = chr1_partitions
+  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2137,10 +2137,10 @@ rule Apply_BQSR_chr2:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr2.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr2.qsub'
-	resources:
-        	mem_mb= java_memory_chr2
 	message:
 		'Applying Base Quality Score Recalibration for chr2  -> {output}'
+  	params: partition = chr2_partitions
+  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2159,10 +2159,10 @@ rule Apply_BQSR_chr3:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr3.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr3.qsub'
-	resources:
-        	mem_mb= java_memory_chr3
 	message:
 		'Applying Base Quality Score Recalibration for chr3  -> {output}'
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2181,10 +2181,10 @@ rule Apply_BQSR_chr4:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr4.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr4.qsub'
-	resources:
-        	mem_mb= java_memory_chr4
 	message:
 		'Applying Base Quality Score Recalibration for chr4  -> {output}'
+  	params: partition = chr4_partitions
+  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2203,10 +2203,10 @@ rule Apply_BQSR_chr5:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr5.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr5.qsub'
-	resources:
-        	mem_mb= java_memory_chr5
 	message:
 		'Applying Base Quality Score Recalibration for chr5  -> {output}'
+  	params: partition = chr5_partitions
+  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2225,10 +2225,10 @@ rule Apply_BQSR_chr6:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr6.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr6.qsub'
-	resources:
-        	mem_mb= java_memory_chr6
 	message:
 		'Applying Base Quality Score Recalibration for chr6  -> {output}'
+  	params: partition = chr6_partitions
+  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2247,10 +2247,10 @@ rule Apply_BQSR_chr7:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr7.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr7.qsub'
-	resources:
-        	mem_mb= java_memory_chr7
 	message:
 		'Applying Base Quality Score Recalibration for chr7  -> {output}'
+  	params: partition = chr7_partitions
+  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2269,10 +2269,10 @@ rule Apply_BQSR_chr8:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr8.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr8.qsub'
-	resources:
-        	mem_mb= java_memory_chr8
 	message:
 		'Applying Base Quality Score Recalibration for chr8  -> {output}'
+  	params: partition = chr8_partitions
+  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2291,10 +2291,10 @@ rule Apply_BQSR_chr9:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr9.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr9.qsub'
-	resources:
-        	mem_mb= java_memory_chr9
 	message:
 		'Applying Base Quality Score Recalibration for chr9  -> {output}'
+  	params: partition = chr9_partitions
+  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2313,10 +2313,10 @@ rule Apply_BQSR_chr10:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr10.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr10.qsub'
-	resources:
-        	mem_mb= java_memory_chr10
 	message:
 		'Applying Base Quality Score Recalibration for chr10  -> {output}'
+  	params: partition = chr10_partitions
+  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2335,10 +2335,10 @@ rule Apply_BQSR_chr11:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr11.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr11.qsub'
-	resources:
-        	mem_mb= java_memory_chr11
 	message:
 		'Applying Base Quality Score Recalibration for chr11  -> {output}'
+  	params: partition = chr11_partitions
+  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2357,10 +2357,10 @@ rule Apply_BQSR_chr12:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr12.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr12.qsub'
-	resources:
-        	mem_mb= java_memory_chr12
 	message:
 		'Applying Base Quality Score Recalibration for chr12  -> {output}'
+  	params: partition = chr12_partitions
+  	resources: cpus= chr12cpus, mem_mb= chr12_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2379,10 +2379,10 @@ rule Apply_BQSR_chr13:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr13.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr13.qsub'
-	resources:
-        	mem_mb= java_memory_chr13
 	message:
 		'Applying Base Quality Score Recalibration for chr13  -> {output}'
+  	params: partition = chr13_partitions
+  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2401,10 +2401,10 @@ rule Apply_BQSR_chr14:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr14.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr14.qsub'
-	resources:
-        	mem_mb= java_memory_chr14
 	message:
 		'Applying Base Quality Score Recalibration for chr14  -> {output}'
+  	params: partition = chr14_partitions
+  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2423,10 +2423,10 @@ rule Apply_BQSR_chr15:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr15.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr15.qsub'
-	resources:
-        	mem_mb= java_memory_chr15
 	message:
 		'Applying Base Quality Score Recalibration for chr15  -> {output}'
+  	params: partition = chr15_partitions
+  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2445,10 +2445,10 @@ rule Apply_BQSR_chr16:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr16.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr16.qsub'
-	resources:
-        	mem_mb= java_memory_chr16
 	message:
 		'Applying Base Quality Score Recalibration for chr16  -> {output}'
+  	params: partition = chr16_partitions
+  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2467,10 +2467,10 @@ rule Apply_BQSR_chr17:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr17.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr17.qsub'
-	resources:
-        	mem_mb= java_memory_chr17
 	message:
 		'Applying Base Quality Score Recalibration for chr17  -> {output}'
+  	params: partition = chr17_partitions
+  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2489,10 +2489,10 @@ rule Apply_BQSR_chr18:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr18.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr18.qsub'
-	resources:
-        	mem_mb= java_memory_chr18
 	message:
 		'Applying Base Quality Score Recalibration for chr18  -> {output}'
+  	params: partition = chr18_partitions
+  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2511,10 +2511,10 @@ rule Apply_BQSR_chr19:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr19.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr19.qsub'
-	resources:
-        	mem_mb= java_memory_chr19
 	message:
 		'Applying Base Quality Score Recalibration for chr19  -> {output}'
+  	params: partition = chr19_partitions
+  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2533,10 +2533,10 @@ rule Apply_BQSR_chr20:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr20.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr20.qsub'
-	resources:
-        	mem_mb= java_memory_chr20
 	message:
 		'Applying Base Quality Score Recalibration for chr20  -> {output}'
+  	params: partition = chr20_partitions
+  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2555,10 +2555,10 @@ rule Apply_BQSR_chr21:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr21.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr21.qsub'
-	resources:
-        	mem_mb= java_memory_chr21
 	message:
 		'Applying Base Quality Score Recalibration for chr21  -> {output}'
+  	params: partition = chr21_partitions
+  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2577,10 +2577,10 @@ rule Apply_BQSR_chr22:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chr22.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr22.qsub'
-	resources:
-        	mem_mb= java_memory_chr22
 	message:
 		'Applying Base Quality Score Recalibration for chr22  -> {output}'
+  	params: partition = chr22_partitions
+  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2599,10 +2599,10 @@ rule Apply_BQSR_chrX:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chrX.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chrX.qsub'
-	resources:
-        	mem_mb= java_memory_chrX
 	message:
 		'Applying Base Quality Score Recalibration for chrX  -> {output}'
+  	params: partition = chrX_partitions
+  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2621,10 +2621,10 @@ rule Apply_BQSR_chrY:
 	output:
 		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal_chrY.bam',
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chrY.qsub'
-	resources:
-        	mem_mb= java_memory_chrY
 	message:
 		'Applying Base Quality Score Recalibration for chrY  -> {output}'
+  	params: partition = chrY_partitions
+  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
@@ -2647,18 +2647,17 @@ rule Call_Variants_chr1:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr1.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr1.qsub'
-	resources:
-        	mem_mb= java_memory_chr1
 	message:
 		'Processing Haplotype Caller for chr1 -> {output}'
-	threads: call_variants_threads_chr1
+  	params: partition = chr1_partitions
+  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2673,18 +2672,17 @@ rule Call_Variants_chr2:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr2.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr2.qsub'
-	resources:
-        	mem_mb= java_memory_chr2
 	message:
 		'Processing Haplotype Caller for chr2 -> {output}'
-	threads: call_variants_threads_chr2
+  	params: partition = chr2_partitions
+  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2699,18 +2697,17 @@ rule Call_Variants_chr3:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr3.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr3.qsub'
-	resources:
-        	mem_mb= java_memory_chr3
 	message:
 		'Processing Haplotype Caller for chr3 -> {output}'
-	threads: call_variants_threads_chr3
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2725,18 +2722,17 @@ rule Call_Variants_chr4:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr4.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr4.qsub'
-	resources:
-        	mem_mb= java_memory_chr4
 	message:
 		'Processing Haplotype Caller for chr4 -> {output}'
-	threads: call_variants_threads_chr4
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2751,18 +2747,17 @@ rule Call_Variants_chr5:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr5.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr5.qsub'
-	resources:
-        	mem_mb= java_memory_chr5
 	message:
 		'Processing Haplotype Caller for chr5 -> {output}'
-	threads: call_variants_threads_chr5
+  	params: partition = chr5_partitions
+  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2777,18 +2772,17 @@ rule Call_Variants_chr6:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr6.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr6.qsub'
-	resources:
-        	mem_mb= java_memory_chr6
 	message:
 		'Processing Haplotype Caller for chr6 -> {output}'
-	threads: call_variants_threads_chr6
+  	params: partition = chr6_partitions
+  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2803,18 +2797,17 @@ rule Call_Variants_chr7:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr7.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr7.qsub'
-	resources:
-        	mem_mb= java_memory_chr7
 	message:
 		'Processing Haplotype Caller for chr7 -> {output}'
-	threads: call_variants_threads_chr7
+  	params: partition = chr7_partitions
+  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2829,18 +2822,17 @@ rule Call_Variants_chr8:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr8.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr8.qsub'
-	resources:
-        	mem_mb= java_memory_chr8
 	message:
 		'Processing Haplotype Caller for chr8 -> {output}'
-	threads: call_variants_threads_chr8
+  	params: partition = chr8_partitions
+  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2855,18 +2847,17 @@ rule Call_Variants_chr9:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr9.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr9.qsub'
-	resources:
-        	mem_mb= java_memory_chr9
 	message:
 		'Processing Haplotype Caller for chr9 -> {output}'
-	threads: call_variants_threads_chr9
+  	params: partition = chr9_partitions
+  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2881,18 +2872,17 @@ rule Call_Variants_chr10:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr10.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr10.qsub'
-	resources:
-        	mem_mb= java_memory_chr10
 	message:
 		'Processing Haplotype Caller for chr10 -> {output}'
-	threads: call_variants_threads_chr10
+  	params: partition = chr10_partitions
+  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2907,18 +2897,17 @@ rule Call_Variants_chr11:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr11.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr11.qsub'
-	resources:
-        	mem_mb= java_memory_chr11
 	message:
 		'Processing Haplotype Caller for chr11 -> {output}'
-	threads: call_variants_threads_chr11
+  	params: partition = chr11_partitions
+  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2933,18 +2922,17 @@ rule Call_Variants_chr12:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr12.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr12.qsub'
-	resources:
-        	mem_mb= java_memory_chr12
 	message:
 		'Processing Haplotype Caller for chr12 -> {output}'
-	threads: call_variants_threads_chr12
+  	params: partition = chr12_partitions
+  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2959,18 +2947,17 @@ rule Call_Variants_chr13:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr13.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr13.qsub'
-	resources:
-        	mem_mb= java_memory_chr13
 	message:
 		'Processing Haplotype Caller for chr13 -> {output}'
-	threads: call_variants_threads_chr13
+  	params: partition = chr13_partitions
+  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -2985,18 +2972,17 @@ rule Call_Variants_chr14:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr14.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr14.qsub'
-	resources:
-        	mem_mb= java_memory_chr14
 	message:
 		'Processing Haplotype Caller for chr14 -> {output}'
-	threads: call_variants_threads_chr14
+  	params: partition = chr14_partitions
+  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -3011,11 +2997,10 @@ rule Call_Variants_chr15:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr15.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr15.qsub'
-	resources:
-        	mem_mb= java_memory_chr15
 	message:
 		'Processing Haplotype Caller for chr15 -> {output}'
-	threads: call_variants_threads_chr15
+  	params: partition = chr15_partitions
+  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
@@ -3037,18 +3022,17 @@ rule Call_Variants_chr16:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr16.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr16.qsub'
-	resources:
-        	mem_mb= java_memory_chr16
 	message:
 		'Processing Haplotype Caller for chr16 -> {output}'
-	threads: call_variants_threads_chr16
+  	params: partition = chr16_partitions
+  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -3063,18 +3047,17 @@ rule Call_Variants_chr17:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr17.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr17.qsub'
-	resources:
-        	mem_mb= java_memory_chr17
 	message:
 		'Processing Haplotype Caller for chr17 -> {output}'
-	threads: call_variants_threads_chr17
+  	params: partition = chr17_partitions
+  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -3089,18 +3072,17 @@ rule Call_Variants_chr18:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr18.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr18.qsub'
-	resources:
-        	mem_mb= java_memory_chr18
 	message:
 		'Processing Haplotype Caller for chr18 -> {output}'
-	threads: call_variants_threads_chr18
+  	params: partition = chr18_partitions
+  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -3115,18 +3097,17 @@ rule Call_Variants_chr19:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr19.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr19.qsub'
-	resources:
-        	mem_mb= java_memory_chr19
 	message:
 		'Processing Haplotype Caller for chr19 -> {output}'
-	threads: call_variants_threads_chr19
+  	params: partition = chr19_partitions
+  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -3141,18 +3122,17 @@ rule Call_Variants_chr20:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr20.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr20.qsub'
-	resources:
-        	mem_mb= java_memory_chr20
 	message:
 		'Processing Haplotype Caller for chr20 -> {output}'
-	threads: call_variants_threads_chr20
+  	params: partition = chr20_partitions
+  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -3167,18 +3147,17 @@ rule Call_Variants_chr21:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr21.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr21.qsub'
-	resources:
-        	mem_mb= java_memory_chr21
 	message:
 		'Processing Haplotype Caller for chr21 -> {output}'
-	threads: call_variants_threads_chr21
+  	params: partition = chr21_partitions
+  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -3193,11 +3172,10 @@ rule Call_Variants_chr22:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chr22.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr22.qsub'
-	resources:
-        	mem_mb= java_memory_chr22
 	message:
 		'Processing Haplotype Caller for chr22 -> {output}'
-	threads: call_variants_threads_chr22
+  	params: partition = chr22_partitions
+  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
@@ -3219,18 +3197,17 @@ rule Call_Variants_chrX:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chrX.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chrX.qsub'
-	resources:
-        	mem_mb= java_memory_chrX
 	message:
 		'Processing Haplotype Caller for chrX -> {output}'
-	threads: call_variants_threads_chrX
+  	params: partition = chrX_partitions
+  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -3245,18 +3222,17 @@ rule Call_Variants_chrY:
 	output:
 		site = main_dir + output_dir + '{sample}.gvcf_chrY.gz',
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chrY.qsub'
-	resources:
-        	mem_mb= java_memory_chrY
 	message:
 		'Processing Haplotype Caller for chrY -> {output}'
-	threads: call_variants_threads_chrY
+  	params: partition = chrY_partitions
+  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
 		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
+		--native-pair-hmm-threads {resources.cpus} \
 		-O {output.site} \
 		-L {input.target}' + ' > {output.logs}'
 		
@@ -3272,10 +3248,10 @@ rule Joint_Genotyping_chr1:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr1.gz'
-	resources:
-        	mem_mb= java_memory_chr1
 	message:
 		'Processing Joint Genotyping for chr1 -> {output}'
+  	params: partition = chr1_partitions
+  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3291,10 +3267,10 @@ rule Joint_Genotyping_chr2:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr2.gz'
-	resources:
-        	mem_mb= java_memory_chr2
 	message:
 		'Processing Joint Genotyping for chr2 -> {output}'
+  	params: partition = chr2_partitions
+  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3310,10 +3286,10 @@ rule Joint_Genotyping_chr3:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr3.gz'
-	resources:
-        	mem_mb= java_memory_chr3
 	message:
 		'Processing Joint Genotyping for chr3 -> {output}'
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3329,10 +3305,10 @@ rule Joint_Genotyping_chr4:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr4.gz'
-	resources:
-        	mem_mb= java_memory_chr4
 	message:
 		'Processing Joint Genotyping for chr4 -> {output}'
+  	params: partition = chr4_partitions
+  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3348,10 +3324,10 @@ rule Joint_Genotyping_chr5:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr5.gz'
-	resources:
-        	mem_mb= java_memory_chr5
 	message:
 		'Processing Joint Genotyping for chr 5-> {output}'
+  	params: partition = chr5_partitions
+  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3367,10 +3343,10 @@ rule Joint_Genotyping_chr6:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr6.gz'
-	resources:
-        	mem_mb= java_memory_chr6
 	message:
 		'Processing Joint Genotyping for chr6 -> {output}'
+  	params: partition = chr6_partitions
+  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3386,10 +3362,10 @@ rule Joint_Genotyping_chr7:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr7.gz'
-	resources:
-        	mem_mb= java_memory_chr7
 	message:
 		'Processing Joint Genotyping for chr7 -> {output}'
+  	params: partition = chr7_partitions
+  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3405,10 +3381,10 @@ rule Joint_Genotyping_chr8:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr8.gz'
-	resources:
-        	mem_mb= java_memory_chr8
 	message:
 		'Processing Joint Genotyping for chr8 -> {output}'
+  	params: partition = chr8_partitions
+  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3424,10 +3400,10 @@ rule Joint_Genotyping_chr9:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr9.gz'
-	resources:
-        	mem_mb= java_memory_chr9
 	message:
 		'Processing Joint Genotyping for chr9 -> {output}'
+  	params: partition = chr9_partitions
+  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3443,10 +3419,10 @@ rule Joint_Genotyping_chr10:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr10.gz'
-	resources:
-        	mem_mb= java_memory_chr10
 	message:
 		'Processing Joint Genotyping for chr10 -> {output}'
+  	params: partition = chr10_partitions
+  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3462,10 +3438,10 @@ rule Joint_Genotyping_chr11:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr11.gz'
-	resources:
-        	mem_mb= java_memory_chr11
 	message:
 		'Processing Joint Genotyping for chr11 -> {output}'
+  	params: partition = chr11_partitions
+  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3481,10 +3457,10 @@ rule Joint_Genotyping_chr12:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr12.gz'
-	resources:
-        	mem_mb= java_memory_chr12
 	message:
 		'Processing Joint Genotyping for chr12 -> {output}'
+  	params: partition = chr12_partitions
+  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3500,10 +3476,10 @@ rule Joint_Genotyping_chr13:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr13.gz'
-	resources:
-        	mem_mb= java_memory_chr13
 	message:
 		'Processing Joint Genotyping for chr13 -> {output}'
+  	params: partition = chr13_partitions
+  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3519,10 +3495,10 @@ rule Joint_Genotyping_chr14:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr14.gz'
-	resources:
-        	mem_mb= java_memory_chr14
 	message:
 		'Processing Joint Genotyping for chr14 -> {output}'
+  	params: partition = chr14_partitions
+  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3538,10 +3514,10 @@ rule Joint_Genotyping_chr15:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr15.gz'
-	resources:
-        	mem_mb= java_memory_chr15
 	message:
 		'Processing Joint Genotyping for chr15 -> {output}'
+  	params: partition = chr15_partitions
+  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3557,10 +3533,10 @@ rule Joint_Genotyping_chr16:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr16.gz'
-	resources:
-        	mem_mb= java_memory_chr16
 	message:
 		'Processing Joint Genotyping for chr16 -> {output}'
+  	params: partition = chr16_partitions
+  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3576,10 +3552,10 @@ rule Joint_Genotyping_chr17:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr17.gz'
-	resources:
-        	mem_mb= java_memory_chr17
 	message:
 		'Processing Joint Genotyping for chr17 -> {output}'
+  	params: partition = chr17_partitions
+  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3595,10 +3571,10 @@ rule Joint_Genotyping_chr18:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr18.gz'
-	resources:
-        	mem_mb= java_memory_chr18
 	message:
 		'Processing Joint Genotyping for chr18 -> {output}'
+  	params: partition = chr18_partitions
+  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3614,10 +3590,10 @@ rule Joint_Genotyping_chr19:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr19.gz'
-	resources:
-        	mem_mb= java_memory_chr19
 	message:
 		'Processing Joint Genotyping for chr19 -> {output}'
+  	params: partition = chr19_partitions
+  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3633,10 +3609,10 @@ rule Joint_Genotyping_chr20:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr20.gz'
-	resources:
-        	mem_mb= java_memory_chr20
 	message:
 		'Processing Joint Genotyping for chr20 -> {output}'
+  	params: partition = chr20_partitions
+  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3652,10 +3628,10 @@ rule Joint_Genotyping_chr21:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr21.gz'
-	resources:
-        	mem_mb= java_memory_chr21
 	message:
 		'Processing Joint Genotyping for chr21 -> {output}'
+  	params: partition = chr21_partitions
+  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3671,10 +3647,10 @@ rule Joint_Genotyping_chr22:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr22.gz'
-	resources:
-        	mem_mb= java_memory_chr22
 	message:
 		'Processing Joint Genotyping for chr22 -> {output}'
+  	params: partition = chr22_partitions
+  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3690,10 +3666,10 @@ rule Joint_Genotyping_chrX:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chrX.gz'
-	resources:
-        	mem_mb= java_memory_chrX
 	message:
 		'Processing Joint Genotyping for chrX -> {output}'
+  	params: partition = chrX_partitions
+  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
@@ -3709,10 +3685,10 @@ rule Joint_Genotyping_chrY:
 		ksites4 = main_dir + genome_dir + KS4
 	output:
 		vcf = main_dir + output_dir + '{sample}.vcf_chrY.gz'
-	resources:
-        	mem_mb= java_memory_chrY
 	message:
 		'Processing Joint Genotyping for chrY -> {output}'
+  	params: partition = chrY_partitions
+  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
