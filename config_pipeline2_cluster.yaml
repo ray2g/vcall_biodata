@@ -1,6 +1,7 @@
 ## Variant Calling Pipeline - João Raimundo @BioData.pt
 
-#__________Directories_Paths_________________________________________________________________________________|
+
+#__________Directories_Paths________________________________|
 
 base_dir: /mnt/ # where it start in docker env
 main_dir: /mnt/ # repository in docker env  
