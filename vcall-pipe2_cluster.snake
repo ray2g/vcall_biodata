@@ -26,67 +26,88 @@ samtools_index_partition = config["samtools_index_partition"]
 samtools_index_cpus = config["samtools_index_cpus"]
 samtools_index_mem = config["samtools_index_mem"]
 
+##____Chromossome_Parallelization______________________________\\
 
+# partitions (small, medium, large)
 
-#|_________________Threading_sets____________________________________________|
+chr1_partitions = config["chr1_partitions"]
+chr2_partitions = config["chr2_partitions"]
+chr3_partitions = config["chr3_partitions"]
+chr4_partitions = config["chr4_partitions"]
+chr5_partitions = config["chr5_partitions"]
+chr6_partitions = config["chr6_partitions"]
+chr7_partitions = config["chr7_partitions"]
+chr8_partitions = config["chr8_partitions"]
+chr9_partitions = config["chr9_partitions"]
+chr10_partitions = config["chr10_partitions"]
+chr11_partitions = config["chr11_partitions"]
+chr12_partitions = config["chr12_partitions"]
+chr13_partitions = config["chr13_partitions"]
+chr14_partitions = config["chr14_partitions"]
+chr15_partitions = config["chr15_partitions"]
+chr16_partitions = config["chr16_partitions"]
+chr17_partitions = config["chr17_partitions"]
+chr18_partitions = config["chr18_partitions"]
+chr19_partitions = config["chr19_partitions"]
+chr20_partitions = config["chr20_partitions"]
+chr21_partitions = config["chr21_partitions"]
+chr22_partitions = config["chr22_partitions"]
+chrX_partitions = config["chrX_partitions"]
+chrY_partitions = config["chrY_partitions"]
 
-bwa_samblaster_sambamba_threads = config["BWA_samblaster_sambamba_threads"]
-call_variants_threads_all_chr = config["Call_Variants_threads_all_chr"]
-call_variants_threads_chr1 = config["Call_Variants_threads_chr1"]
-call_variants_threads_chr2 = config["Call_Variants_threads_chr2"]
-call_variants_threads_chr3 = config["Call_Variants_threads_chr3"]
-call_variants_threads_chr4 = config["Call_Variants_threads_chr4"]
-call_variants_threads_chr5 = config["Call_Variants_threads_chr5"]
-call_variants_threads_chr6 = config["Call_Variants_threads_chr6"]
-call_variants_threads_chr7 = config["Call_Variants_threads_chr7"]
-call_variants_threads_chr8 = config["Call_Variants_threads_chr8"]
-call_variants_threads_chr9 = config["Call_Variants_threads_chr9"]
-call_variants_threads_chr10 = config["Call_Variants_threads_chr10"]
-call_variants_threads_chr11 = config["Call_Variants_threads_chr11"]
-call_variants_threads_chr12 = config["Call_Variants_threads_chr12"]
-call_variants_threads_chr13 = config["Call_Variants_threads_chr13"]
-call_variants_threads_chr14 = config["Call_Variants_threads_chr14"]
-call_variants_threads_chr15 = config["Call_Variants_threads_chr15"]
-call_variants_threads_chr16 = config["Call_Variants_threads_chr16"]
-call_variants_threads_chr17 = config["Call_Variants_threads_chr17"]
-call_variants_threads_chr18 = config["Call_Variants_threads_chr18"]
-call_variants_threads_chr19 = config["Call_Variants_threads_chr19"]
-call_variants_threads_chr20 = config["Call_Variants_threads_chr20"]
-call_variants_threads_chr21 = config["Call_Variants_threads_chr21"]
-call_variants_threads_chr22 = config["Call_Variants_threads_chr22"]
-call_variants_threads_chrX = config["Call_Variants_threads_chrX"]
-call_variants_threads_chrY = config["Call_Variants_threads_chrY"]
+# cpus
 
+chr1_cpus = config["chr1_cpus"]
+chr2_cpus = config["chr2_cpus"]
+chr3_cpus = config["chr3_cpus"]
+chr4_cpus = config["chr4_cpus"]
+chr5_cpus = config["chr5_cpus"]
+chr6_cpus = config["chr6_cpus"]
+chr7_cpus = config["chr7_cpus"]
+chr8_cpus = config["chr8_cpus"]
+chr9_cpus = config["chr9_cpus"]
+chr10_cpus = config["chr10_cpus"]
+chr11_cpus = config["chr11_cpus"]
+chr12_cpus = config["chr12_cpus"]
+chr13_cpus = config["chr13_cpus"]
+chr14_cpus = config["chr14_cpus"]
+chr15_cpus = config["chr15_cpus"]
+chr16_cpus = config["chr16_cpus"]
+chr17_cpus = config["chr17_cpus"]
+chr18_cpus = config["chr18_cpus"]
+chr19_cpus = config["chr19_cpus"]
+chr20_cpus = config["chr20_cpus"]
+chr21_cpus = config["chr21_cpus"]
+chr22_cpus = config["chr22_cpus"]
+chrX_cpus = config["chrX_cpus"]
+chrY_cpus = config["chrY_cpus"]
 
-#|_________Memory_sets:____________________________________________________________|
+# RAM
 
-bwa_samblaster_sambamba_memory = config["BWA_samblaster_sambamba_memory"]
-java_memory = config["Java_memory"]
-java_memory_all_chr = config["Java_memory_all_chr"]
-java_memory_chr1 = config["Java_memory_chr1"]
-java_memory_chr2 = config["Java_memory_chr2"]
-java_memory_chr3 = config["Java_memory_chr3"]
-java_memory_chr4 = config["Java_memory_chr4"]
-java_memory_chr5 = config["Java_memory_chr5"]
-java_memory_chr6 = config["Java_memory_chr6"]
-java_memory_chr7 = config["Java_memory_chr7"]
-java_memory_chr8 = config["Java_memory_chr8"]
-java_memory_chr9 = config["Java_memory_chr9"]
-java_memory_chr10 = config["Java_memory_chr10"]
-java_memory_chr11 = config["Java_memory_chr11"]
-java_memory_chr12 = config["Java_memory_chr12"]
-java_memory_chr13 = config["Java_memory_chr13"]
-java_memory_chr14 = config["Java_memory_chr14"]
-java_memory_chr15 = config["Java_memory_chr15"]
-java_memory_chr16 = config["Java_memory_chr16"]
-java_memory_chr17 = config["Java_memory_chr17"]
-java_memory_chr18 = config["Java_memory_chr18"]
-java_memory_chr19 = config["Java_memory_chr19"]
-java_memory_chr20 = config["Java_memory_chr20"]
-java_memory_chr21 = config["Java_memory_chr21"]
-java_memory_chr22 = config["Java_memory_chr22"]
-java_memory_chrX = config["Java_memory_chrX"]
-java_memory_chrY = config["Java_memory_chrY"]
+chr1_mem = config["chr1_mem"]
+chr2_mem = config["chr2_mem"]
+chr3_mem = config["chr3_mem"]
+chr4_mem = config["chr4_mem"]
+chr5_mem = config["chr5_mem"]
+chr6_mem = config["chr6_mem"]
+chr7_mem = config["chr7_mem"]
+chr8_mem = config["chr8_mem"]
+chr9_mem = config["chr9_mem"]
+chr10_mem = config["chr10_mem"]
+chr11_mem = config["chr11_mem"]
+chr12_mem = config["chr12_mem"]
+chr13_mem = config["chr13_mem"]
+chr14_mem = config["chr14_mem"]
+chr15_mem = config["chr15_mem"]
+chr16_mem = config["chr16_mem"]
+chr17_mem = config["chr17_mem"]
+chr18_mem = config["chr18_mem"]
+chr19_mem = config["chr19_mem"]
+chr20_mem = config["chr20_mem"]
+chr21_mem = config["chr21_mem"]
+chr22_mem = config["chr22_mem"]
+chrX_mem = config["chrX_mem"]
+chrY_mem = config["chrY_mem"]
 
 
 #|__________Dir_settings:____________|
@@ -141,7 +162,7 @@ GATK = config["GATK"]
 
 #|_______________Rules_________________________________________________________|
 
-rule bwa_index: #Create index, fasta.sa
+rule bwa_index: # Create index, fasta.sa
 	input:
 		fa = main_dir + genome_dir + GENOME + ".fasta"
 	output:
@@ -154,7 +175,7 @@ rule bwa_index: #Create index, fasta.sa
 		'bwa index {input.fa}' 
 		
 		
-rule BWA_samblaster_sambamba: #Align reads to reference (using BWA); 
+rule BWA_samblaster_sambamba: # Align reads to reference (using BWA); 
 	input:
 		index = main_dir + genome_dir + GENOME + '.fasta.sa',
 		ref = main_dir + genome_dir + GENOME + '.fasta',
@@ -194,267 +215,10 @@ rule samtools_index:
 		main_dir + genome_dir + GENOME + '.fasta.fai'
 	message:
 		'Creating index genome fasta file -> {output}'
-  params: partition = samtools_index_partition
-  resources: cpus= samtools_index_cpus, mem_mb= samtools_index_mem
+  	params: partition = samtools_index_partition
+  	resources: cpus= samtools_index_cpus, mem_mb= samtools_index_mem
 	shell:
 		'samtools faidx {input}'
-		
-		
-"""
-# Without Parallelization_______________________________________________________________|
-
-rule gatk_BaseRecalibrator1: 
-	input:
-		jar = GATK,
-		ref = main_dir + genome_dir + GENOME + '.fasta',
-		fai = main_dir + genome_dir + GENOME + '.fasta.fai',
-		dict = main_dir + genome_dir + GENOME + '.dict',
-		ksites1 = main_dir + genome_dir + KS1,
-		ksites2 = main_dir + genome_dir + KS2,
-		ksites3 = main_dir + genome_dir + KS3,
-		bam = main_dir + output_dir + '{sample}.alignment.bam',
-		target = TARGET_all_chr
-	output:
-		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data.grp',
-		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal.qsub'
-	resources:
-        	mem_mb= java_memory_all_chr
-	message:
-		'BaseRecalibrator 1 -> {output}'
-	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
-		--known-sites {input.ksites1} \
-		--known-sites {input.ksites2} \
-		--known-sites {input.ksites3} \
-		-I {input.bam} \
-		-O {output.recal_data} \
-		--interval-padding 100 -L {input.target} ' + '> {output.base_recal}'
-		
-		
-rule gatk_BaseRecalibrator2: 
-	input:
-		jar = GATK,
-		ref = main_dir + genome_dir + GENOME + '.fasta',
-		fai = main_dir + genome_dir + GENOME + '.fasta.fai',
-		dict = main_dir + genome_dir + GENOME + '.dict',
-		ksites1 = main_dir + genome_dir + KS1,
-		ksites2 = main_dir + genome_dir + KS2,
-		ksites3 = main_dir + genome_dir + KS3,
-		bqsr = main_dir + output_dir +'{sample}.sorted.bam_pre_recal_data.grp',
-		bam = main_dir + '{sample}.alignment.bam',
-		target = TARGET_all_chr
-	output:
-		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data.grp',
-		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2.qsub'
-	resources:
-        	mem_mb= java_memory_all_chr
-	message:
-		'BaseRecalibrator 2 -> {output}'
-	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
-		-R {input.ref} \
-		--known-sites {input.ksites1} \
-		--known-sites {input.ksites2} \
-		--known-sites {input.ksites3} \
-		-bqsr {input.bqsr} \
-		-I {input.bam} \
-		-O {output.pos_recal_data} --interval-padding 100 -L {input.target}' + ' > {output.base_recal}'
-		
-		
-rule Analyze_Covariates:
-	input:
-		jar = GATK,
-		fa = main_dir + genome_dir + GENOME + ".fasta",
-		bqsr = main_dir + output_dir +'{sample}.sorted.bam_pre_recal_data.grp',
-		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data.grp'
-	output:
-		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots.pdf'
-	resources:
-        	mem_mb= java_memory_all_chr
-	message:
-		'Analyzing Covariates -> {output}'
-	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
-		-R {input.fa} \
-		-before {input.bqsr} \
-		-after {input.pos_recal_data} \
-		-plots {output.pdf_log}'
-		
-		
-rule Apply_BQSR: 
-	input:
-		jar = GATK,
-		fa = main_dir + genome_dir + GENOME + ".fasta",
-		bqsr = main_dir + output_dir +'{sample}.sorted.bam_pre_recal_data.grp',
-		bam = main_dir + output_dir + '{sample}.alignment.bam',
-	output:
-		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal.bam',
-		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal.qsub'
-	resources:
-        	mem_mb= java_memory_all_chr
-	message:
-		'Applying BQSR -> {output}'
-	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
-		-R {input.fa} \
-		-I {input.bam} \
-		--bqsr-recal-file {input.bqsr} \
-		-O {output.recal} \
-		> {output.apply_recal}'
-		
-		
-rule Call_Variants:
-	input:
-		jar = GATK,
-		fa = main_dir + genome_dir + GENOME + ".fasta",
-		recal = main_dir + output_dir + '{sample}.sorted.nodups.realigned.recal.bam',
-		ksites1 = main_dir + genome_dir + KS1,
-		target = TARGET_all_chr
-	output:
-		site = main_dir + output_dir + '{sample}.gvcf.gz',
-		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars.qsub'
-	resources:
-        	mem_mb= java_memory_all_chr
-	message:
-		'Processing Call Variants -> {output}'
-	threads: call_variants_threads
-	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
-		-R {input.fa} \
-		-I {input.recal} \
-		-D {input.ksites1} \
-		-ip 100 -stand-call-conf 10 --emit-ref-confidence GVCF \
-		--native-pair-hmm-threads {threads} \
-		-O {output.site} \
-        -L {input.target}' + ' > {output.logs}' 
-		
-		
-rule Joint_Genotyping:
-	input:
-		jar = GATK,
-		fa = main_dir + genome_dir + GENOME + ".fasta",
-		site = main_dir + output_dir + '{sample}.gvcf.gz',
-		ksites4 = main_dir + genome_dir + KS4
-	output:
-		vcf = main_dir + output_dir + '{sample}.vcf.gz'
-	resources:
-        	mem_mb= java_memory_all_chr
-	message:
-		'Processing Joint Genotyping -> {output}'
-	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
-		-R {input.fa} --max-alternate-alleles 5 \
-		-V {input.site} \
-		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
-		
-		
-rule Variant_Recalibrator_SNPs:
-	input:
-		jar = GATK,
-		fa = main_dir + genome_dir + GENOME + ".fasta",
-		vcf = main_dir + output_dir + '{sample}.vcf.gz',
-		ksites1 = main_dir + genome_dir + KS1,
-		ksites3 = main_dir + genome_dir + KS3,
-		ksites5 = main_dir + genome_dir + KS5,
-		ksites6 = main_dir + genome_dir + KS6
-	output:
-		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP.recal',
-		rscript_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_plots.R',
-		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP.tranches'
-	resources:
-        	mem_mb= java_memory_all_chr
-	message:
-		'Processing Variant Recalibration for SNPs-> {output}'
-	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
-		-R {input.fa} \
-		-V {input.vcf} \
-		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
-		--max-gaussians 6 -an QD -an MQ -an MQRankSum -an ReadPosRankSum -an FS -an SOR \
-		-O {output.recal_snp} \
-		--tranches-file {output.tranches_snp} \
-		--rscript-file {output.rscript_snp} \
-        	--resource:hapmap,known=false,training=true,truth=true,prior=15.0 {input.ksites5} \
-		--resource:omni,known=false,training=true,truth=true,prior=12.0 {input.ksites6} \
-		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1} \
-		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
-		
-		
-rule Applying_Recalibration_SNPs:
-	input:
-		jar = GATK,
-		fa = main_dir + genome_dir + GENOME + ".fasta",
-		vcf = main_dir + output_dir + '{sample}.vcf.gz',
-		recal_snp = main_dir + output_dir + '{sample}.recalibrate_SNP.recal',
-		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP.tranches'
-	output:
-		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels.vcf'
-	resources:
-        	mem_mb= java_memory_all_chr
-	message:
-		'Applying Recalibration for SNPs -> {output}'
-	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
-		-R {input.fa} \
-		-V {input.vcf} \
-		-O {output.vcf_snp} \
-		--recal-file {input.recal_snp} \
-		--tranches-file {input.tranches_snp} \
-		-truth-sensitivity-filter-level 99.5 \
-		--create-output-variant-index true -mode SNP'
-		
-		
-rule Variant_Recalibrator_Indels:
-	input:
-		jar = GATK,
-		fa = main_dir + genome_dir + GENOME + ".fasta",
-		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels.vcf',
-		ksites1 = main_dir + genome_dir + KS1,
-		ksites2 = main_dir + genome_dir + KS2
-	output:
-		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL.recal',
-		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL.tranches',
-		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots.R'
-	resources:
-        	mem_mb= java_memory_all_chr
-	message:
-		'Processing Variant Recalibration for Indels -> {output}'
-	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
-		-R {input.fa} \
-		-V {input.vcf_snp} \
-		-O {output.recal_indel} \
-		--tranches-file {output.tranches_indel} \
-		--rscript-file {output.rscript_indel} \
-		-mode INDEL -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
-		--max-gaussians 4 -an QD -an FS -an DP -an MQRankSum -an ReadPosRankSum -an SOR \
-		--resource:mills,known=false,training=true,truth=true,prior=12.0 {input.ksites2} \
-		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1}'
-		
-		
-rule Applying_Recalibration_Indels:
-	input:
-		jar = GATK,
-		fa = main_dir + genome_dir + GENOME + ".fasta",
-		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels.vcf',
-		recal_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL.recal',
-		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL.tranches'
-	resources:
-        	mem_mb= java_memory_all_chr
-	output:
-		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf.gz'
-	message:
-		'Applying Recalibration for Indels -> {output}'
-	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
-		-R {input.fa} \
-		-V {input.vcf_snp} \
-		-O {output.recal_vcf} \
-		--recal-file {input.recal_indel} \
-		--tranches-file {input.tranches_indel} \
-		-truth-sensitivity-filter-level 99.0 \
-		--create-output-variant-index true -mode INDEL'
-"""
 		
 		
 ##_______Target_Genome_Parallelization_____________________________________________________________|
@@ -475,10 +239,10 @@ rule gatk_BaseRecalibrator1_chr1:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr1.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr1.qsub'
-	resources:
-        	mem_mb= java_memory_chr1
 	message:
 		'Processing the first Base Recalibration for chr1 -> {output}'
+  	params: partition = chr1_partitions
+  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -503,10 +267,10 @@ rule gatk_BaseRecalibrator1_chr2:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr2.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr2.qsub'
-	resources:
-        	mem_mb= java_memory_chr2
 	message:
 		'Processing the first Base Recalibration for chr2 -> {output}'
+  	params: partition = chr2_partitions
+  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -531,10 +295,10 @@ rule gatk_BaseRecalibrator1_chr3:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr3.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr3.qsub'
-	resources:
-        	mem_mb= java_memory_chr3
 	message:
 		'Processing the first Base Recalibration for chr3 -> {output}'
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -559,10 +323,10 @@ rule gatk_BaseRecalibrator1_chr4:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr4.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr4.qsub'
-	resources:
-        	mem_mb= java_memory_chr4
 	message:
 		'Processing the first Base Recalibration for chr4 -> {output}'
+  	params: partition = chr4_partitions
+  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -587,10 +351,10 @@ rule gatk_BaseRecalibrator1_chr5:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr5.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr5.qsub'
-	resources:
-        	mem_mb= java_memory_chr5
 	message:
 		'Processing the first Base Recalibration for chr5 -> {output}'
+  	params: partition = chr5_partitions
+  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -615,10 +379,10 @@ rule gatk_BaseRecalibrator1_chr6:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr6.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr6.qsub'
-	resources:
-        	mem_mb= java_memory_chr6
 	message:
 		'Processing the first Base Recalibration for chr6 -> {output}'
+  	params: partition = chr6_partitions
+  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -643,10 +407,10 @@ rule gatk_BaseRecalibrator1_chr7:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr7.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr7.qsub'
-	resources:
-        	mem_mb= java_memory_chr7
 	message:
 		'Processing the first Base Recalibration for chr7 -> {output}'
+  	params: partition = chr7_partitions
+  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -671,10 +435,10 @@ rule gatk_BaseRecalibrator1_chr8:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr8.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr8.qsub'
-	resources:
-        	mem_mb= java_memory_chr8
 	message:
 		'Processing the first Base Recalibration for chr8 -> {output}'
+  	params: partition = chr8_partitions
+  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -699,10 +463,10 @@ rule gatk_BaseRecalibrator1_chr9:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr9.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr9.qsub'
-	resources:
-        	mem_mb= java_memory_chr9
 	message:
 		'Processing the first Base Recalibration for chr9 -> {output}'
+  	params: partition = chr9_partitions
+  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -727,10 +491,10 @@ rule gatk_BaseRecalibrator1_chr10:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr10.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr10.qsub'
-	resources:
-        	mem_mb= java_memory_chr10
 	message:
 		'Processing the first Base Recalibration for chr10 -> {output}'
+  	params: partition = chr10_partitions
+  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -755,10 +519,10 @@ rule gatk_BaseRecalibrator1_chr11:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr11.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr11.qsub'
-	resources:
-        	mem_mb= java_memory_chr11
 	message:
 		'Processing the first Base Recalibration for chr11 -> {output}'
+  	params: partition = chr11_partitions
+  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -783,10 +547,10 @@ rule gatk_BaseRecalibrator1_chr12:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr12.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr12.qsub'
-	resources:
-        	mem_mb= java_memory_chr12
 	message:
 		'Processing the first Base Recalibration for chr12 -> {output}'
+  	params: partition = chr12_partitions
+  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -811,10 +575,10 @@ rule gatk_BaseRecalibrator1_chr13:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr13.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr13.qsub'
-	resources:
-        	mem_mb= java_memory_chr13
 	message:
 		'Processing the first Base Recalibration for chr13 -> {output}'
+  	params: partition = chr13_partitions
+  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -839,10 +603,10 @@ rule gatk_BaseRecalibrator1_chr14:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr14.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr14.qsub'
-	resources:
-        	mem_mb= java_memory_chr14
 	message:
 		'Processing the first Base Recalibration for chr14 -> {output}'
+  	params: partition = chr14_partitions
+  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -867,10 +631,10 @@ rule gatk_BaseRecalibrator1_chr15:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr15.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr15.qsub'
-	resources:
-        	mem_mb= java_memory_chr15
 	message:
 		'Processing the first Base Recalibration for chr15 -> {output}'
+  	params: partition = chr15_partitions
+  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -895,10 +659,10 @@ rule gatk_BaseRecalibrator1_chr16:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr16.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr16.qsub'
-	resources:
-        	mem_mb= java_memory_chr16
 	message:
 		'Processing the first Base Recalibration for chr16 -> {output}'
+  	params: partition = chr16_partitions
+  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -923,10 +687,10 @@ rule gatk_BaseRecalibrator1_chr17:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr17.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr17.qsub'
-	resources:
-        	mem_mb= java_memory_chr17
 	message:
 		'Processing the first Base Recalibration for chr17 -> {output}'
+  	params: partition = chr17_partitions
+  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -951,10 +715,10 @@ rule gatk_BaseRecalibrator1_chr18:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr18.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr18.qsub'
-	resources:
-        	mem_mb= java_memory_chr18
 	message:
 		'Processing the first Base Recalibration for chr18 -> {output}'
+  	params: partition = chr18_partitions
+  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -979,10 +743,10 @@ rule gatk_BaseRecalibrator1_chr19:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr19.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr19.qsub'
-	resources:
-        	mem_mb= java_memory_chr19
 	message:
 		'Processing the first Base Recalibration for chr19 -> {output}'
+  	params: partition = chr19_partitions
+  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -1007,10 +771,10 @@ rule gatk_BaseRecalibrator1_chr20:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr20.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr20.qsub'
-	resources:
-        	mem_mb= java_memory_chr20
 	message:
 		'Processing the first Base Recalibration for chr20 -> {output}'
+  	params: partition = chr20_partitions
+  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -1035,10 +799,10 @@ rule gatk_BaseRecalibrator1_chr21:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr21.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr21.qsub'
-	resources:
-        	mem_mb= java_memory_chr21
 	message:
 		'Processing the first Base Recalibration for chr21 -> {output}'
+  	params: partition = chr21_partitions
+  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -1063,10 +827,10 @@ rule gatk_BaseRecalibrator1_chr22:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chr22.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr22.qsub'
-	resources:
-        	mem_mb= java_memory_chr22
 	message:
 		'Processing the first Base Recalibration for chr22 -> {output}'
+  	params: partition = chr22_partitions
+  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -1091,10 +855,10 @@ rule gatk_BaseRecalibrator1_chrX:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chrX.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chrX.qsub'
-	resources:
-        	mem_mb= java_memory_chrX
 	message:
 		'Processing the first Base Recalibration for chrX -> {output}'
+  	params: partition = chrX_partitions
+  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -1119,10 +883,10 @@ rule gatk_BaseRecalibrator1_chrY:
 	output:
 		recal_data = main_dir + output_dir + '{sample}.sorted.bam_pre_recal_data_chrY.grp',
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chrY.qsub'
-	resources:
-        	mem_mb= java_memory_chrY
 	message:
 		'Processing the first Base Recalibration for chrY -> {output}'
+  	params: partition = chrY_partitions
+  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
@@ -1151,10 +915,10 @@ rule gatk_BaseRecalibrator2_chr1:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr1.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr1.qsub'
-	resources:
-        	mem_mb= java_memory_chr1
 	message:
 		'Processing the second Base Recalibration for chr1 -> {output}'
+  	params: partition = chr1_partitions
+  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1181,10 +945,10 @@ rule gatk_BaseRecalibrator2_chr2:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr2.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr2.qsub'
-	resources:
-        	mem_mb= java_memory_chr2
 	message:
 		'Processing the second Base Recalibration for chr2 -> {output}'
+  	params: partition = chr2_partitions
+  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1211,10 +975,10 @@ rule gatk_BaseRecalibrator2_chr3:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr3.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr3.qsub'
-	resources:
-        	mem_mb= java_memory_chr3
 	message:
 		'Processing the second Base Recalibration for chr3 -> {output}'
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1241,10 +1005,10 @@ rule gatk_BaseRecalibrator2_chr4:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr4.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr4.qsub'
-	resources:
-        	mem_mb= java_memory_chr4
 	message:
 		'Processing the second Base Recalibration for chr4 -> {output}'
+  	params: partition = chr4_partitions
+  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1271,10 +1035,10 @@ rule gatk_BaseRecalibrator2_chr5:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr5.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr5.qsub'
-	resources:
-        	mem_mb= java_memory_chr5
 	message:
 		'Processing the second Base Recalibration for chr5 -> {output}'
+  	params: partition = chr5_partitions
+  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1301,10 +1065,10 @@ rule gatk_BaseRecalibrator2_chr6:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr6.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr6.qsub'
-	resources:
-        	mem_mb= java_memory_chr6
 	message:
 		'Processing the second Base Recalibration for chr6 -> {output}'
+  	params: partition = chr6_partitions
+  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1331,10 +1095,10 @@ rule gatk_BaseRecalibrator2_chr7:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr7.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr7.qsub'
-	resources:
-        	mem_mb= java_memory_chr7
 	message:
 		'Processing the second Base Recalibration for chr7 -> {output}'
+  	params: partition = chr7_partitions
+  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1361,10 +1125,10 @@ rule gatk_BaseRecalibrator2_chr8:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr8.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr8.qsub'
-	resources:
-        	mem_mb= java_memory_chr8
 	message:
 		'Processing the second Base Recalibration for chr8 -> {output}'
+  	params: partition = chr8_partitions
+  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1391,10 +1155,10 @@ rule gatk_BaseRecalibrator2_chr9:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr9.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr9.qsub'
-	resources:
-        	mem_mb= java_memory_chr9
 	message:
 		'Processing the second Base Recalibration for chr9 -> {output}'
+  	params: partition = chr9_partitions
+  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1421,10 +1185,10 @@ rule gatk_BaseRecalibrator2_chr10:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr10.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr10.qsub'
-	resources:
-        	mem_mb= java_memory_chr10
 	message:
 		'Processing the second Base Recalibration for chr10 -> {output}'
+  	params: partition = chr10_partitions
+  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1450,10 +1214,10 @@ rule gatk_BaseRecalibrator2_chr11:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr11.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr11.qsub'
-	resources:
-        	mem_mb= java_memory_chr11
 	message:
 		'Processing the second Base Recalibration for chr11 -> {output}'
+  	params: partition = chr11_partitions
+  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1480,10 +1244,10 @@ rule gatk_BaseRecalibrator2_chr12:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr12.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr12.qsub'
-	resources:
-        	mem_mb= java_memory_chr12
 	message:
 		'Processing the second Base Recalibration for chr12 -> {output}'
+  	params: partition = chr12_partitions
+  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1510,10 +1274,10 @@ rule gatk_BaseRecalibrator2_chr13:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr13.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr13.qsub'
-	resources:
-        	mem_mb= java_memory_chr13
 	message:
 		'Processing the second Base Recalibration for chr13 -> {output}'
+  	params: partition = chr13_partitions
+  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1540,10 +1304,10 @@ rule gatk_BaseRecalibrator2_chr14:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr14.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr14.qsub'
-	resources:
-        	mem_mb= java_memory_chr14
 	message:
 		'Processing the second Base Recalibration for chr14 -> {output}'
+  	params: partition = chr14_partitions
+  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1570,10 +1334,10 @@ rule gatk_BaseRecalibrator2_chr15:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr15.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr15.qsub'
-	resources:
-        	mem_mb= java_memory_chr15
 	message:
 		'Processing the second Base Recalibration for chr15 -> {output}'
+  	params: partition = chr15_partitions
+  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1600,10 +1364,10 @@ rule gatk_BaseRecalibrator2_chr16:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr16.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr16.qsub'
-	resources:
-        	mem_mb= java_memory_chr16
 	message:
 		'Processing the second Base Recalibration for chr16 -> {output}'
+  	params: partition = chr16_partitions
+  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1630,10 +1394,10 @@ rule gatk_BaseRecalibrator2_chr17:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr17.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr17.qsub'
-	resources:
-        	mem_mb= java_memory_chr17
 	message:
 		'Processing the second Base Recalibration for chr17 -> {output}'
+  	params: partition = chr17_partitions
+  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1660,10 +1424,10 @@ rule gatk_BaseRecalibrator2_chr18:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr18.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr18.qsub'
-	resources:
-        	mem_mb= java_memory_chr18
 	message:
 		'Processing the second Base Recalibration for chr18 -> {output}'
+  	params: partition = chr18_partitions
+  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1690,10 +1454,10 @@ rule gatk_BaseRecalibrator2_chr19:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr19.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr19.qsub'
-	resources:
-        	mem_mb= java_memory_chr19
 	message:
 		'Processing the second Base Recalibration for chr19 -> {output}'
+  	params: partition = chr19_partitions
+  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1720,10 +1484,10 @@ rule gatk_BaseRecalibrator2_chr20:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr20.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr20.qsub'
-	resources:
-        	mem_mb= java_memory_chr20
 	message:
 		'Processing the second Base Recalibration for chr20 -> {output}'
+  	params: partition = chr20_partitions
+  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1750,10 +1514,10 @@ rule gatk_BaseRecalibrator2_chr21:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr21.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr21.qsub'
-	resources:
-        	mem_mb= java_memory_chr21
 	message:
 		'Processing the second Base Recalibration for chr21 -> {output}'
+  	params: partition = chr21_partitions
+  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1780,10 +1544,10 @@ rule gatk_BaseRecalibrator2_chr22:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr22.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr22.qsub'
-	resources:
-        	mem_mb= java_memory_chr22
 	message:
 		'Processing the second Base Recalibration for chr22 -> {output}'
+  	params: partition = chr22_partitions
+  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1810,10 +1574,10 @@ rule gatk_BaseRecalibrator2_chrX:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chrX.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chrX.qsub'
-	resources:
-        	mem_mb= java_memory_chrX
 	message:
 		'Processing the second Base Recalibration for chrX -> {output}'
+  	params: partition = chrX_partitions
+  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1840,10 +1604,9 @@ rule gatk_BaseRecalibrator2_chrY:
 	output:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chrY.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chrY.qsub'
-	resources:
-        	mem_mb= java_memory_chrY
 	message:
-		'Processing the second Base Recalibration for chrY -> {output}'
+  	params: partition = chrY_partitions
+  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
@@ -1866,10 +1629,10 @@ rule Analyze_Covariates_chr1:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr1.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr1.pdf'
-	resources:
-        	mem_mb= java_memory_chr1
 	message:
 		'Analyzing Covariates for chr1 -> {output}'
+  	params: partition = chr1_partitions
+  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -1886,10 +1649,10 @@ rule Analyze_Covariates_chr2:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr2.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr2.pdf'
-	resources:
-        	mem_mb= java_memory_chr2
 	message:
 		'Analyzing Covariates for chr2 -> {output}'
+  	params: partition = chr2_partitions
+  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -1906,10 +1669,10 @@ rule Analyze_Covariates_chr3:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr3.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr3.pdf'
-	resources:
-        	mem_mb= java_memory_chr3
 	message:
 		'Analyzing Covariates for chr3 -> {output}'
+  	params: partition = chr3_partitions
+  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -1926,10 +1689,10 @@ rule Analyze_Covariates_chr4:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr4.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr4.pdf'
-	resources:
-        	mem_mb= java_memory_chr4
 	message:
 		'Analyzing Covariates for chr4 -> {output}'
+  	params: partition = chr4_partitions
+  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -1946,10 +1709,10 @@ rule Analyze_Covariates_chr5:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr5.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr5.pdf'
-	resources:
-        	mem_mb= java_memory_chr5
 	message:
 		'Analyzing Covariates for chr5 -> {output}'
+  	params: partition = chr5_partitions
+  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -1966,10 +1729,10 @@ rule Analyze_Covariates_chr6:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr6.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr6.pdf'
-	resources:
-        	mem_mb= java_memory_chr6
 	message:
 		'Analyzing Covariates for chr6 -> {output}'
+  	params: partition = chr6_partitions
+  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -1986,10 +1749,10 @@ rule Analyze_Covariates_chr7:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr7.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr7.pdf'
-	resources:
-        	mem_mb= java_memory_chr7
 	message:
 		'Analyzing Covariates for chr7 -> {output}'
+  	params: partition = chr7_partitions
+  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2006,10 +1769,10 @@ rule Analyze_Covariates_chr8:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr8.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr8.pdf'
-	resources:
-        	mem_mb= java_memory_chr8
 	message:
 		'Analyzing Covariates for chr8 -> {output}'
+  	params: partition = chr8_partitions
+  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2026,10 +1789,10 @@ rule Analyze_Covariates_chr9:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr9.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr9.pdf'
-	resources:
-        	mem_mb= java_memory_chr9
 	message:
 		'Analyzing Covariates for chr9 -> {output}'
+  	params: partition = chr9_partitions
+  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2046,10 +1809,10 @@ rule Analyze_Covariates_chr10:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr10.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr10.pdf'
-	resources:
-        	mem_mb= java_memory_chr10
 	message:
 		'Analyzing Covariates for chr10 -> {output}'
+  	params: partition = chr10_partitions
+  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2066,10 +1829,10 @@ rule Analyze_Covariates_chr11:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr11.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr11.pdf'
-	resources:
-        	mem_mb= java_memory_chr11
 	message:
 		'Analyzing Covariates for chr11 -> {output}'
+  	params: partition = chr11_partitions
+  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2086,10 +1849,10 @@ rule Analyze_Covariates_chr12:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr12.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr12.pdf'
-	resources:
-        	mem_mb= java_memory_chr12
 	message:
 		'Analyzing Covariates for chr12 -> {output}'
+  	params: partition = chr12_partitions
+  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2106,10 +1869,10 @@ rule Analyze_Covariates_chr13:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr13.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr13.pdf'
-	resources:
-        	mem_mb= java_memory_chr13
 	message:
 		'Analyzing Covariates for chr13 -> {output}'
+  	params: partition = chr13_partitions
+  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2126,10 +1889,10 @@ rule Analyze_Covariates_chr14:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr14.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr14.pdf'
-	resources:
-        	mem_mb= java_memory_chr14
 	message:
 		'Analyzing Covariates for chr14 -> {output}'
+  	params: partition = chr14_partitions
+  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2146,10 +1909,10 @@ rule Analyze_Covariates_chr15:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr15.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr15.pdf'
-	resources:
-        	mem_mb= java_memory_chr15
 	message:
 		'Analyzing Covariates for chr15 -> {output}'
+  	params: partition = chr15_partitions
+  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2167,10 +1930,10 @@ rule Analyze_Covariates_chr16:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr16.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr16.pdf'
-	resources:
-        	mem_mb= java_memory_chr16
 	message:
 		'Analyzing Covariates for chr16 -> {output}'
+  	params: partition = chr16_partitions
+  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2188,10 +1951,10 @@ rule Analyze_Covariates_chr17:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr17.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr17.pdf'
-	resources:
-        	mem_mb= java_memory_chr17
 	message:
 		'Analyzing Covariates for chr17 -> {output}'
+  	params: partition = chr17_partitions
+  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2208,10 +1971,10 @@ rule Analyze_Covariates_chr18:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr18.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr18.pdf'
-	resources:
-        	mem_mb= java_memory_chr18
 	message:
 		'Analyzing Covariates for chr18 -> {output}'
+  	params: partition = chr18_partitions
+  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2228,10 +1991,10 @@ rule Analyze_Covariates_chr19:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr19.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr19.pdf'
-	resources:
-        	mem_mb= java_memory_chr19
 	message:
 		'Analyzing Covariates for chr19 -> {output}'
+  	params: partition = chr19_partitions
+  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2248,10 +2011,10 @@ rule Analyze_Covariates_chr20:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr20.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr20.pdf'
-	resources:
-        	mem_mb= java_memory_chr20
 	message:
 		'Analyzing Covariates for chr20 -> {output}'
+  	params: partition = chr20_partitions
+  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2268,10 +2031,10 @@ rule Analyze_Covariates_chr21:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr21.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr21.pdf'
-	resources:
-        	mem_mb= java_memory_chr21
 	message:
 		'Analyzing Covariates for chr21 -> {output}'
+  	params: partition = chr21_partitions
+  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2288,10 +2051,10 @@ rule Analyze_Covariates_chr22:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chr22.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr22.pdf'
-	resources:
-        	mem_mb= java_memory_chr22
 	message:
 		'Analyzing Covariates for chr22 -> {output}'
+  	params: partition = chr22_partitions
+  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2308,10 +2071,10 @@ rule Analyze_Covariates_chrX:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chrX.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chrX.pdf'
-	resources:
-        	mem_mb= java_memory_chrX
 	message:
 		'Analyzing Covariates for chrX -> {output}'
+  	params: partition = chrX_partitions
+  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
@@ -2328,10 +2091,10 @@ rule Analyze_Covariates_chrY:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chrY.grp'
 	output:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr1.pdf'
-	resources:
-        	mem_mb= java_memory_chrY
 	message:
 		'Analyzing Covariates for chrY -> {output}'
+  	params: partition = chrY_partitions
+  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
