@@ -1646,7 +1646,7 @@ rule gatk_BaseRecalibrator2_chrY:
 		-O {output.pos_recal_data} --interval-padding 100 -L {input.target}' + ' > {output.base_recal}'
 		
 		
-###__________Analyze_Covariates_________________________________#
+###_______________________________Analyze_Covariates__________________________________________________________#
 		
 		
 rule Analyze_Covariates_chr1:
@@ -2131,7 +2131,7 @@ rule Analyze_Covariates_chrY:
 		-plots {output.pdf_log}'
 		
 		
-###__________Apply_Base_Quality_Score_Recalibration_________________________________#
+###__________Apply_Base_Quality_Score_Recalibration_________________________________________________________#
 		
 		
 rule Apply_BQSR_chr1: 
@@ -2662,7 +2662,7 @@ rule Apply_BQSR_chrY:
 		> {output.apply_recal}'
 		
 		
-###__________Haplotype_Caller_________________________________#
+###____________________________Haplotype_Caller____________________________________________________________#
 		
 		
 rule Call_Variants_chr1:
@@ -3265,7 +3265,7 @@ rule Call_Variants_chrY:
 		-L {input.target}' + ' > {output.logs}'
 		
 		
-###__________Haplotype_Caller_________________________________#
+###______________________________Joint_Genotyping__________________________________________________________#
 		
 		      
 rule Joint_Genotyping_chr1:
@@ -3768,8 +3768,8 @@ rule Merge_VCFs:
 		O={output.merged_vcfs}'
 		
 		
-###__________Analyze_Covariates_________________________________#
-		
+###___________________________Variant_Recalibration_SNPs_______________________________________________________________________________________________________#
+
 		
 rule Variant_Recalibrator_SNPs_chr1:
 	input:
@@ -4539,7 +4539,7 @@ rule Variant_Recalibrator_SNPs_chrY:
 		--resource:1000G,known=false,training=true,truth=false,prior=10.0 {input.ksites3}'
 		
 		
-###__________Applying_Recalibration_SNPs_________________________________#
+###_______________________________Applying_Recalibration_SNPs____________________________________________________#
 		
 		
 rule Applying_Recalibration_SNPs_chr1:
@@ -5118,7 +5118,7 @@ rule Applying_Recalibration_SNPs_chrY:
 		--create-output-variant-index true -mode SNP'
 		
 		
-###__________Variant_Recalibrator_Indels_________________________________#
+###____________________________Variant_Recalibration_Indels__________________________________________________#
 		
 		
 rule Variant_Recalibrator_Indels_chr1:
@@ -5793,7 +5793,7 @@ rule Variant_Recalibrator_Indels_chrY:
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1}'
 		
 		
-###__________Variant_Recalibrator_Indels_______________________________________________________________#
+###_____________________________Applying_Recalibration_Indels_______________________________________________________________#
 		
 		
 rule Applying_Recalibration_Indels_chr1:
@@ -6416,7 +6416,7 @@ rule Merge_Recalibrated_VCFs:
 		O={output.merged_recalibrated_vcfs}'
 		
 		       
-###_______________________________Calculate_Genotype_Posteriors____________________________________________________#
+###_______________________________Calculate_Genotype_Posteriors__________________________________________________#
 		
 		
 rule Calculate_Genotype_Posteriors:
@@ -6435,3 +6435,6 @@ rule Calculate_Genotype_Posteriors:
 		-V {input.recal_vcf} \
 		-O {output.recal_vcf_CGP} \
 		-supporting {input.ksites7}'
+
+
+##________________________________________________________________________________________________________________//
