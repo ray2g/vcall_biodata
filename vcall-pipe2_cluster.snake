@@ -10,11 +10,14 @@ bwa_index_partition = config["bwa_index_partition"]
 bwa_index_cpus = config["bwa_index_cpus"]
 bwa_index_mem = config["bwa_index_mem"]
 
+
 ##__rule_BWA_samblaster_sambamba_________________________________________________\\
+
 
 BWA_samblaster_sambamba_partition = config["BWA_samblaster_sambamba_partition"]
 BWA_samblaster_sambamba_threads = config["BWA_samblaster_sambamba_threads"]
 BWA_samblaster_sambamba_memory = config["BWA_samblaster_sambamba_memory"]
+
 
 ##_______rule_picard_dict____________________________________\\
 
@@ -22,15 +25,16 @@ picard_dict_partition = config["picard_dict_partition"]
 picard_dict_cpus = config["picard_dict_cpus"]
 picard_dict_mem = config["picard_dict_mem"]
 
+
 ##______rule_samtools_index___________________________________\\
 
 samtools_index_partition = config["samtools_index_partition"]
 samtools_index_cpus = config["samtools_index_cpus"]
 samtools_index_mem = config["samtools_index_mem"]
 
+
 ##____Chromossome_Parallelization______________________________\\
 
-# partitions (small, medium, large)
 
 chr1_partitions = config["chr1_partitions"]
 chr2_partitions = config["chr2_partitions"]
@@ -131,6 +135,7 @@ merge_recalibrated_vcf_mem = config["merge_mem"]
 genotype_posteriors_partition = config["genotype_posteriors_partition"]
 genotype_posteriors_cpus = config["genotype_posteriors_cpus"]
 genotype_posteriors_mem = config["genotype_posteriors_mem"]
+
 
 #|__________Directory_Settings_______________________________________________________|
 
@@ -237,8 +242,8 @@ rule samtools_index:
 		main_dir + genome_dir + GENOME + '.fasta.fai'
 	message:
 		'Creating index genome fasta file -> {output}'
-  	params: partition = samtools_index_partition
-  	resources: cpus= samtools_index_cpus, mem_mb= samtools_index_mem
+	params: partition = samtools_index_partition
+	resources: cpus= samtools_index_cpus, mem_mb= samtools_index_mem
 	shell:
 		'samtools faidx {input}'
 		
@@ -263,10 +268,10 @@ rule gatk_BaseRecalibrator1_chr1:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr1.qsub'
 	message:
 		'Processing the first Base Recalibration for chr1 -> {output}'
-  	params: partition = chr1_partitions
-  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
+	params: partition = chr1_partitions
+	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -291,10 +296,10 @@ rule gatk_BaseRecalibrator1_chr2:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr2.qsub'
 	message:
 		'Processing the first Base Recalibration for chr2 -> {output}'
-  	params: partition = chr2_partitions
-  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
+	params: partition = chr2_partitions
+	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -319,10 +324,10 @@ rule gatk_BaseRecalibrator1_chr3:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr3.qsub'
 	message:
 		'Processing the first Base Recalibration for chr3 -> {output}'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -347,10 +352,10 @@ rule gatk_BaseRecalibrator1_chr4:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr4.qsub'
 	message:
 		'Processing the first Base Recalibration for chr4 -> {output}'
-  	params: partition = chr4_partitions
-  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
+	params: partition = chr4_partitions
+	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -375,10 +380,10 @@ rule gatk_BaseRecalibrator1_chr5:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr5.qsub'
 	message:
 		'Processing the first Base Recalibration for chr5 -> {output}'
-  	params: partition = chr5_partitions
-  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
+	params: partition = chr5_partitions
+	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -403,10 +408,10 @@ rule gatk_BaseRecalibrator1_chr6:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr6.qsub'
 	message:
 		'Processing the first Base Recalibration for chr6 -> {output}'
-  	params: partition = chr6_partitions
-  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
+	params: partition = chr6_partitions
+	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -431,10 +436,10 @@ rule gatk_BaseRecalibrator1_chr7:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr7.qsub'
 	message:
 		'Processing the first Base Recalibration for chr7 -> {output}'
-  	params: partition = chr7_partitions
-  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
+	params: partition = chr7_partitions
+	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -459,10 +464,10 @@ rule gatk_BaseRecalibrator1_chr8:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr8.qsub'
 	message:
 		'Processing the first Base Recalibration for chr8 -> {output}'
-  	params: partition = chr8_partitions
-  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
+	params: partition = chr8_partitions
+	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -487,10 +492,10 @@ rule gatk_BaseRecalibrator1_chr9:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr9.qsub'
 	message:
 		'Processing the first Base Recalibration for chr9 -> {output}'
-  	params: partition = chr9_partitions
-  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
+	params: partition = chr9_partitions
+	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -515,10 +520,10 @@ rule gatk_BaseRecalibrator1_chr10:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr10.qsub'
 	message:
 		'Processing the first Base Recalibration for chr10 -> {output}'
-  	params: partition = chr10_partitions
-  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
+	params: partition = chr10_partitions
+	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -543,10 +548,10 @@ rule gatk_BaseRecalibrator1_chr11:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr11.qsub'
 	message:
 		'Processing the first Base Recalibration for chr11 -> {output}'
-  	params: partition = chr11_partitions
-  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
+	params: partition = chr11_partitions
+	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -571,10 +576,10 @@ rule gatk_BaseRecalibrator1_chr12:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr12.qsub'
 	message:
 		'Processing the first Base Recalibration for chr12 -> {output}'
-  	params: partition = chr12_partitions
-  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
+	params: partition = chr12_partitions
+	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -599,10 +604,10 @@ rule gatk_BaseRecalibrator1_chr13:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr13.qsub'
 	message:
 		'Processing the first Base Recalibration for chr13 -> {output}'
-  	params: partition = chr13_partitions
-  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
+	params: partition = chr13_partitions
+	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -627,10 +632,10 @@ rule gatk_BaseRecalibrator1_chr14:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr14.qsub'
 	message:
 		'Processing the first Base Recalibration for chr14 -> {output}'
-  	params: partition = chr14_partitions
-  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
+	params: partition = chr14_partitions
+	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -655,10 +660,10 @@ rule gatk_BaseRecalibrator1_chr15:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr15.qsub'
 	message:
 		'Processing the first Base Recalibration for chr15 -> {output}'
-  	params: partition = chr15_partitions
-  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
+	params: partition = chr15_partitions
+	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -683,10 +688,10 @@ rule gatk_BaseRecalibrator1_chr16:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr16.qsub'
 	message:
 		'Processing the first Base Recalibration for chr16 -> {output}'
-  	params: partition = chr16_partitions
-  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
+	params: partition = chr16_partitions
+	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -711,10 +716,10 @@ rule gatk_BaseRecalibrator1_chr17:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr17.qsub'
 	message:
 		'Processing the first Base Recalibration for chr17 -> {output}'
-  	params: partition = chr17_partitions
-  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
+	params: partition = chr17_partitions
+	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -739,10 +744,10 @@ rule gatk_BaseRecalibrator1_chr18:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr18.qsub'
 	message:
 		'Processing the first Base Recalibration for chr18 -> {output}'
-  	params: partition = chr18_partitions
-  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
+	params: partition = chr18_partitions
+	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -767,10 +772,10 @@ rule gatk_BaseRecalibrator1_chr19:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr19.qsub'
 	message:
 		'Processing the first Base Recalibration for chr19 -> {output}'
-  	params: partition = chr19_partitions
-  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
+	params: partition = chr19_partitions
+	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -795,10 +800,10 @@ rule gatk_BaseRecalibrator1_chr20:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr20.qsub'
 	message:
 		'Processing the first Base Recalibration for chr20 -> {output}'
-  	params: partition = chr20_partitions
-  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
+	params: partition = chr20_partitions
+	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -823,10 +828,10 @@ rule gatk_BaseRecalibrator1_chr21:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr21.qsub'
 	message:
 		'Processing the first Base Recalibration for chr21 -> {output}'
-  	params: partition = chr21_partitions
-  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
+	params: partition = chr21_partitions
+	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -851,10 +856,10 @@ rule gatk_BaseRecalibrator1_chr22:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chr22.qsub'
 	message:
 		'Processing the first Base Recalibration for chr22 -> {output}'
-  	params: partition = chr22_partitions
-  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
+	params: partition = chr22_partitions
+	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -879,10 +884,10 @@ rule gatk_BaseRecalibrator1_chrX:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chrX.qsub'
 	message:
 		'Processing the first Base Recalibration for chrX -> {output}'
-  	params: partition = chrX_partitions
-  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
+	params: partition = chrX_partitions
+	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -907,10 +912,10 @@ rule gatk_BaseRecalibrator1_chrY:
 		base_recal = main_dir + output_dir + logs_dir + '{sample}.base_recal_chrY.qsub'
 	message:
 		'Processing the first Base Recalibration for chrY -> {output}'
-  	params: partition = chrY_partitions
-  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
+	params: partition = chrY_partitions
+	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator -R {input.ref} \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator -R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
 		--known-sites {input.ksites3} \
@@ -939,10 +944,10 @@ rule gatk_BaseRecalibrator2_chr1:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr1.qsub'
 	message:
 		'Processing the second Base Recalibration for chr1 -> {output}'
-  	params: partition = chr1_partitions
-  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
+	params: partition = chr1_partitions
+	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -969,10 +974,10 @@ rule gatk_BaseRecalibrator2_chr2:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr2.qsub'
 	message:
 		'Processing the second Base Recalibration for chr2 -> {output}'
-  	params: partition = chr2_partitions
-  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
+	params: partition = chr2_partitions
+	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -999,10 +1004,10 @@ rule gatk_BaseRecalibrator2_chr3:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr3.qsub'
 	message:
 		'Processing the second Base Recalibration for chr3 -> {output}'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1029,10 +1034,10 @@ rule gatk_BaseRecalibrator2_chr4:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr4.qsub'
 	message:
 		'Processing the second Base Recalibration for chr4 -> {output}'
-  	params: partition = chr4_partitions
-  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
+	params: partition = chr4_partitions
+	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1059,10 +1064,10 @@ rule gatk_BaseRecalibrator2_chr5:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr5.qsub'
 	message:
 		'Processing the second Base Recalibration for chr5 -> {output}'
-  	params: partition = chr5_partitions
-  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
+	params: partition = chr5_partitions
+	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1089,10 +1094,10 @@ rule gatk_BaseRecalibrator2_chr6:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr6.qsub'
 	message:
 		'Processing the second Base Recalibration for chr6 -> {output}'
-  	params: partition = chr6_partitions
-  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
+	params: partition = chr6_partitions
+	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1119,10 +1124,10 @@ rule gatk_BaseRecalibrator2_chr7:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr7.qsub'
 	message:
 		'Processing the second Base Recalibration for chr7 -> {output}'
-  	params: partition = chr7_partitions
-  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
+	params: partition = chr7_partitions
+	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1149,10 +1154,10 @@ rule gatk_BaseRecalibrator2_chr8:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr8.qsub'
 	message:
 		'Processing the second Base Recalibration for chr8 -> {output}'
-  	params: partition = chr8_partitions
-  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
+	params: partition = chr8_partitions
+	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1179,10 +1184,10 @@ rule gatk_BaseRecalibrator2_chr9:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr9.qsub'
 	message:
 		'Processing the second Base Recalibration for chr9 -> {output}'
-  	params: partition = chr9_partitions
-  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
+	params: partition = chr9_partitions
+	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1209,10 +1214,10 @@ rule gatk_BaseRecalibrator2_chr10:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr10.qsub'
 	message:
 		'Processing the second Base Recalibration for chr10 -> {output}'
-  	params: partition = chr10_partitions
-  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
+	params: partition = chr10_partitions
+	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1238,10 +1243,10 @@ rule gatk_BaseRecalibrator2_chr11:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr11.qsub'
 	message:
 		'Processing the second Base Recalibration for chr11 -> {output}'
-  	params: partition = chr11_partitions
-  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
+	params: partition = chr11_partitions
+	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1268,10 +1273,10 @@ rule gatk_BaseRecalibrator2_chr12:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr12.qsub'
 	message:
 		'Processing the second Base Recalibration for chr12 -> {output}'
-  	params: partition = chr12_partitions
-  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
+	params: partition = chr12_partitions
+	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1298,10 +1303,10 @@ rule gatk_BaseRecalibrator2_chr13:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr13.qsub'
 	message:
 		'Processing the second Base Recalibration for chr13 -> {output}'
-  	params: partition = chr13_partitions
-  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
+	params: partition = chr13_partitions
+	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1328,10 +1333,10 @@ rule gatk_BaseRecalibrator2_chr14:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr14.qsub'
 	message:
 		'Processing the second Base Recalibration for chr14 -> {output}'
-  	params: partition = chr14_partitions
-  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
+	params: partition = chr14_partitions
+	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1358,10 +1363,10 @@ rule gatk_BaseRecalibrator2_chr15:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr15.qsub'
 	message:
 		'Processing the second Base Recalibration for chr15 -> {output}'
-  	params: partition = chr15_partitions
-  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
+	params: partition = chr15_partitions
+	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1388,10 +1393,10 @@ rule gatk_BaseRecalibrator2_chr16:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr16.qsub'
 	message:
 		'Processing the second Base Recalibration for chr16 -> {output}'
-  	params: partition = chr16_partitions
-  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
+	params: partition = chr16_partitions
+	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1418,10 +1423,10 @@ rule gatk_BaseRecalibrator2_chr17:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr17.qsub'
 	message:
 		'Processing the second Base Recalibration for chr17 -> {output}'
-  	params: partition = chr17_partitions
-  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
+	params: partition = chr17_partitions
+	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1448,10 +1453,10 @@ rule gatk_BaseRecalibrator2_chr18:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr18.qsub'
 	message:
 		'Processing the second Base Recalibration for chr18 -> {output}'
-  	params: partition = chr18_partitions
-  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
+	params: partition = chr18_partitions
+	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1478,10 +1483,10 @@ rule gatk_BaseRecalibrator2_chr19:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr19.qsub'
 	message:
 		'Processing the second Base Recalibration for chr19 -> {output}'
-  	params: partition = chr19_partitions
-  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
+	params: partition = chr19_partitions
+	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1508,10 +1513,10 @@ rule gatk_BaseRecalibrator2_chr20:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr20.qsub'
 	message:
 		'Processing the second Base Recalibration for chr20 -> {output}'
-  	params: partition = chr20_partitions
-  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
+	params: partition = chr20_partitions
+	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1538,10 +1543,10 @@ rule gatk_BaseRecalibrator2_chr21:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr21.qsub'
 	message:
 		'Processing the second Base Recalibration for chr21 -> {output}'
-  	params: partition = chr21_partitions
-  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
+	params: partition = chr21_partitions
+	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1568,10 +1573,10 @@ rule gatk_BaseRecalibrator2_chr22:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chr22.qsub'
 	message:
 		'Processing the second Base Recalibration for chr22 -> {output}'
-  	params: partition = chr22_partitions
-  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
+	params: partition = chr22_partitions
+	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1598,10 +1603,10 @@ rule gatk_BaseRecalibrator2_chrX:
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chrX.qsub'
 	message:
 		'Processing the second Base Recalibration for chrX -> {output}'
-  	params: partition = chrX_partitions
-  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
+	params: partition = chrX_partitions
+	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1627,10 +1632,10 @@ rule gatk_BaseRecalibrator2_chrY:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chrY.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chrY.qsub'
 	message:
-  	params: partition = chrY_partitions
-  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
+	params: partition = chrY_partitions
+	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} BaseRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} BaseRecalibrator \
 		-R {input.ref} \
 		--known-sites {input.ksites1} \
 		--known-sites {input.ksites2} \
@@ -1653,10 +1658,10 @@ rule Analyze_Covariates_chr1:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr1.pdf'
 	message:
 		'Analyzing Covariates for chr1 -> {output}'
-  	params: partition = chr1_partitions
-  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
+	params: partition = chr1_partitions
+	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1673,10 +1678,10 @@ rule Analyze_Covariates_chr2:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr2.pdf'
 	message:
 		'Analyzing Covariates for chr2 -> {output}'
-  	params: partition = chr2_partitions
-  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
+	params: partition = chr2_partitions
+	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1693,10 +1698,10 @@ rule Analyze_Covariates_chr3:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr3.pdf'
 	message:
 		'Analyzing Covariates for chr3 -> {output}'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1713,10 +1718,10 @@ rule Analyze_Covariates_chr4:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr4.pdf'
 	message:
 		'Analyzing Covariates for chr4 -> {output}'
-  	params: partition = chr4_partitions
-  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
+	params: partition = chr4_partitions
+	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1733,10 +1738,10 @@ rule Analyze_Covariates_chr5:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr5.pdf'
 	message:
 		'Analyzing Covariates for chr5 -> {output}'
-  	params: partition = chr5_partitions
-  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
+	params: partition = chr5_partitions
+	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1753,10 +1758,10 @@ rule Analyze_Covariates_chr6:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr6.pdf'
 	message:
 		'Analyzing Covariates for chr6 -> {output}'
-  	params: partition = chr6_partitions
-  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
+	params: partition = chr6_partitions
+	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1773,10 +1778,10 @@ rule Analyze_Covariates_chr7:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr7.pdf'
 	message:
 		'Analyzing Covariates for chr7 -> {output}'
-  	params: partition = chr7_partitions
-  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
+	params: partition = chr7_partitions
+	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1793,10 +1798,10 @@ rule Analyze_Covariates_chr8:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr8.pdf'
 	message:
 		'Analyzing Covariates for chr8 -> {output}'
-  	params: partition = chr8_partitions
-  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
+	params: partition = chr8_partitions
+	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1813,10 +1818,10 @@ rule Analyze_Covariates_chr9:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr9.pdf'
 	message:
 		'Analyzing Covariates for chr9 -> {output}'
-  	params: partition = chr9_partitions
-  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
+	params: partition = chr9_partitions
+	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1833,10 +1838,10 @@ rule Analyze_Covariates_chr10:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr10.pdf'
 	message:
 		'Analyzing Covariates for chr10 -> {output}'
-  	params: partition = chr10_partitions
-  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
+	params: partition = chr10_partitions
+	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1853,10 +1858,10 @@ rule Analyze_Covariates_chr11:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr11.pdf'
 	message:
 		'Analyzing Covariates for chr11 -> {output}'
-  	params: partition = chr11_partitions
-  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
+	params: partition = chr11_partitions
+	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1873,10 +1878,10 @@ rule Analyze_Covariates_chr12:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr12.pdf'
 	message:
 		'Analyzing Covariates for chr12 -> {output}'
-  	params: partition = chr12_partitions
-  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
+	params: partition = chr12_partitions
+	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1893,10 +1898,10 @@ rule Analyze_Covariates_chr13:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr13.pdf'
 	message:
 		'Analyzing Covariates for chr13 -> {output}'
-  	params: partition = chr13_partitions
-  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
+	params: partition = chr13_partitions
+	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1913,10 +1918,10 @@ rule Analyze_Covariates_chr14:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr14.pdf'
 	message:
 		'Analyzing Covariates for chr14 -> {output}'
-  	params: partition = chr14_partitions
-  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
+	params: partition = chr14_partitions
+	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1933,10 +1938,10 @@ rule Analyze_Covariates_chr15:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr15.pdf'
 	message:
 		'Analyzing Covariates for chr15 -> {output}'
-  	params: partition = chr15_partitions
-  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
+	params: partition = chr15_partitions
+	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1954,10 +1959,10 @@ rule Analyze_Covariates_chr16:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr16.pdf'
 	message:
 		'Analyzing Covariates for chr16 -> {output}'
-  	params: partition = chr16_partitions
-  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
+	params: partition = chr16_partitions
+	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1975,10 +1980,10 @@ rule Analyze_Covariates_chr17:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr17.pdf'
 	message:
 		'Analyzing Covariates for chr17 -> {output}'
-  	params: partition = chr17_partitions
-  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
+	params: partition = chr17_partitions
+	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -1995,10 +2000,10 @@ rule Analyze_Covariates_chr18:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr18.pdf'
 	message:
 		'Analyzing Covariates for chr18 -> {output}'
-  	params: partition = chr18_partitions
-  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
+	params: partition = chr18_partitions
+	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -2015,10 +2020,10 @@ rule Analyze_Covariates_chr19:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr19.pdf'
 	message:
 		'Analyzing Covariates for chr19 -> {output}'
-  	params: partition = chr19_partitions
-  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
+	params: partition = chr19_partitions
+	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -2035,10 +2040,10 @@ rule Analyze_Covariates_chr20:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr20.pdf'
 	message:
 		'Analyzing Covariates for chr20 -> {output}'
-  	params: partition = chr20_partitions
-  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
+	params: partition = chr20_partitions
+	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -2055,10 +2060,10 @@ rule Analyze_Covariates_chr21:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr21.pdf'
 	message:
 		'Analyzing Covariates for chr21 -> {output}'
-  	params: partition = chr21_partitions
-  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
+	params: partition = chr21_partitions
+	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -2075,10 +2080,10 @@ rule Analyze_Covariates_chr22:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr22.pdf'
 	message:
 		'Analyzing Covariates for chr22 -> {output}'
-  	params: partition = chr22_partitions
-  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
+	params: partition = chr22_partitions
+	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -2095,10 +2100,10 @@ rule Analyze_Covariates_chrX:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chrX.pdf'
 	message:
 		'Analyzing Covariates for chrX -> {output}'
-  	params: partition = chrX_partitions
-  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
+	params: partition = chrX_partitions
+	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -2115,10 +2120,10 @@ rule Analyze_Covariates_chrY:
 		pdf_log = main_dir + output_dir + logs_dir + '{sample}.sorted.bam_plots_chr1.pdf'
 	message:
 		'Analyzing Covariates for chrY -> {output}'
-  	params: partition = chrY_partitions
-  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
+	params: partition = chrY_partitions
+	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} AnalyzeCovariates \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} AnalyzeCovariates \
 		-R {input.fa} \
 		-before {input.bqsr} \
 		-after {input.pos_recal_data} \
@@ -2139,10 +2144,10 @@ rule Apply_BQSR_chr1:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr1.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr1  -> {output}'
-  	params: partition = chr1_partitions
-  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
+	params: partition = chr1_partitions
+	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2161,10 +2166,10 @@ rule Apply_BQSR_chr2:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr2.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr2  -> {output}'
-  	params: partition = chr2_partitions
-  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
+	params: partition = chr2_partitions
+	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2183,10 +2188,10 @@ rule Apply_BQSR_chr3:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr3.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr3  -> {output}'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2205,10 +2210,10 @@ rule Apply_BQSR_chr4:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr4.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr4  -> {output}'
-  	params: partition = chr4_partitions
-  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
+	params: partition = chr4_partitions
+	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2227,10 +2232,10 @@ rule Apply_BQSR_chr5:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr5.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr5  -> {output}'
-  	params: partition = chr5_partitions
-  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
+	params: partition = chr5_partitions
+	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2249,10 +2254,10 @@ rule Apply_BQSR_chr6:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr6.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr6  -> {output}'
-  	params: partition = chr6_partitions
-  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
+	params: partition = chr6_partitions
+	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2271,10 +2276,10 @@ rule Apply_BQSR_chr7:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr7.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr7  -> {output}'
-  	params: partition = chr7_partitions
-  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
+	params: partition = chr7_partitions
+	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2293,10 +2298,10 @@ rule Apply_BQSR_chr8:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr8.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr8  -> {output}'
-  	params: partition = chr8_partitions
-  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
+	params: partition = chr8_partitions
+	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2315,10 +2320,10 @@ rule Apply_BQSR_chr9:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr9.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr9  -> {output}'
-  	params: partition = chr9_partitions
-  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
+	params: partition = chr9_partitions
+	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2337,10 +2342,10 @@ rule Apply_BQSR_chr10:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr10.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr10  -> {output}'
-  	params: partition = chr10_partitions
-  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
+	params: partition = chr10_partitions
+	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2359,10 +2364,10 @@ rule Apply_BQSR_chr11:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr11.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr11  -> {output}'
-  	params: partition = chr11_partitions
-  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
+	params: partition = chr11_partitions
+	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2381,10 +2386,10 @@ rule Apply_BQSR_chr12:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr12.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr12  -> {output}'
-  	params: partition = chr12_partitions
-  	resources: cpus= chr12cpus, mem_mb= chr12_mem
+	params: partition = chr12_partitions
+	resources: cpus= chr12cpus, mem_mb= chr12_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2403,10 +2408,10 @@ rule Apply_BQSR_chr13:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr13.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr13  -> {output}'
-  	params: partition = chr13_partitions
-  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
+	params: partition = chr13_partitions
+	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2425,10 +2430,10 @@ rule Apply_BQSR_chr14:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr14.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr14  -> {output}'
-  	params: partition = chr14_partitions
-  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
+	params: partition = chr14_partitions
+	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2447,10 +2452,10 @@ rule Apply_BQSR_chr15:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr15.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr15  -> {output}'
-  	params: partition = chr15_partitions
-  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
+	params: partition = chr15_partitions
+	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2469,10 +2474,10 @@ rule Apply_BQSR_chr16:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr16.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr16  -> {output}'
-  	params: partition = chr16_partitions
-  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
+	params: partition = chr16_partitions
+	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2491,10 +2496,10 @@ rule Apply_BQSR_chr17:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr17.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr17  -> {output}'
-  	params: partition = chr17_partitions
-  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
+	params: partition = chr17_partitions
+	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2513,10 +2518,10 @@ rule Apply_BQSR_chr18:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr18.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr18  -> {output}'
-  	params: partition = chr18_partitions
-  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
+	params: partition = chr18_partitions
+	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2535,10 +2540,10 @@ rule Apply_BQSR_chr19:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr19.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr19  -> {output}'
-  	params: partition = chr19_partitions
-  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
+	params: partition = chr19_partitions
+	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2557,10 +2562,10 @@ rule Apply_BQSR_chr20:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr20.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr20  -> {output}'
-  	params: partition = chr20_partitions
-  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
+	params: partition = chr20_partitions
+	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2579,10 +2584,10 @@ rule Apply_BQSR_chr21:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr21.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr21  -> {output}'
-  	params: partition = chr21_partitions
-  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
+	params: partition = chr21_partitions
+	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2601,10 +2606,10 @@ rule Apply_BQSR_chr22:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chr22.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chr22  -> {output}'
-  	params: partition = chr22_partitions
-  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
+	params: partition = chr22_partitions
+	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2623,10 +2628,10 @@ rule Apply_BQSR_chrX:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chrX.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chrX  -> {output}'
-  	params: partition = chrX_partitions
-  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
+	params: partition = chrX_partitions
+	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2645,10 +2650,10 @@ rule Apply_BQSR_chrY:
 		apply_recal = main_dir + output_dir + logs_dir + '{sample}.apply_recal_chrY.qsub'
 	message:
 		'Applying Base Quality Score Recalibration for chrY  -> {output}'
-  	params: partition = chrY_partitions
-  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
+	params: partition = chrY_partitions
+	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyBQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
 		-I {input.bam} \
 		--bqsr-recal-file {input.bqsr} \
@@ -2671,10 +2676,10 @@ rule Call_Variants_chr1:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr1.qsub'
 	message:
 		'Processing Haplotype Caller for chr1 -> {output}'
-  	params: partition = chr1_partitions
-  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
+	params: partition = chr1_partitions
+	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2696,10 +2701,10 @@ rule Call_Variants_chr2:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr2.qsub'
 	message:
 		'Processing Haplotype Caller for chr2 -> {output}'
-  	params: partition = chr2_partitions
-  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
+	params: partition = chr2_partitions
+	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2721,10 +2726,10 @@ rule Call_Variants_chr3:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr3.qsub'
 	message:
 		'Processing Haplotype Caller for chr3 -> {output}'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2746,10 +2751,10 @@ rule Call_Variants_chr4:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr4.qsub'
 	message:
 		'Processing Haplotype Caller for chr4 -> {output}'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2771,10 +2776,10 @@ rule Call_Variants_chr5:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr5.qsub'
 	message:
 		'Processing Haplotype Caller for chr5 -> {output}'
-  	params: partition = chr5_partitions
-  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
+	params: partition = chr5_partitions
+	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2796,10 +2801,10 @@ rule Call_Variants_chr6:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr6.qsub'
 	message:
 		'Processing Haplotype Caller for chr6 -> {output}'
-  	params: partition = chr6_partitions
-  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
+	params: partition = chr6_partitions
+	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2821,10 +2826,10 @@ rule Call_Variants_chr7:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr7.qsub'
 	message:
 		'Processing Haplotype Caller for chr7 -> {output}'
-  	params: partition = chr7_partitions
-  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
+	params: partition = chr7_partitions
+	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2846,10 +2851,10 @@ rule Call_Variants_chr8:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr8.qsub'
 	message:
 		'Processing Haplotype Caller for chr8 -> {output}'
-  	params: partition = chr8_partitions
-  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
+	params: partition = chr8_partitions
+	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2871,10 +2876,10 @@ rule Call_Variants_chr9:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr9.qsub'
 	message:
 		'Processing Haplotype Caller for chr9 -> {output}'
-  	params: partition = chr9_partitions
-  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
+	params: partition = chr9_partitions
+	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2896,10 +2901,10 @@ rule Call_Variants_chr10:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr10.qsub'
 	message:
 		'Processing Haplotype Caller for chr10 -> {output}'
-  	params: partition = chr10_partitions
-  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
+	params: partition = chr10_partitions
+	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2921,10 +2926,10 @@ rule Call_Variants_chr11:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr11.qsub'
 	message:
 		'Processing Haplotype Caller for chr11 -> {output}'
-  	params: partition = chr11_partitions
-  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
+	params: partition = chr11_partitions
+	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2946,10 +2951,10 @@ rule Call_Variants_chr12:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr12.qsub'
 	message:
 		'Processing Haplotype Caller for chr12 -> {output}'
-  	params: partition = chr12_partitions
-  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
+	params: partition = chr12_partitions
+	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2971,10 +2976,10 @@ rule Call_Variants_chr13:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr13.qsub'
 	message:
 		'Processing Haplotype Caller for chr13 -> {output}'
-  	params: partition = chr13_partitions
-  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
+	params: partition = chr13_partitions
+	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -2996,10 +3001,10 @@ rule Call_Variants_chr14:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr14.qsub'
 	message:
 		'Processing Haplotype Caller for chr14 -> {output}'
-  	params: partition = chr14_partitions
-  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
+	params: partition = chr14_partitions
+	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3021,10 +3026,10 @@ rule Call_Variants_chr15:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr15.qsub'
 	message:
 		'Processing Haplotype Caller for chr15 -> {output}'
-  	params: partition = chr15_partitions
-  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
+	params: partition = chr15_partitions
+	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3046,10 +3051,10 @@ rule Call_Variants_chr16:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr16.qsub'
 	message:
 		'Processing Haplotype Caller for chr16 -> {output}'
-  	params: partition = chr16_partitions
-  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
+	params: partition = chr16_partitions
+	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3071,10 +3076,10 @@ rule Call_Variants_chr17:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr17.qsub'
 	message:
 		'Processing Haplotype Caller for chr17 -> {output}'
-  	params: partition = chr17_partitions
-  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
+	params: partition = chr17_partitions
+	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3096,10 +3101,10 @@ rule Call_Variants_chr18:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr18.qsub'
 	message:
 		'Processing Haplotype Caller for chr18 -> {output}'
-  	params: partition = chr18_partitions
-  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
+	params: partition = chr18_partitions
+	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3121,10 +3126,10 @@ rule Call_Variants_chr19:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr19.qsub'
 	message:
 		'Processing Haplotype Caller for chr19 -> {output}'
-  	params: partition = chr19_partitions
-  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
+	params: partition = chr19_partitions
+	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3146,10 +3151,10 @@ rule Call_Variants_chr20:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr20.qsub'
 	message:
 		'Processing Haplotype Caller for chr20 -> {output}'
-  	params: partition = chr20_partitions
-  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
+	params: partition = chr20_partitions
+	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3171,10 +3176,10 @@ rule Call_Variants_chr21:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr21.qsub'
 	message:
 		'Processing Haplotype Caller for chr21 -> {output}'
-  	params: partition = chr21_partitions
-  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
+	params: partition = chr21_partitions
+	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3196,10 +3201,10 @@ rule Call_Variants_chr22:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chr22.qsub'
 	message:
 		'Processing Haplotype Caller for chr22 -> {output}'
-  	params: partition = chr22_partitions
-  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
+	params: partition = chr22_partitions
+	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3221,10 +3226,10 @@ rule Call_Variants_chrX:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chrX.qsub'
 	message:
 		'Processing Haplotype Caller for chrX -> {output}'
-  	params: partition = chrX_partitions
-  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
+	params: partition = chrX_partitions
+	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3246,10 +3251,10 @@ rule Call_Variants_chrY:
 		logs = main_dir + output_dir + logs_dir + '{sample}.call_vars_chrY.qsub'
 	message:
 		'Processing Haplotype Caller for chrY -> {output}'
-  	params: partition = chrY_partitions
-  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
+	params: partition = chrY_partitions
+	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} HaplotypeCaller \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} HaplotypeCaller \
 		-R {input.fa} \
 		-I {input.recal} \
 		-D {input.ksites1} \
@@ -3272,10 +3277,10 @@ rule Joint_Genotyping_chr1:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr1.gz'
 	message:
 		'Processing Joint Genotyping for chr1 -> {output}'
-  	params: partition = chr1_partitions
-  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
+	params: partition = chr1_partitions
+	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3291,10 +3296,10 @@ rule Joint_Genotyping_chr2:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr2.gz'
 	message:
 		'Processing Joint Genotyping for chr2 -> {output}'
-  	params: partition = chr2_partitions
-  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
+	params: partition = chr2_partitions
+	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3310,10 +3315,10 @@ rule Joint_Genotyping_chr3:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr3.gz'
 	message:
 		'Processing Joint Genotyping for chr3 -> {output}'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3329,10 +3334,10 @@ rule Joint_Genotyping_chr4:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr4.gz'
 	message:
 		'Processing Joint Genotyping for chr4 -> {output}'
-  	params: partition = chr4_partitions
-  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
+	params: partition = chr4_partitions
+	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3348,10 +3353,10 @@ rule Joint_Genotyping_chr5:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr5.gz'
 	message:
 		'Processing Joint Genotyping for chr 5-> {output}'
-  	params: partition = chr5_partitions
-  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
+	params: partition = chr5_partitions
+	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3367,10 +3372,10 @@ rule Joint_Genotyping_chr6:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr6.gz'
 	message:
 		'Processing Joint Genotyping for chr6 -> {output}'
-  	params: partition = chr6_partitions
-  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
+	params: partition = chr6_partitions
+	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3386,10 +3391,10 @@ rule Joint_Genotyping_chr7:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr7.gz'
 	message:
 		'Processing Joint Genotyping for chr7 -> {output}'
-  	params: partition = chr7_partitions
-  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
+	params: partition = chr7_partitions
+	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3405,10 +3410,10 @@ rule Joint_Genotyping_chr8:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr8.gz'
 	message:
 		'Processing Joint Genotyping for chr8 -> {output}'
-  	params: partition = chr8_partitions
-  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
+	params: partition = chr8_partitions
+	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3424,10 +3429,10 @@ rule Joint_Genotyping_chr9:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr9.gz'
 	message:
 		'Processing Joint Genotyping for chr9 -> {output}'
-  	params: partition = chr9_partitions
-  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
+	params: partition = chr9_partitions
+	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3443,10 +3448,10 @@ rule Joint_Genotyping_chr10:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr10.gz'
 	message:
 		'Processing Joint Genotyping for chr10 -> {output}'
-  	params: partition = chr10_partitions
-  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
+	params: partition = chr10_partitions
+	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3462,10 +3467,10 @@ rule Joint_Genotyping_chr11:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr11.gz'
 	message:
 		'Processing Joint Genotyping for chr11 -> {output}'
-  	params: partition = chr11_partitions
-  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
+	params: partition = chr11_partitions
+	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3481,10 +3486,10 @@ rule Joint_Genotyping_chr12:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr12.gz'
 	message:
 		'Processing Joint Genotyping for chr12 -> {output}'
-  	params: partition = chr12_partitions
-  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
+	params: partition = chr12_partitions
+	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3500,10 +3505,10 @@ rule Joint_Genotyping_chr13:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr13.gz'
 	message:
 		'Processing Joint Genotyping for chr13 -> {output}'
-  	params: partition = chr13_partitions
-  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
+	params: partition = chr13_partitions
+	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3519,10 +3524,10 @@ rule Joint_Genotyping_chr14:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr14.gz'
 	message:
 		'Processing Joint Genotyping for chr14 -> {output}'
-  	params: partition = chr14_partitions
-  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
+	params: partition = chr14_partitions
+	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3538,10 +3543,10 @@ rule Joint_Genotyping_chr15:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr15.gz'
 	message:
 		'Processing Joint Genotyping for chr15 -> {output}'
-  	params: partition = chr15_partitions
-  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
+	params: partition = chr15_partitions
+	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3557,10 +3562,10 @@ rule Joint_Genotyping_chr16:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr16.gz'
 	message:
 		'Processing Joint Genotyping for chr16 -> {output}'
-  	params: partition = chr16_partitions
-  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
+	params: partition = chr16_partitions
+	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3576,10 +3581,10 @@ rule Joint_Genotyping_chr17:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr17.gz'
 	message:
 		'Processing Joint Genotyping for chr17 -> {output}'
-  	params: partition = chr17_partitions
-  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
+	params: partition = chr17_partitions
+	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3595,10 +3600,10 @@ rule Joint_Genotyping_chr18:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr18.gz'
 	message:
 		'Processing Joint Genotyping for chr18 -> {output}'
-  	params: partition = chr18_partitions
-  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
+	params: partition = chr18_partitions
+	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3614,10 +3619,10 @@ rule Joint_Genotyping_chr19:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr19.gz'
 	message:
 		'Processing Joint Genotyping for chr19 -> {output}'
-  	params: partition = chr19_partitions
-  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
+	params: partition = chr19_partitions
+	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3633,10 +3638,10 @@ rule Joint_Genotyping_chr20:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr20.gz'
 	message:
 		'Processing Joint Genotyping for chr20 -> {output}'
-  	params: partition = chr20_partitions
-  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
+	params: partition = chr20_partitions
+	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3652,10 +3657,10 @@ rule Joint_Genotyping_chr21:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr21.gz'
 	message:
 		'Processing Joint Genotyping for chr21 -> {output}'
-  	params: partition = chr21_partitions
-  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
+	params: partition = chr21_partitions
+	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3671,10 +3676,10 @@ rule Joint_Genotyping_chr22:
 		vcf = main_dir + output_dir + '{sample}.vcf_chr22.gz'
 	message:
 		'Processing Joint Genotyping for chr22 -> {output}'
-  	params: partition = chr22_partitions
-  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
+	params: partition = chr22_partitions
+	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3690,10 +3695,10 @@ rule Joint_Genotyping_chrX:
 		vcf = main_dir + output_dir + '{sample}.vcf_chrX.gz'
 	message:
 		'Processing Joint Genotyping for chrX -> {output}'
-  	params: partition = chrX_partitions
-  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
+	params: partition = chrX_partitions
+	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3709,10 +3714,10 @@ rule Joint_Genotyping_chrY:
 		vcf = main_dir + output_dir + '{sample}.vcf_chrY.gz'
 	message:
 		'Processing Joint Genotyping for chrY -> {output}'
-  	params: partition = chrY_partitions
-  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
+	params: partition = chrY_partitions
+	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} GenotypeGVCFs \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} GenotypeGVCFs \
 		-R {input.fa} --max-alternate-alleles 5 \
 		-V {input.site} \
 		-O {output.vcf} --dbsnp {input.ksites4} -ip 100'
@@ -3751,8 +3756,8 @@ rule Merge_VCFs:
 		merged_vcfs = main_dir + output_dir + '{sample}_vcf.gz'
 	message:
 		'Merging all Vcfs -> {output}'
-  	params: partition = merge_vcf_partition
-  	resources: cpus= merge_vcf_cpus, mem_mb= merge_vcf_mem
+	params: partition = merge_vcf_partition
+	resources: cpus= merge_vcf_cpus, mem_mb= merge_vcf_mem
 	shell:
 		'picard MergeVcfs \
 		I={input.vcf_chr1} I={input.vcf_chr2} I={input.vcf_chr3} I={input.vcf_chr4} I={input.vcf_chr5} \
@@ -3780,10 +3785,10 @@ rule Variant_Recalibrator_SNPs_chr1:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr1.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr1 -> {output}'
-  	params: partition = chr1_partitions
-  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
+	params: partition = chr1_partitions
+	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -3812,10 +3817,10 @@ rule Variant_Recalibrator_SNPs_chr2:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr2.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr2 -> {output}'
-  	params: partition = chr2_partitions
-  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
+	params: partition = chr2_partitions
+	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -3844,10 +3849,10 @@ rule Variant_Recalibrator_SNPs_chr3:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr3.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr3 -> {output}'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -3876,10 +3881,10 @@ rule Variant_Recalibrator_SNPs_chr4:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr4.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr4 -> {output}'
-  	params: partition = chr4_partitions
-  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
+	params: partition = chr4_partitions
+	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -3908,10 +3913,10 @@ rule Variant_Recalibrator_SNPs_chr5:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr5.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr5 -> {output}'
-  	params: partition = chr5_partitions
-  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
+	params: partition = chr5_partitions
+	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -3940,10 +3945,10 @@ rule Variant_Recalibrator_SNPs_chr6:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr6.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr6 -> {output}'
-  	params: partition = chr6_partitions
-  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
+	params: partition = chr6_partitions
+	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -3972,10 +3977,10 @@ rule Variant_Recalibrator_SNPs_chr7:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr7.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr7 -> {output}'
-  	params: partition = chr7_partitions
-  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
+	params: partition = chr7_partitions
+	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4004,10 +4009,10 @@ rule Variant_Recalibrator_SNPs_chr8:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr8.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr8 -> {output}'
-  	params: partition = chr8_partitions
-  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
+	params: partition = chr8_partitions
+	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4036,10 +4041,10 @@ rule Variant_Recalibrator_SNPs_chr9:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr9.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr9 -> {output}'
-  	params: partition = chr9_partitions
-  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
+	params: partition = chr9_partitions
+	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4068,10 +4073,10 @@ rule Variant_Recalibrator_SNPs_chr10:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr10.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr10 -> {output}'
-  	params: partition = chr10_partitions
-  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
+	params: partition = chr10_partitions
+	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4100,10 +4105,10 @@ rule Variant_Recalibrator_SNPs_chr11:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr11.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr11 -> {output}'
-  	params: partition = chr11_partitions
-  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
+	params: partition = chr11_partitions
+	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4132,10 +4137,10 @@ rule Variant_Recalibrator_SNPs_chr12:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr12.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr12 -> {output}'
-  	params: partition = chr12_partitions
-  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
+	params: partition = chr12_partitions
+	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4164,10 +4169,10 @@ rule Variant_Recalibrator_SNPs_chr13:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr13.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr13 -> {output}'
-  	params: partition = chr13_partitions
-  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
+	params: partition = chr13_partitions
+	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4196,10 +4201,10 @@ rule Variant_Recalibrator_SNPs_chr14:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr14.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr14 -> {output}'
-  	params: partition = chr14_partitions
-  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
+	params: partition = chr14_partitions
+	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4228,10 +4233,10 @@ rule Variant_Recalibrator_SNPs_chr15:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr15.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr15 -> {output}'
-  	params: partition = chr15_partitions
-  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
+	params: partition = chr15_partitions
+	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4260,10 +4265,10 @@ rule Variant_Recalibrator_SNPs_chr16:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr16.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr16 -> {output}'
-  	params: partition = chr16_partitions
-  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
+	params: partition = chr16_partitions
+	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4292,10 +4297,10 @@ rule Variant_Recalibrator_SNPs_chr17:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr17.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr17 -> {output}'
-  	params: partition = chr17_partitions
-  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
+	params: partition = chr17_partitions
+	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4324,10 +4329,10 @@ rule Variant_Recalibrator_SNPs_chr18:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr18.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr18 -> {output}'
-  	params: partition = chr18_partitions
-  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
+	params: partition = chr18_partitions
+	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4356,10 +4361,10 @@ rule Variant_Recalibrator_SNPs_chr19:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr19.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr19 -> {output}'
-  	params: partition = chr19_partitions
-  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
+	params: partition = chr19_partitions
+	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4388,10 +4393,10 @@ rule Variant_Recalibrator_SNPs_chr20:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr20.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr20 -> {output}'
-  	params: partition = chr20_partitions
-  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
+	params: partition = chr20_partitions
+	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4420,10 +4425,10 @@ rule Variant_Recalibrator_SNPs_chr21:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr21.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr21 -> {output}'
-  	params: partition = chr21_partitions
-  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
+	params: partition = chr21_partitions
+	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4452,10 +4457,10 @@ rule Variant_Recalibrator_SNPs_chr22:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chr22.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chr22 -> {output}'
-  	params: partition = chr22_partitions
-  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
+	params: partition = chr22_partitions
+	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4484,10 +4489,10 @@ rule Variant_Recalibrator_SNPs_chrX:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chrX.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chrX -> {output}'
-  	params: partition = chrX_partitions
-  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
+	params: partition = chrX_partitions
+	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4516,10 +4521,10 @@ rule Variant_Recalibrator_SNPs_chrY:
 		tranches_snp = main_dir + output_dir + '{sample}.recalibrate_SNP_chrY.tranches'
 	message:
 		'Processing Variant Recalibration with SNPs for chrY -> {output}'
-  	params: partition = chrY_partitions
-  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
+	params: partition = chrY_partitions
+	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-mode SNP -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
@@ -4547,10 +4552,10 @@ rule Applying_Recalibration_SNPs_chr1:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr1.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr1 -> {output}'
-  	params: partition = chr1_partitions
-  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
+	params: partition = chr1_partitions
+	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4571,10 +4576,10 @@ rule Applying_Recalibration_SNPs_chr2:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr2.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr2 -> {output}'
-  	params: partition = chr2_partitions
-  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
+	params: partition = chr2_partitions
+	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4595,10 +4600,10 @@ rule Applying_Recalibration_SNPs_chr3:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr3.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr3 -> {output}'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4619,10 +4624,10 @@ rule Applying_Recalibration_SNPs_chr4:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr4.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr4 -> {output}'
-  	params: partition = chr4_partitions
-  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
+	params: partition = chr4_partitions
+	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4643,10 +4648,10 @@ rule Applying_Recalibration_SNPs_chr5:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr5.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr5 -> {output}'
-  	params: partition = chr5_partitions
-  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
+	params: partition = chr5_partitions
+	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4667,10 +4672,10 @@ rule Applying_Recalibration_SNPs_chr6:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr6.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr6 -> {output}'
-  	params: partition = chr6_partitions
-  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
+	params: partition = chr6_partitions
+	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4691,10 +4696,10 @@ rule Applying_Recalibration_SNPs_chr7:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr7.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr7 -> {output}'
-  	params: partition = chr7_partitions
-  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
+	params: partition = chr7_partitions
+	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4715,10 +4720,10 @@ rule Applying_Recalibration_SNPs_chr8:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr8.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr8 -> {output}'
-  	params: partition = chr8_partitions
-  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
+	params: partition = chr8_partitions
+	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4739,10 +4744,10 @@ rule Applying_Recalibration_SNPs_chr9:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr9.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr9 -> {output}'
-  	params: partition = chr9_partitions
-  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
+	params: partition = chr9_partitions
+	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4763,10 +4768,10 @@ rule Applying_Recalibration_SNPs_chr10:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr10.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr10 -> {output}'
-  	params: partition = chr10_partitions
-  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
+	params: partition = chr10_partitions
+	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4787,10 +4792,10 @@ rule Applying_Recalibration_SNPs_chr11:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr11.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr11 -> {output}'
-  	params: partition = chr11_partitions
-  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
+	params: partition = chr11_partitions
+	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4811,10 +4816,10 @@ rule Applying_Recalibration_SNPs_chr12:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr12.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr12 -> {output}'
-  	params: partition = chr12_partitions
-  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
+	params: partition = chr12_partitions
+	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4835,10 +4840,10 @@ rule Applying_Recalibration_SNPs_chr13:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr13.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr13 -> {output}'
-  	params: partition = chr13_partitions
-  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
+	params: partition = chr13_partitions
+	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4859,10 +4864,10 @@ rule Applying_Recalibration_SNPs_chr14:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr14.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr14 -> {output}'
-  	params: partition = chr14_partitions
-  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
+	params: partition = chr14_partitions
+	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4883,10 +4888,10 @@ rule Applying_Recalibration_SNPs_chr15:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr15.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr15 -> {output}'
-  	params: partition = chr15_partitions
-  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
+	params: partition = chr15_partitions
+	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4907,10 +4912,10 @@ rule Applying_Recalibration_SNPs_chr16:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr16.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr16 -> {output}'
-  	params: partition = chr16_partitions
-  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
+	params: partition = chr16_partitions
+	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4931,10 +4936,10 @@ rule Applying_Recalibration_SNPs_chr17:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr17.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr17 -> {output}'
-  	params: partition = chr17_partitions
-  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
+	params: partition = chr17_partitions
+	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4955,10 +4960,10 @@ rule Applying_Recalibration_SNPs_chr18:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr18.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr18 -> {output}'
-  	params: partition = chr18_partitions
-  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
+	params: partition = chr18_partitions
+	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -4979,10 +4984,10 @@ rule Applying_Recalibration_SNPs_chr19:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr19.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr19 -> {output}'
-  	params: partition = chr19_partitions
-  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
+	params: partition = chr19_partitions
+	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -5003,10 +5008,10 @@ rule Applying_Recalibration_SNPs_chr20:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr20.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr20 -> {output}'
-  	params: partition = chr20_partitions
-  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
+	params: partition = chr20_partitions
+	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -5027,10 +5032,10 @@ rule Applying_Recalibration_SNPs_chr21:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr21.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr21 -> {output}'
-  	params: partition = chr21_partitions
-  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
+	params: partition = chr21_partitions
+	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -5051,10 +5056,10 @@ rule Applying_Recalibration_SNPs_chr22:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chr22.vcf'
 	message:
 		'Applying Recalibration with SNPs for chr22 -> {output}'
-  	params: partition = chr22_partitions
-  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
+	params: partition = chr22_partitions
+	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -5075,10 +5080,10 @@ rule Applying_Recalibration_SNPs_chrX:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chrX.vcf'
 	message:
 		'Applying Recalibration with SNPs for chrX -> {output}'
-  	params: partition = chrX_partitions
-  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
+	params: partition = chrX_partitions
+	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -5099,10 +5104,10 @@ rule Applying_Recalibration_SNPs_chrY:
 		vcf_snp = main_dir + output_dir + '{sample}.recalibrated_snps_raw_indels_chrY.vcf'
 	message:
 		'Applying Recalibration with SNPs for chrY -> {output}'
-  	params: partition = chrY_partitions
-  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
+	params: partition = chrY_partitions
+	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf} \
 		-O {output.vcf_snp} \
@@ -5128,10 +5133,10 @@ rule Variant_Recalibrator_Indels_chr1:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr1.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr1 -> {output}'
-  	params: partition = chr1_partitions
-  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
+	params: partition = chr1_partitions
+	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5156,10 +5161,10 @@ rule Variant_Recalibrator_Indels_chr2:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr2.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr2 -> {output}'
-  	params: partition = chr2_partitions
-  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
+	params: partition = chr2_partitions
+	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5184,10 +5189,10 @@ rule Variant_Recalibrator_Indels_chr3:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr3.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr3 -> {output}'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5212,10 +5217,10 @@ rule Variant_Recalibrator_Indels_chr4:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr4.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr4 -> {output}'
-  	params: partition = chr4_partitions
-  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
+	params: partition = chr4_partitions
+	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5240,10 +5245,10 @@ rule Variant_Recalibrator_Indels_chr5:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr5.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr5 -> {output}'
-  	params: partition = chr5_partitions
-  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
+	params: partition = chr5_partitions
+	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5268,10 +5273,10 @@ rule Variant_Recalibrator_Indels_chr6:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr6.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr6 -> {output}'
-  	params: partition = chr6_partitions
-  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
+	params: partition = chr6_partitions
+	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5296,10 +5301,10 @@ rule Variant_Recalibrator_Indels_chr7:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr7.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr7 -> {output}'
-  	params: partition = chr7_partitions
-  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
+	params: partition = chr7_partitions
+	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5324,10 +5329,10 @@ rule Variant_Recalibrator_Indels_chr8:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr8.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr8 -> {output}'
-  	params: partition = chr8_partitions
-  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
+	params: partition = chr8_partitions
+	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5352,10 +5357,10 @@ rule Variant_Recalibrator_Indels_chr9:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr9.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr9 -> {output}'
-  	params: partition = chr9_partitions
-  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
+	params: partition = chr9_partitions
+	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5380,10 +5385,10 @@ rule Variant_Recalibrator_Indels_chr10:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr10.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr10 -> {output}'
-  	params: partition = chr10_partitions
-  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
+	params: partition = chr10_partitions
+	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5408,10 +5413,10 @@ rule Variant_Recalibrator_Indels_chr11:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr11.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr11 -> {output}'
-  	params: partition = chr11_partitions
-  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
+	params: partition = chr11_partitions
+	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5436,10 +5441,10 @@ rule Variant_Recalibrator_Indels_chr12:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr12.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr12 -> {output}'
-  	params: partition = chr12_partitions
-  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
+	params: partition = chr12_partitions
+	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5464,10 +5469,10 @@ rule Variant_Recalibrator_Indels_chr13:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr13.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr13 -> {output}'
-  	params: partition = chr13_partitions
-  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
+	params: partition = chr13_partitions
+	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5492,10 +5497,10 @@ rule Variant_Recalibrator_Indels_chr14:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr14.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr14 -> {output}'
-  	params: partition = chr14_partitions
-  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
+	params: partition = chr14_partitions
+	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5520,10 +5525,10 @@ rule Variant_Recalibrator_Indels_chr15:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr15.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr15 -> {output}'
-  	params: partition = chr15_partitions
-  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
+	params: partition = chr15_partitions
+	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5548,10 +5553,10 @@ rule Variant_Recalibrator_Indels_chr16:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr16.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr16 -> {output}'
-  	params: partition = chr16_partitions
-  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
+	params: partition = chr16_partitions
+	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5576,10 +5581,10 @@ rule Variant_Recalibrator_Indels_chr17:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr17.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr17 -> {output}'
-  	params: partition = chr17_partitions
-  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
+	params: partition = chr17_partitions
+	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5604,10 +5609,10 @@ rule Variant_Recalibrator_Indels_chr18:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr1.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr18 -> {output}'
-  	params: partition = chr18_partitions
-  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
+	params: partition = chr18_partitions
+	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5632,10 +5637,10 @@ rule Variant_Recalibrator_Indels_chr19:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr19.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr19 -> {output}'
-  	params: partition = chr19_partitions
-  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
+	params: partition = chr19_partitions
+	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5660,10 +5665,10 @@ rule Variant_Recalibrator_Indels_chr20:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr20.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr20 -> {output}'
-  	params: partition = chr20_partitions
-  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
+	params: partition = chr20_partitions
+	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5688,10 +5693,10 @@ rule Variant_Recalibrator_Indels_chr21:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr21.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr21 -> {output}'
-  	params: partition = chr21_partitions
-  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
+	params: partition = chr21_partitions
+	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5716,10 +5721,10 @@ rule Variant_Recalibrator_Indels_chr22:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chr22.R'
 	message:
 		'Processing Variant Recalibration with Indels for chr22 -> {output}'
-  	params: partition = chr22_partitions
-  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
+	params: partition = chr22_partitions
+	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5744,10 +5749,10 @@ rule Variant_Recalibrator_Indels_chrX:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chrX.R'
 	message:
 		'Processing Variant Recalibration with Indels for chrX -> {output}'
-  	params: partition = chrX_partitions
-  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
+	params: partition = chrX_partitions
+	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5772,10 +5777,10 @@ rule Variant_Recalibrator_Indels_chrY:
 		rscript_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_plots_chrY.R'
 	message:
 		'Processing Variant Recalibration with Indels for chrY -> {output}'
-  	params: partition = chrY_partitions
-  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
+	params: partition = chrY_partitions
+	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} VariantRecalibrator \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} VariantRecalibrator \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_indel} \
@@ -5799,12 +5804,12 @@ rule Applying_Recalibration_Indels_chr1:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr1.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr1.gz'
-  	params: partition = chr1_partitions
-  	resources: cpus= chr1_cpus, mem_mb= chr1_mem
+	params: partition = chr1_partitions
+	resources: cpus= chr1_cpus, mem_mb= chr1_mem
 	message:
 		'Applying Recalibration with Indels for chr1 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -5823,12 +5828,12 @@ rule Applying_Recalibration_Indels_chr2:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr2.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr2.gz'
-  	params: partition = chr2_partitions
-  	resources: cpus= chr2_cpus, mem_mb= chr2_mem
+	params: partition = chr2_partitions
+	resources: cpus= chr2_cpus, mem_mb= chr2_mem
 	message:
 		'Applying Recalibration with Indels for chr2 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -5847,12 +5852,12 @@ rule Applying_Recalibration_Indels_chr3:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr3.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr3.gz'
-  	params: partition = chr3_partitions
-  	resources: cpus= chr3_cpus, mem_mb= chr3_mem
+	params: partition = chr3_partitions
+	resources: cpus= chr3_cpus, mem_mb= chr3_mem
 	message:
 		'Applying Recalibration with Indels for chr3 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -5871,12 +5876,12 @@ rule Applying_Recalibration_Indels_chr4:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr4.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr4.gz'
-  	params: partition = chr4_partitions
-  	resources: cpus= chr4_cpus, mem_mb= chr4_mem
+	params: partition = chr4_partitions
+	resources: cpus= chr4_cpus, mem_mb= chr4_mem
 	message:
 		'Applying Recalibration with Indels for chr4 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -5895,12 +5900,12 @@ rule Applying_Recalibration_Indels_chr5:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr5.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr5.gz'
-  	params: partition = chr5_partitions
-  	resources: cpus= chr5_cpus, mem_mb= chr5_mem
+	params: partition = chr5_partitions
+	resources: cpus= chr5_cpus, mem_mb= chr5_mem
 	message:
 		'Applying Recalibration with Indels for chr5 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -5919,12 +5924,12 @@ rule Applying_Recalibration_Indels_chr6:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr6.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr6.gz'
-  	params: partition = chr6_partitions
-  	resources: cpus= chr6_cpus, mem_mb= chr6_mem
+	params: partition = chr6_partitions
+	resources: cpus= chr6_cpus, mem_mb= chr6_mem
 	message:
 		'Applying Recalibration with Indels for chr6 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -5943,12 +5948,12 @@ rule Applying_Recalibration_Indels_chr7:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr7.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr7.gz'
-  	params: partition = chr7_partitions
-  	resources: cpus= chr7_cpus, mem_mb= chr7_mem
+	params: partition = chr7_partitions
+	resources: cpus= chr7_cpus, mem_mb= chr7_mem
 	message:
 		'Applying Recalibration with Indels for chr7 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -5967,12 +5972,12 @@ rule Applying_Recalibration_Indels_chr8:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr8.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr8.gz'
-  	params: partition = chr8_partitions
-  	resources: cpus= chr8_cpus, mem_mb= chr8_mem
+	params: partition = chr8_partitions
+	resources: cpus= chr8_cpus, mem_mb= chr8_mem
 	message:
 		'Applying Recalibration with Indels for chr8 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -5991,12 +5996,12 @@ rule Applying_Recalibration_Indels_chr9:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr9.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr9.gz'
-  	params: partition = chr9_partitions
-  	resources: cpus= chr9_cpus, mem_mb= chr9_mem
+	params: partition = chr9_partitions
+	resources: cpus= chr9_cpus, mem_mb= chr9_mem
 	message:
 		'Applying Recalibration with Indels for chr9 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6015,12 +6020,12 @@ rule Applying_Recalibration_Indels_chr10:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr10.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr10.gz'
-  	params: partition = chr10_partitions
-  	resources: cpus= chr10_cpus, mem_mb= chr10_mem
+	params: partition = chr10_partitions
+	resources: cpus= chr10_cpus, mem_mb= chr10_mem
 	message:
 		'Applying Recalibration with Indels for chr10 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6039,12 +6044,12 @@ rule Applying_Recalibration_Indels_chr11:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr11.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr11.gz'
-  	params: partition = chr11_partitions
-  	resources: cpus= chr11_cpus, mem_mb= chr11_mem
+	params: partition = chr11_partitions
+	resources: cpus= chr11_cpus, mem_mb= chr11_mem
 	message:
 		'Applying Recalibration with Indels for chr11 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6063,12 +6068,12 @@ rule Applying_Recalibration_Indels_chr12:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr12.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr12.gz'
-  	params: partition = chr12_partitions
-  	resources: cpus= chr12_cpus, mem_mb= chr12_mem
+	params: partition = chr12_partitions
+	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	message:
 		'Applying Recalibration with Indels for chr1 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6087,12 +6092,12 @@ rule Applying_Recalibration_Indels_chr13:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr13.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr13.gz'
-  	params: partition = chr13_partitions
-  	resources: cpus= chr13_cpus, mem_mb= chr13_mem
+	params: partition = chr13_partitions
+	resources: cpus= chr13_cpus, mem_mb= chr13_mem
 	message:
 		'Applying Recalibration with Indels for chr13 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6111,12 +6116,12 @@ rule Applying_Recalibration_Indels_chr14:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr14.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr14.gz'
-  	params: partition = chr14_partitions
-  	resources: cpus= chr14_cpus, mem_mb= chr14_mem
+	params: partition = chr14_partitions
+	resources: cpus= chr14_cpus, mem_mb= chr14_mem
 	message:
 		'Applying Recalibration with Indels for chr14 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6135,12 +6140,12 @@ rule Applying_Recalibration_Indels_chr15:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr15.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr15.gz'
-  	params: partition = chr15_partitions
-  	resources: cpus= chr15_cpus, mem_mb= chr15_mem
+	params: partition = chr15_partitions
+	resources: cpus= chr15_cpus, mem_mb= chr15_mem
 	message:
 		'Applying Recalibration with Indels for chr15 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6159,12 +6164,12 @@ rule Applying_Recalibration_Indels_chr16:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr16.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr16.gz'
-  	params: partition = chr16_partitions
-  	resources: cpus= chr16_cpus, mem_mb= chr16_mem
+	params: partition = chr16_partitions
+	resources: cpus= chr16_cpus, mem_mb= chr16_mem
 	message:
 		'Applying Recalibration with Indels for chr16 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6183,12 +6188,12 @@ rule Applying_Recalibration_Indels_chr17:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr17.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr17.gz'
-  	params: partition = chr17_partitions
-  	resources: cpus= chr17_cpus, mem_mb= chr17_mem
+	params: partition = chr17_partitions
+	resources: cpus= chr17_cpus, mem_mb= chr17_mem
 	message:
 		'Applying Recalibration with Indels for chr17 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6207,12 +6212,12 @@ rule Applying_Recalibration_Indels_chr18:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr18.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr18.gz'
-  	params: partition = chr18_partitions
-  	resources: cpus= chr18_cpus, mem_mb= chr18_mem
+	params: partition = chr18_partitions
+	resources: cpus= chr18_cpus, mem_mb= chr18_mem
 	message:
 		'Applying Recalibration with Indels for chr18 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6231,12 +6236,12 @@ rule Applying_Recalibration_Indels_chr19:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr19.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr19.gz'
-  	params: partition = chr19_partitions
-  	resources: cpus= chr19_cpus, mem_mb= chr19_mem
+	params: partition = chr19_partitions
+	resources: cpus= chr19_cpus, mem_mb= chr19_mem
 	message:
 		'Applying Recalibration with Indels for chr19 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6255,12 +6260,12 @@ rule Applying_Recalibration_Indels_chr20:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr20.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr20.gz'
-  	params: partition = chr20_partitions
-  	resources: cpus= chr20_cpus, mem_mb= chr20_mem
+	params: partition = chr20_partitions
+	resources: cpus= chr20_cpus, mem_mb= chr20_mem
 	message:
 		'Applying Recalibration with Indels for chr20 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6279,12 +6284,12 @@ rule Applying_Recalibration_Indels_chr21:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr21.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr21.gz'
-  	params: partition = chr21_partitions
-  	resources: cpus= chr21_cpus, mem_mb= chr21_mem
+	params: partition = chr21_partitions
+	resources: cpus= chr21_cpus, mem_mb= chr21_mem
 	message:
 		'Applying Recalibration with Indels for chr21 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6303,12 +6308,12 @@ rule Applying_Recalibration_Indels_chr22:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chr22.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chr22.gz'
-  	params: partition = chr22_partitions
-  	resources: cpus= chr22_cpus, mem_mb= chr22_mem
+	params: partition = chr22_partitions
+	resources: cpus= chr22_cpus, mem_mb= chr22_mem
 	message:
 		'Applying Recalibration with Indels for chr22 -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6327,12 +6332,12 @@ rule Applying_Recalibration_Indels_chrX:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chrX.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chrX.gz'
-  	params: partition = chrX_partitions
-  	resources: cpus= chrX_cpus, mem_mb= chrX_mem
+	params: partition = chrX_partitions
+	resources: cpus= chrX_cpus, mem_mb= chrX_mem
 	message:
 		'Applying Recalibration with Indels for chrX -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6351,12 +6356,12 @@ rule Applying_Recalibration_Indels_chrY:
 		tranches_indel = main_dir + output_dir + '{sample}.recalibrate_INDEL_chrY.tranches'
 	output:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf_chrY.gz'
-  	params: partition = chrY_partitions
-  	resources: cpus= chrY_cpus, mem_mb= chrY_mem
+	params: partition = chrY_partitions
+	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	message:
 		'Applying Recalibration with Indels for chrY -> {output}'
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} ApplyVQSR \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyVQSR \
 		-R {input.fa} \
 		-V {input.vcf_snp} \
 		-O {output.recal_vcf} \
@@ -6399,8 +6404,8 @@ rule Merge_Recalibrated_VCFs:
 		merged_recalibrated_vcfs = main_dir + output_dir + '{sample}.recalibrated_variants.vcf.gz'
 	message:
 		'Merging all Recalibrated Vcfs -> {output}'
-  	params: partition = merge_recalibrated_vcf_partition
-  	resources: cpus= merge_recalibrated_vcf_cpus, mem_mb= merge_recalibrated_vcf_mem
+	params: partition = merge_recalibrated_vcf_partition
+	resources: cpus= merge_recalibrated_vcf_cpus, mem_mb= merge_recalibrated_vcf_mem
 	shell:
 		'picard MergeVcfs \
 		I={input.vcf_chr1} I={input.vcf_chr2} I={input.vcf_chr3} I={input.vcf_chr4} I={input.vcf_chr5} \
@@ -6422,10 +6427,10 @@ rule Calculate_Genotype_Posteriors:
 		recal_vcf_CGP = main_dir + output_dir + '{sample}_recalibrated_vcf.gz'
 	message:
 		'Calculating Genotype Posteriors -> {output}'
-  	params: partition = genotype_posteriors_partition
-  	resources: cpus= genotype_posteriors_cpus, mem_mb= genotype_posteriors_mem
+	params: partition = genotype_posteriors_partition
+	resources: cpus= genotype_posteriors_cpus, mem_mb= genotype_posteriors_mem
 	shell:
-		'java -Xmx{resources.mem_mb}g -jar {input.jar} CalculateGenotypePosteriors \
+		'java -Xmx{resources.mem_mb}m -jar {input.jar} CalculateGenotypePosteriors \
 		-V {input.recal_vcf} \
 		-O {output.recal_vcf_CGP} \
 		-supporting {input.ksites7}'
