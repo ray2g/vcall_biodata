@@ -1,6 +1,8 @@
 ## Variant Calling Pipeline - João Raimundo @BioData.pt
 
-#|_________________Partitions_sets___________________________________________|
+
+#|_________________Cluster_Configuration____________________________________________|
+
 
 ##__rule_bwa_index___________________________________\\
 
@@ -8,19 +10,19 @@ bwa_index_partition = config["bwa_index_partition"]
 bwa_index_cpus = config["bwa_index_cpus"]
 bwa_index_mem = config["bwa_index_mem"]
 
-##__rule_BWA_samblaster_sambamba___________________________\\
+##__rule_BWA_samblaster_sambamba_________________________________________________\\
 
 BWA_samblaster_sambamba_partition = config["BWA_samblaster_sambamba_partition"]
 BWA_samblaster_sambamba_threads = config["BWA_samblaster_sambamba_threads"]
 BWA_samblaster_sambamba_memory = config["BWA_samblaster_sambamba_memory"]
 
-##_______rule_picard_dict___________________________\\
+##_______rule_picard_dict____________________________________\\
 
 picard_dict_partition = config["picard_dict_partition"]
 picard_dict_cpus = config["picard_dict_cpus"]
 picard_dict_mem = config["picard_dict_mem"]
 
-##______rule_samtools_index__________________________\\
+##______rule_samtools_index___________________________________\\
 
 samtools_index_partition = config["samtools_index_partition"]
 samtools_index_cpus = config["samtools_index_cpus"]
@@ -116,7 +118,21 @@ merge_vcf_partition = config["merge_vcf_partition"]
 merge_vcf_cpus = config["merge_vcf_cpus"]
 merge_vcf_mem = config["merge_vcf_mem"]
 
-#|__________Dir_settings:____________|
+
+##_______rule_Merge_Recalibrated_VCFs________________________________________\\
+
+merge_recalibrated_vcf_partition = config["merge_recalibrated_vcf_partition"]
+merge_recalibrated_vcf_cpus = config["merge_recalibrated_vcf_cpus"]
+merge_recalibrated_vcf_mem = config["merge_mem"]
+
+
+##_______rule_Calculate_Genotype_Posteriors________________________________________\\
+
+genotype_posteriors_partition = config["genotype_posteriors_partition"]
+genotype_posteriors_cpus = config["genotype_posteriors_cpus"]
+genotype_posteriors_mem = config["genotype_posteriors_mem"]
+
+#|__________Directory_Settings_______________________________________________________|
 
 base_dir = config["base_dir"]
 main_dir = config["main_dir"] 
@@ -166,7 +182,7 @@ TARGET_chrY = config["TARGET_chrY"]
 GATK = config["GATK"]
 
 
-#|_______________Rules_________________________________________________________|
+#|____________________Rules_________________________________________________________|
 
 rule bwa_index: # Create index, fasta.sa
 	input:
@@ -5771,7 +5787,7 @@ rule Variant_Recalibrator_Indels_chrY:
 		--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 {input.ksites1}'
 		
 		
-###__________Variant_Recalibrator_Indels_________________________________#
+###__________Variant_Recalibrator_Indels_______________________________________________________________#
 		
 		
 rule Applying_Recalibration_Indels_chr1:
@@ -6383,6 +6399,8 @@ rule Merge_Recalibrated_VCFs:
 		merged_recalibrated_vcfs = main_dir + output_dir + '{sample}.recalibrated_variants.vcf.gz'
 	message:
 		'Merging all Recalibrated Vcfs -> {output}'
+  	params: partition = merge_recalibrated_vcf_partition
+  	resources: cpus= merge_recalibrated_vcf_cpus, mem_mb= merge_recalibrated_vcf_mem
 	shell:
 		'picard MergeVcfs \
 		I={input.vcf_chr1} I={input.vcf_chr2} I={input.vcf_chr3} I={input.vcf_chr4} I={input.vcf_chr5} \
@@ -6401,11 +6419,11 @@ rule Calculate_Genotype_Posteriors:
 		recal_vcf = main_dir + output_dir + '{sample}.recalibrated_variants.vcf.gz',
 		ksites7 = main_dir + genome_dir + KS7
 	output:
-		recal_vcf_CGP = main_dir + output_dir + '{sample}.recalibrated_variants_postCGP.vcf.gz'
-	resources:
-        	mem_mb= java_memory
+		recal_vcf_CGP = main_dir + output_dir + '{sample}_recalibrated_vcf.gz'
 	message:
 		'Calculating Genotype Posteriors -> {output}'
+  	params: partition = genotype_posteriors_partition
+  	resources: cpus= genotype_posteriors_cpus, mem_mb= genotype_posteriors_mem
 	shell:
 		'java -Xmx{resources.mem_mb}g -jar {input.jar} CalculateGenotypePosteriors \
 		-V {input.recal_vcf} \
