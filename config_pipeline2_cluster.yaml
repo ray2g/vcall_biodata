@@ -1,3 +1,5 @@
+## Variant Calling Pipeline - João Raimundo @BioData.pt
+
 #__________Directories_Paths_________________________________________________________________________________
 
 base_dir: /mnt/ # where it start in docker env
@@ -178,3 +180,4 @@ genotype_posteriors_partition: 'large' # HPC partition
 genotype_posteriors_cpus: 16 # cpus
 genotype_posteriors_mem: 64421
 
+##__________________________________________________________________________________________________//
