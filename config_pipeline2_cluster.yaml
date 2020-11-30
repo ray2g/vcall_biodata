@@ -10,21 +10,41 @@ output_dir: outputs/ #output folder
 logs_dir: logs/ # for logs
 
 
-#______________Settings_______________________________________________________________________________________|
+#______________Settings____________________________________________________________________________________________|
 
-#fasta eg: {sample}.read1.fastq.gz
+# fasta eg: {sample}.read1.fastq.gz
 GENOME: resources_broad_hg38_v0_Homo_sapiens_assembly38
 
-# Known Sites
+# GATK Tools
+GATK: /mnt/gatk/gatk-package-4.1.7.0-local.jar 
+
+# Known Sites_________________________________________________________________________//
+
+# for the rules: BaseRecalibrator1, BaseRecalibrator2, Call_Variants, 
+# Variant_Recalibrator_SNPs, Variant_Recalibrator_Indels
 KS1: resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf.gz 
+
+# for the rules: BaseRecalibrator1, BaseRecalibrator2, Variant_Recalibrator_Indels
 KS2: resources_broad_hg38_v0_Mills_and_1000G_gold_standard.indels.hg38.vcf.gz 
+
+# for the rules: BaseRecalibrator1, BaseRecalibrator2, Variant_Recalibrator_SNPs
 KS3: resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf.gz
+
+# for the rule: Joint_Genotyping
 KS4: resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf.gz 
+
+# for the rule: Variant_Recalibrator_SNPs
 KS5: resources_broad_hg38_v0_hapmap_3.3.hg38.vcf.gz 
+
+# for the rule: Variant_Recalibrator_SNPs
 KS6: resources_broad_hg38_v0_1000G_omni2.5.hg38.vcf.gz 
+
+# for the rule: Calculate_Genotype_Posteriors
 KS7: 1000G.phase3.integrated.sites_only.no_MATCHED_REV.hg38.vcf  
 
-# Genome target files
+
+# Genome target files_______________________________________________________________________________________//
+
 TARGET_all_chr: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr.bed
 TARGET_chr1: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr1.bed
 TARGET_chr2: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chr2.bed
@@ -51,11 +71,8 @@ TARGET_chr22: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg1
 TARGET_chrX: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrX.bed
 TARGET_chrY: /mnt/samples/nexterarapidcapture_expandedexome_targetedregions_hg19_lifted_hg38_chrY.bed
 
-# GATK Tools
-GATK: /mnt/gatk/gatk-package-4.1.7.0-local.jar 
 
-
-#__________________________Rule_Settings___________________________________________________________________|
+#__________________________Rule_Settings___________________________________________________________________________|
 
 # rule bwa_index (Create index, fasta.sa) ------------\\
 
