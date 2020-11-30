@@ -35,6 +35,7 @@ samtools_index_mem = config["samtools_index_mem"]
 
 ##____Chromossome_Parallelization______________________________\\
 
+# partitions
 
 chr1_partitions = config["chr1_partitions"]
 chr2_partitions = config["chr2_partitions"]
