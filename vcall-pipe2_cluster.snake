@@ -1639,6 +1639,7 @@ rule gatk_BaseRecalibrator2_chrY:
 		pos_recal_data = main_dir + output_dir +'{sample}.sorted.bam_pos_recal_data_chrY.grp',
 		base_recal = main_dir + output_dir + logs_dir +'{sample}.base_recal_2_chrY.qsub'
 	message:
+		'Processing the second Base Recalibration for chrY -> {output}'
 	params: partition = chrY_partitions
 	resources: cpus= chrY_cpus, mem_mb= chrY_mem
 	shell:
