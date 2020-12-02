@@ -134,7 +134,7 @@ merge_vcf_mem = config["merge_vcf_mem"]
 
 merge_recalibrated_vcf_partition = config["merge_recalibrated_vcf_partition"]
 merge_recalibrated_vcf_cpus = config["merge_recalibrated_vcf_cpus"]
-merge_recalibrated_vcf_mem = config["merge_mem"]
+merge_recalibrated_vcf_mem = config["merge_recalibrated_vcf_mem"]
 
 
 ##_______rule_Calculate_Genotype_Posteriors________________________________________\\
