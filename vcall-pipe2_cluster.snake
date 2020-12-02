@@ -220,7 +220,7 @@ rule BWA_samblaster_sambamba: # Align reads to reference (using BWA);
 	message:
 		'Creating Alignment -> {output}'
 	params: partition = BWA_samblaster_sambamba_partition  
-	resources: cpus= BWA_samblaster_sambamba_threads, mem_mb= bwa_samblaster_sambamba_memory 
+	resources: cpus= BWA_samblaster_sambamba_threads, mem_mb= BWA_samblaster_sambamba_memory 
 	shell: 
 		'bwa mem -t {resources.cpus} -R "@RG\\tID:{wildcards.sample}\\tPL:ILLUMINA\\tSM:{wildcards.sample}" -M {input.ref} {input.r_fow} {input.r_rev} | '
 		'samblaster -M |'
