@@ -1,6 +1,12 @@
 ## Variant Calling Pipeline - João Raimundo @BioData.pt
 
 
+#|_________________Settings___________________|
+
+#configfile:"/mnt/share/config_pipeline.yaml" # Docker
+configfile:"/mnt/config_pipeline2_cluster.yaml" # Shifter
+
+
 #|_________________Cluster_Configuration____________________________________________|
 
 
