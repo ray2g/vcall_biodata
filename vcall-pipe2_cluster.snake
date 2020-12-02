@@ -2395,7 +2395,7 @@ rule Apply_BQSR_chr12:
 	message:
 		'Applying Base Quality Score Recalibration for chr12  -> {output}'
 	params: partition = chr12_partitions
-	resources: cpus= chr12cpus, mem_mb= chr12_mem
+	resources: cpus= chr12_cpus, mem_mb= chr12_mem
 	shell:
 		'java -Xmx{resources.mem_mb}m -jar {input.jar} ApplyBQSR \
 		-R {input.fa} \
