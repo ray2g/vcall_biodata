@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 
 shifter --volume=/home/ubuntu/vcall_docker_gatk4_bottle/:/mnt/  \
 --image=docker:ray2g/vcall_biodata:1.5.1 snakemake --snakefile /mnt/vcall-pipe_cluster.snake \
