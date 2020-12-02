@@ -203,8 +203,8 @@ rule bwa_index: # Create index, fasta.sa
 		main_dir + genome_dir + GENOME + '.fasta.sa'
 	message:
 		'Building index -> {output}'
-  	params: partition = bwa_index_partition
-  	resources: cpus= bwa_index_cpus, mem_mb= bwa_index_mem
+	params: partition = bwa_index_partition
+	resources: cpus= bwa_index_cpus, mem_mb= bwa_index_mem
 	shell:
 		'bwa index {input.fa}' 
 		
@@ -219,7 +219,7 @@ rule BWA_samblaster_sambamba: # Align reads to reference (using BWA);
 		align = main_dir + output_dir + '{sample}.alignment.bam'
 	message:
 		'Creating Alignment -> {output}'
-  	params: partition = BWA_samblaster_sambamba_partition  
+	params: partition = BWA_samblaster_sambamba_partition  
 	resources: cpus= BWA_samblaster_sambamba_threads, mem_mb= bwa_samblaster_sambamba_memory 
 	shell: 
 		'bwa mem -t {resources.cpus} -R "@RG\\tID:{wildcards.sample}\\tPL:ILLUMINA\\tSM:{wildcards.sample}" -M {input.ref} {input.r_fow} {input.r_rev} | '
@@ -236,8 +236,8 @@ rule picard_dict:
 		main_dir + genome_dir + GENOME + '.dict'
 	message:
 		'Creating Dictionary with Picard -> {output}'
-  	params: partition = picard_dict_partition
-  	resources: cpus= picard_dict_cpus, mem_mb= picard_dict_mem 
+	params: partition = picard_dict_partition
+	resources: cpus= picard_dict_cpus, mem_mb= picard_dict_mem 
 	shell:
 		'picard CreateSequenceDictionary R={input} O={output}'
 		
