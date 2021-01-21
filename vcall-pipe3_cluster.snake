@@ -1,0 +1,121 @@
+## Variant Calling Pipeline - João Raimundo @BioData.pt
+## Version 3
+
+
+#|_________________Settings___________________|
+
+#configfile:"/mnt/share/config_pipeline.yaml" # Docker
+configfile:"/mnt/config_pipeline2_cluster.yaml" # Shifter
+
+
+#|__________Directory_Settings_______________________________________________________|
+
+base_dir = config["base_dir"]
+main_dir = config["main_dir"] 
+genome_dir = config["genome_dir"]
+sample_dir = config["sample_dir"] 
+output_dir = config["output_dir"] 
+logs_dir = config["logs_dir"]
+
+GENOME = config["GENOME"]
+KS1 = config["KS1"]
+KS2 = config["KS2"]
+KS3 = config["KS3"]
+KS4 = config["KS4"]
+KS5 = config["KS5"]
+KS6 = config["KS6"]
+KS7 = config["KS7"]
+
+# Genome target files
+TARGET_all_chr = config["TARGET_all_chr"]
+TARGET_chr1 = config["TARGET_chr1"]
+TARGET_chr2 = config["TARGET_chr2"]
+TARGET_chr3 = config["TARGET_chr3"]
+TARGET_chr4 = config["TARGET_chr4"]
+TARGET_chr5 = config["TARGET_chr5"]
+TARGET_chr6 = config["TARGET_chr6"]
+TARGET_chr7 = config["TARGET_chr7"]
+TARGET_chr8 = config["TARGET_chr8"]
+TARGET_chr9 = config["TARGET_chr9"]
+TARGET_chr10 = config["TARGET_chr10"]
+TARGET_chr11 = config["TARGET_chr11"]
+TARGET_chr12 = config["TARGET_chr12"]
+TARGET_chr13 = config["TARGET_chr13"]
+TARGET_chr14 = config["TARGET_chr14"]
+TARGET_chr15 = config["TARGET_chr15"]
+TARGET_chr16 = config["TARGET_chr16"]
+TARGET_chr17 = config["TARGET_chr17"]
+TARGET_chr18 = config["TARGET_chr18"]
+TARGET_chr19 = config["TARGET_chr19"]
+TARGET_chr20 = config["TARGET_chr20"]
+TARGET_chr21 = config["TARGET_chr21"]
+TARGET_chr22 = config["TARGET_chr22"]
+TARGET_chrX = config["TARGET_chrX"]
+TARGET_chrY = config["TARGET_chrY"]
+
+
+# GATK Tools
+GATK = config["GATK"]
+
+
+#|____________________Rules_________________________________________________________|
+
+rule bwa_index: # Create index, fasta.sa
+	input:
+		fa = main_dir + genome_dir + GENOME + ".fasta"
+	output:
+		main_dir + genome_dir + GENOME + '.fasta.sa'
+	message:
+		'Building index -> {output}'
+	params: partition = 'large'
+	resources: cpus=16, mem_mb=64421
+	shell:
+		'bwa index {input.fa}' 
+		
+		
+rule BWA_samblaster_sambamba: # Align reads to reference (using BWA); 
+	input:
+		index = main_dir + genome_dir + GENOME + '.fasta.sa',
+		ref = main_dir + genome_dir + GENOME + '.fasta',
+		r_fow = main_dir + sample_dir + '{sample}.read1.fastq.gz', #R1
+		r_rev = main_dir + sample_dir + '{sample}.read2.fastq.gz'  #R2
+	output:
+		align = main_dir + output_dir + '{sample}.alignment.bam'
+	message:
+		'Creating Alignment -> {output}'
+	params: partition = 'large'  
+	resources: cpus=16, mem_mb=64421 
+	shell: 
+		'bwa mem -t {resources.cpus} -R "@RG\\tID:{wildcards.sample}\\tPL:ILLUMINA\\tSM:{wildcards.sample}" -M {input.ref} {input.r_fow} {input.r_rev} | '
+		'samblaster -M |'
+		'sambamba view -S -f bam -l 0 /dev/stdin |'
+		'sambamba sort -m {resources.mem_mb}MB -t {resources.cpus} -o {output.align} /dev/stdin 2>&1'
+		
+		
+		
+rule picard_dict:
+	input:
+		main_dir + genome_dir + GENOME + '.fasta'
+	output:
+		main_dir + genome_dir + GENOME + '.dict'
+	message:
+		'Creating Dictionary with Picard -> {output}'
+	params: partition = 'small'
+	resources: cpus=4, mem_mb=16040
+	shell:
+		'picard CreateSequenceDictionary R={input} O={output}'
+		
+		
+rule samtools_index:
+	input:
+		main_dir + genome_dir + GENOME + '.fasta'
+	output:
+		main_dir + genome_dir + GENOME + '.fasta.fai'
+	message:
+		'Creating index genome fasta file -> {output}'
+	params: partition = 'medium'
+	resources: cpus=8, mem_mb=32167
+	shell:
+		'samtools faidx {input}'
+		
+		
